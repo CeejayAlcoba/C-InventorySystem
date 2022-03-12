@@ -87,25 +87,6 @@ namespace Services
             return user;
         }
 
-        public void ChangePassword(string username, string newPassword)
-        {
-            var user = _unitOfWork.Users.GetUserByUsername(username);
-            var hashedPassword = GenerateHashPassword(newPassword, user.Salt);
-            user.HashPassword = hashedPassword;
-            _unitOfWork.Complete();
-        }
-        public void EditUsername(string username, string newUsername)
-        {
-            var user = _unitOfWork.Users.GetUserByUsername(username);
-            user.Username = newUsername;
-            _unitOfWork.Complete();
-        }
-        public void ChangeName(string username, string newFirstname, string newLastname)
-        {
-            var user = _unitOfWork.Users.GetUserByUsername(username);
-            user.Firstname = newFirstname;
-            user.Lastname = newLastname;
-            _unitOfWork.Complete();
-        }
+       
     }
 }

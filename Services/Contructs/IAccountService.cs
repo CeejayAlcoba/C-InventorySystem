@@ -14,9 +14,7 @@ namespace Services.Contructs
         string GenerateHashPassword(string password, byte[] salt);
         byte[] GenerateSalt(string password);
         User ValidateUser(string username, string password);
-        void ChangePassword(string username, string newHashedPassword);
-        void EditUsername(string username, string newUsername);
-        void ChangeName(string username, string firstname, string lastname);
+       
 
 
 

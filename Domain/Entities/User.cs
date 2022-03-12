@@ -16,6 +16,8 @@ namespace Domain.Entities
 
         public byte[] Salt { get; set; }
         public string HashPassword { get; set; }
-      
+        [NotMapped]
+        public string Password { get; set; }
+
     }
 }

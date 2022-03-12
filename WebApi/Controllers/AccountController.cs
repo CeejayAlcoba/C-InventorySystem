@@ -54,43 +54,5 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("changepassword")]
-        public IActionResult ChangePassword([FromBody] string username, [FromBody] string password, [FromBody] string new_password, [FromBody] string retype_password)
-        {
-            var isValid = _accountService.ValidateUser(username, password);
-            if (isValid == null) return BadRequest("Invalid Password");
-            else
-            {
-                if (new_password == retype_password)
-                {
-
-                    _accountService.ChangePassword(username, new_password);
-                    return Ok();
-                }
-                return BadRequest("New Password doen't Match");
-            }
-        }
-        [HttpPost]
-        [Route("editusername")]
-        public IActionResult EditUsername([FromBody] string username, [FromBody] string password, [FromBody] string new_username)
-        {
-            var isValid = _accountService.ValidateUser(username, password);
-            if (isValid != null)
-            {
-                _accountService.EditUsername(username, new_username);
-                return Ok();
-            }
-            return BadRequest("Invalid Username and Password");
-
-        }
-        [HttpPost]
-        [Route("changename")]
-        public IActionResult ChangeName([FromBody] string username,[FromBody] string new_firstname, [FromBody] string new_lastname)
-        {
-           _accountService.ChangeName(username, new_firstname, new_lastname);
-           return Ok();
-        }
-
     }
 }

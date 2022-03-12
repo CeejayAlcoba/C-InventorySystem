@@ -1,4 +1,5 @@
-﻿using Domain.Interfaces;
+﻿using Domain.Entities;
+using Domain.Interfaces;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,33 +18,35 @@ namespace WebApi.Controllers
     {
         private readonly IAccountService _accountService;
         private readonly IUserService _userService;
-        public UserController(IAccountService accountService,IUserService userService)
+        private readonly IUnitOfWork _unitOfWork;
+        public UserController(IAccountService accountService,IUserService userService, IUnitOfWork unitOfWork)
         {
             _accountService = accountService;
             _userService = userService;
+            _unitOfWork = unitOfWork;
         }
         [HttpPost]
         [Route("signup")]
-        public IActionResult AddUser([FromBody] string firstname, [FromBody] string lastname, [FromBody] string username, [FromQuery] string password)
+        public IActionResult AddUser([FromBody]User user) 
         {
-            var result = _accountService.ValidateUser(username, password);
+            var result = _unitOfWork.Users.GetUserByUsername(user.Username);
             if (result == null)
             {
-                _userService.AddUser(firstname, lastname, username, password);
+                _userService.AddUser(user.Firstname, user.Lastname, user.Username, user.Password);
                 return Ok();
             }
 
             return BadRequest("Username is already exist");
         }
-        [HttpGet]
+        [HttpPost]
         [Route("login")]
-        public IActionResult AuthorizeUser([FromBody] string username, [FromBody] string password)
+        public IActionResult AuthorizeUser([FromBody] User user)
         {
 
-            var isValid = _accountService.ValidateUser(username, password);
+            var isValid = _accountService.ValidateUser(user.Username, user.Password);
             if (isValid != null)
             {
-                var tokenString = _accountService.GenerateJwtToken(username);
+                var tokenString = _accountService.GenerateJwtToken(user.Username);
                 return Ok(tokenString);
             }
             return BadRequest("Invalid Username and Password");
