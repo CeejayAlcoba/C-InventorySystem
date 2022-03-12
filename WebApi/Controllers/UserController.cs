@@ -1,4 +1,5 @@
 ﻿using Domain.Interfaces;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.Contructs;
@@ -11,6 +12,7 @@ namespace WebApi.Controllers
 {
     [Route("api/user")]
     [ApiController]
+    //[EnableCors("AllowOrigin")]
     public class UserController : ControllerBase
     {
         private readonly IAccountService _accountService;
@@ -22,7 +24,7 @@ namespace WebApi.Controllers
         }
         [HttpPost]
         [Route("signup")]
-        public IActionResult AddUser([FromQuery] string firstname, [FromQuery] string lastname, [FromQuery] string username, [FromQuery] string password)
+        public IActionResult AddUser([FromBody] string firstname, [FromBody] string lastname, [FromBody] string username, [FromQuery] string password)
         {
             var result = _accountService.ValidateUser(username, password);
             if (result == null)
@@ -35,14 +37,14 @@ namespace WebApi.Controllers
         }
         [HttpGet]
         [Route("login")]
-        public IActionResult AuthorizeUser([FromQuery] string username, [FromQuery] string password)
+        public IActionResult AuthorizeUser([FromBody] string username, [FromBody] string password)
         {
 
             var isValid = _accountService.ValidateUser(username, password);
             if (isValid != null)
             {
                 var tokenString = _accountService.GenerateJwtToken(username);
-                return Ok(new { Token = tokenString, Message = "Success" });
+                return Ok(tokenString);
             }
             return BadRequest("Invalid Username and Password");
 

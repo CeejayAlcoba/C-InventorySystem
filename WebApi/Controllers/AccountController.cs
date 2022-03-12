@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -17,6 +18,7 @@ namespace WebApi.Controllers
 {
     [Route("api/account")]
     [ApiController]
+    //[EnableCors("AllowOrigin")]
     public class AccountController : ControllerBase
     {
         private IUserService _userService;
@@ -54,7 +56,7 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [Route("changepassword")]
-        public IActionResult ChangePassword([FromQuery] string username, [FromQuery] string password, [FromQuery] string new_password, [FromQuery] string retype_password)
+        public IActionResult ChangePassword([FromBody] string username, [FromBody] string password, [FromBody] string new_password, [FromBody] string retype_password)
         {
             var isValid = _accountService.ValidateUser(username, password);
             if (isValid == null) return BadRequest("Invalid Password");
@@ -71,7 +73,7 @@ namespace WebApi.Controllers
         }
         [HttpPost]
         [Route("editusername")]
-        public IActionResult EditUsername([FromQuery] string username, [FromQuery] string password, [FromQuery] string new_username)
+        public IActionResult EditUsername([FromBody] string username, [FromBody] string password, [FromBody] string new_username)
         {
             var isValid = _accountService.ValidateUser(username, password);
             if (isValid != null)
@@ -84,7 +86,7 @@ namespace WebApi.Controllers
         }
         [HttpPost]
         [Route("changename")]
-        public IActionResult ChangeName([FromQuery] string username,[FromQuery] string new_firstname, [FromQuery] string new_lastname)
+        public IActionResult ChangeName([FromBody] string username,[FromBody] string new_firstname, [FromBody] string new_lastname)
         {
            _accountService.ChangeName(username, new_firstname, new_lastname);
            return Ok();

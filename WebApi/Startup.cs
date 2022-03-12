@@ -39,19 +39,13 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-
-
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAccountService, AccountService>();
-
-
-
             services.AddDbContext<ApplicationContext>(options =>
- options.UseSqlServer(
-     Configuration.GetConnectionString("DefaultConnection"),
-     b => b.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName)));
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection"),
+                    b => b.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName)));
 
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
@@ -81,7 +75,12 @@ namespace WebApi
             });
             #endregion
             services.AddRazorPages();
-            services.AddCors(); // Make sure you call this previous to AddMvc
+            services.AddCors(o => o.AddPolicy("MyCorsPolicy", builder =>
+            {
+                builder.WithOrigins("http://localhost:3000")
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
             services.AddControllers();
 
             #region Swagger Configuration
@@ -144,8 +143,13 @@ namespace WebApi
                 app.UseDeveloperExceptionPage();
             }
             app.UseHttpsRedirection();
-            app.UseCors(options => options.WithOrigins("http://example.com").AllowAnyMethod());
+
+            //app.UseCors(options => 
+            //    options.WithOrigins("http://localhost:3000")
+            //    .AllowAnyMethod()
+            //    .AllowAnyHeader());
             app.UseRouting();
+            app.UseCors("MyCorsPolicy");
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
@@ -153,9 +157,6 @@ namespace WebApi
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
             });
-
-           
-
         }
     }
 }
