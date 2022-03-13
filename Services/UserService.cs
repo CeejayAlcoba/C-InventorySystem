@@ -6,6 +6,9 @@ using Services.Contructs;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Services
 {
@@ -21,7 +24,6 @@ namespace Services
 
         public void AddUser(string firstname,string lastname,string username, string password)
         {
-
             var salt = _accountService.GenerateSalt(password);
             var hashedPassword = _accountService.GenerateHashPassword(password, salt);
             var user = new User
@@ -36,5 +38,8 @@ namespace Services
             _unitOfWork.Users.Add(user);
             _unitOfWork.Complete();
         }
+
+        
+        
     }
 }

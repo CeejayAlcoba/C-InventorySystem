@@ -1,5 +1,7 @@
 ﻿
+using Domain.Entities;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
@@ -8,7 +10,9 @@ using Services.Contructs;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace WebApi.Auth
@@ -24,7 +28,7 @@ namespace WebApi.Auth
             _next = next;
             _configuration = configuration;
             _accountService = accountService;
-        
+
         }
 
         public async Task Invoke(HttpContext context)
@@ -32,7 +36,7 @@ namespace WebApi.Auth
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
             if (token != null) attachAccountToContext(context, token);
-           
+
             await _next(context);
         }
 
@@ -53,10 +57,16 @@ namespace WebApi.Auth
                 }, out SecurityToken validatedToken);
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
-                var accountId = jwtToken.Claims.First(x => x.Type == "id").Value;
+                var userId = jwtToken.Claims.First(x => x.Type == "id").Value;
+                var username = jwtToken.Claims.First(x => x.Type == "username").Value;
+                var user = new User
+                {
+                    Username = username,
+                    Id = int.Parse(userId)
+                };
+                var generatedUserJson = JsonSerializer.Serialize(user);
 
-                // attach account to context on successful jwt validation
-                context.Items["User"] = "haha";
+                context.Items["User"] = generatedUserJson;
             }
             catch
             {
@@ -64,6 +74,8 @@ namespace WebApi.Auth
                 // account is not attached to context so request won't have access to secure routes
             }
         }
+     
+
     }
 }
 

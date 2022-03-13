@@ -14,6 +14,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Services
 {
@@ -30,13 +31,16 @@ namespace Services
 
         }
 
-        public string GenerateJwtToken(string username)
+        public string GenerateJwtToken(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_configuration["Jwt:key"]);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", username) }),
+                Subject = new ClaimsIdentity(new[] { 
+                    new Claim("username", user.Username),
+                    new Claim("id", user.Id.ToString())
+                }),
                 Expires = DateTime.UtcNow.AddHours(1),
                 Issuer = _configuration["Jwt:Issuer"],
                 Audience = _configuration["Jwt:Audience"],
@@ -86,7 +90,8 @@ namespace Services
             if (hashedPassword != user.HashPassword) return null;
             return user;
         }
-
        
+
+
     }
 }
