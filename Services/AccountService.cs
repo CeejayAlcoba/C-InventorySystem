@@ -37,9 +37,12 @@ namespace Services
             var key = Encoding.ASCII.GetBytes(_configuration["Jwt:key"]);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { 
+                Subject = new ClaimsIdentity(new[] {
+                    new Claim("userId", user.Id.ToString()),
                     new Claim("username", user.Username),
-                    new Claim("id", user.Id.ToString())
+                     new Claim("firstname", user.Firstname),
+                      new Claim("lastname", user.Lastname),
+
                 }),
                 Expires = DateTime.UtcNow.AddHours(1),
                 Issuer = _configuration["Jwt:Issuer"],
@@ -90,8 +93,7 @@ namespace Services
             if (hashedPassword != user.HashPassword) return null;
             return user;
         }
+
        
-
-
     }
 }

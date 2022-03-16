@@ -10,6 +10,7 @@ namespace Domain.Interfaces
     public interface IUserRepository : IGenericRepository<User>
     {
         User GetUserByUsername(string username);
+        User GetUserById(int id);
     }
 
 

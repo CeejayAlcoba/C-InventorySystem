@@ -9,6 +9,7 @@ namespace Services.Contructs
 {
     public interface IUserService
     {
-        void AddUser(string firstName,string lastName,string username, string password);
+        void AddUser(string firstName, string lastName, string username, string password);
+        void UpdateUsername(string username,int userId);
     }
 }

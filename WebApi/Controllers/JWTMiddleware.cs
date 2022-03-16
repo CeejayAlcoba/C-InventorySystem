@@ -57,12 +57,16 @@ namespace WebApi.Auth
                 }, out SecurityToken validatedToken);
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
-                var userId = jwtToken.Claims.First(x => x.Type == "id").Value;
+                var id = jwtToken.Claims.First(x => x.Type == "userId").Value;
                 var username = jwtToken.Claims.First(x => x.Type == "username").Value;
-                var user = new User
+                var firstname = jwtToken.Claims.First(x => x.Type == "firstname").Value;
+                var lastname = jwtToken.Claims.First(x => x.Type == "lastname").Value;
+                var user = new User()
                 {
-                    Username = username,
-                    Id = int.Parse(userId)
+                   Id=int.Parse(id),
+                   Username=username,
+                   Firstname=firstname,
+                   Lastname=lastname
                 };
                 var generatedUserJson = JsonSerializer.Serialize(user);
 

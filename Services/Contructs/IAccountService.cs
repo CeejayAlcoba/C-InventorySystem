@@ -9,11 +9,12 @@ namespace Services.Contructs
 {
     public interface IAccountService
     {
-        string GenerateJwtToken(User username);
+        string GenerateJwtToken(User user);
         string GetUserToken(string username, string password);
         string GenerateHashPassword(string password, byte[] salt);
         byte[] GenerateSalt(string password);
         User ValidateUser(string username, string password);
+        
        
 
 

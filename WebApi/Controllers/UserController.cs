@@ -41,27 +41,26 @@ namespace WebApi.Controllers
 
             return BadRequest("Username is already exist");
         }
-        [HttpPost]
-        [Route("login")]
-        public IActionResult AuthorizeUser([FromBody]User user)
-        {
-            var validatedUser
-                = _accountService.ValidateUser(user.Username, user.Password);
-
-            if (validatedUser != null)
-            {
-                var tokenString = _accountService.GenerateJwtToken(validatedUser);
-                return Ok(tokenString);
-            }
-            return BadRequest("Invalid Username and Password");
-        }
 
         [HttpPatch]
         [Authorize]
         public IActionResult UpdateUser()
         {
-            var userId = GetCurrentUser();     
-            return Ok();
+            var currentUser = GetCurrentUser();
+            return Ok(currentUser);
+        }
+        [HttpPatch]
+        [Authorize]
+        [Route("updateusername")]
+        public IActionResult UpdateUsername([FromQuery] string username)
+        {
+            if (username != null)
+            {
+                var currentUser = GetCurrentUser();
+                _userService.UpdateUsername(username, currentUser.Id);
+                return Ok();
+            }
+            else return BadRequest("Fill the username");
         }
     }
 }
