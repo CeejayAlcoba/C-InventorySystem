@@ -16,12 +16,6 @@ namespace DataAccessEFCore.Repositories
         public UserRepository(ApplicationContext context) : base(context)
         {
         }
-
-        public User GetUserById(int id)
-        {
-            return _context.Users.FirstOrDefault(x => x.Id == id);
-        }
-
         public User GetUserByUsername(string username)
         {
             return _context.Users.FirstOrDefault(x => x.Username == username);
