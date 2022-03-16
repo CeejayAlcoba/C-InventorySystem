@@ -15,8 +15,12 @@ namespace DataAccessEFCore.UnitOfWork
         {
             _context = context;
             Users = new UserRepository(_context);
+            Products = new ProductRepository(_context);
         }
         public IUserRepository Users { get; private set; }
+
+        public IProductRepository Products { get; private set; }
+
         public int Complete()
         {
             return _context.SaveChanges();
