@@ -52,15 +52,27 @@ namespace WebApi.Controllers
         [HttpPatch]
         [Authorize]
         [Route("username")]
-        public IActionResult UpdateUsername([FromBody] string username)
+        public IActionResult UpdateUsername([FromBody] User user)
         {
-            if (username != null)
+            if (user.Username != null)
             {
                 var currentUser = GetCurrentUser();
-                _userService.UpdateUsername(username, currentUser.Id);
+                _userService.UpdateUsername(user.Username, currentUser.Id);
                 return Ok();
             }
             return BadRequest("Fill the username");
+        }
+        [HttpGet]
+        public IActionResult UsersList()
+        {
+            var usersList = _unitOfWork.Users.GetAll();
+            return Ok(usersList);
+        }
+        [HttpDelete]
+        public IActionResult DeleteUser([FromBody]User user)
+        {
+            _userService.DeleteUser(user.Id);
+            return Ok();
         }
     }
 }

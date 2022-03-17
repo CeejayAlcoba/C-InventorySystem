@@ -38,10 +38,19 @@ namespace Services
             _unitOfWork.Users.Add(user);
             _unitOfWork.Complete();
         }
+
+       
+
         public void UpdateUsername(string username, int userId)
         {
             var user = _unitOfWork.Users.GetById(userId);
             user.Username = username;
+            _unitOfWork.Complete();
+        }
+        public void DeleteUser(int userId)
+        {
+            var getUserId = _unitOfWork.Users.GetById(userId);
+            _unitOfWork.Users.Remove(getUserId);
             _unitOfWork.Complete();
         }
 
