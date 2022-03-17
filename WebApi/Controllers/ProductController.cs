@@ -16,9 +16,11 @@ namespace WebApi.Controllers
         private readonly IAccountService _accountService;
         private readonly IUserService _userService;
         private readonly IUnitOfWork _unitOfWork;
-        public ProductController(IAccountService accountService, IUserService userService, IUnitOfWork unitOfWork)
+        private readonly IProductService _productService;
+        public ProductController(IAccountService accountService, IUserService userService, IUnitOfWork unitOfWork, IProductService productService)
         {
             _accountService = accountService;
+            _productService = productService;
             _userService = userService;
             _unitOfWork = unitOfWork;
         }
@@ -27,6 +29,24 @@ namespace WebApi.Controllers
         {
             var productList = _unitOfWork.Products.GetAll();
             return Ok(productList);
+        }
+        [HttpPost]
+        public IActionResult AddProduct([FromBody] Product product)
+        {
+            _productService.AddProduct(product);
+            return Ok();
+        }
+        [HttpPatch]
+        public IActionResult ProducttUpdate([FromBody] Product product)
+        {
+            _productService.UpdateProduct(product);
+            return Ok();
+        }
+        [HttpDelete]
+        public IActionResult ProductDelete([FromBody] Product product)
+        {
+            _productService.DeleteProduct(product);
+            return Ok();
         }
 
     }
