@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mBVxZ9OVRj0WpzdkBaRPNSyxPtQtLflxfmmQHSATNxRPRpaFVicDq+6/agncxVk4HRv2s2AJp6x3RQQCjnoY3Q==",
+  "dgSpecHash": "1BnKvmfJKj1SdsW+kwaqdZyOFnPOJ52WCNlPynOEpep2i8R60bADeHHY/70FVQc9rnnhJAnPFHV3l91YqzlQ5A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\User\\Desktop\\Inventory - Copy - Copy\\RepositoryPatter.WebApi\\Domain\\Domain.csproj",
+  "projectFilePath": "C:\\Users\\User\\Desktop\\inventory trial\\RepositoryPatter.WebApi\\Domain\\Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

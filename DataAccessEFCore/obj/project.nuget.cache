@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2uufKUEo+C/kuYf+C7qBJNj17VoprVDBDwG1FfeTNSgxiRorUweSCiCCvA2Tb0R8jlVs7obURsThc5g1+hvBDQ==",
+  "dgSpecHash": "lR4y3Csp5Hea2LXHlFuwjuu/poAoG9VbHInwRuem2FB3XzBxZfNn/4UAbSiIDr8R62icGU7QuF5xdgCRzeE4aA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\User\\Desktop\\Inventory - Copy - Copy\\RepositoryPatter.WebApi\\DataAccessEFCore\\DataAccessEFCore.csproj",
+  "projectFilePath": "C:\\Users\\User\\Desktop\\inventory trial\\RepositoryPatter.WebApi\\DataAccessEFCore\\DataAccessEFCore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\google.apis\\1.56.0\\google.apis.1.56.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\google.apis.admin.directory.directory_v1\\1.56.0.2609\\google.apis.admin.directory.directory_v1.1.56.0.2609.nupkg.sha512",

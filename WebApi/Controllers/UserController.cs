@@ -51,13 +51,13 @@ namespace WebApi.Controllers
         }
         [HttpPatch]
         [Authorize]
-        [Route("updateusername")]
-        public IActionResult UpdateUsername([FromQuery] string username)
+        [Route("username")]
+        public IActionResult UpdateUsername([FromBody] User user)
         {
-            if (username != null)
+            if (user != null)
             {
                 var currentUser = GetCurrentUser();
-                _userService.UpdateUsername(username, currentUser.Id);
+                _userService.UpdateUsername(user.Username, currentUser.Id);
                 return Ok();
             }
             else return BadRequest("Fill the username");
