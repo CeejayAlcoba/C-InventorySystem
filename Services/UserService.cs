@@ -16,26 +16,28 @@ namespace Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAccountService _accountService;
-        public UserService(IUnitOfWork unitOfWork, IAccountService accountService)
+        private readonly IUserRepository _userRepository;
+        public UserService(IUnitOfWork unitOfWork, IAccountService accountService,IUserRepository userRepository)
         {
             _unitOfWork = unitOfWork;
             _accountService = accountService;
+            _userRepository = userRepository;
         }
 
-        public void AddUser(string firstname,string lastname,string username, string password)
+        public void AddUser(User user)
         {
-            var salt = _accountService.GenerateSalt(password);
-            var hashedPassword = _accountService.GenerateHashPassword(password, salt);
-            var user = new User
+            var salt = _accountService.GenerateSalt(user.Password);
+            var hashedPassword = _accountService.GenerateHashPassword(user.Password, salt);
+            var newUser = new User
             {
-                Firstname=firstname,
-                Lastname = lastname,
-                Username = username,
+                Firstname=user.Firstname,
+                Lastname = user.Lastname,
+                Username = user.Username,
                 HashPassword = hashedPassword,
                 Salt = salt
             };
 
-            _unitOfWork.Users.Add(user);
+            _unitOfWork.Users.Add(newUser);
             _unitOfWork.Complete();
         }
 
@@ -53,6 +55,5 @@ namespace Services
             _unitOfWork.Users.Remove(getUserId);
             _unitOfWork.Complete();
         }
-
     }
 }

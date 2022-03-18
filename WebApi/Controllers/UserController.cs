@@ -35,7 +35,7 @@ namespace WebApi.Controllers
             var result = _unitOfWork.Users.GetUserByUsername(user.Username);
             if (result == null)
             {
-                _userService.AddUser(user.Firstname, user.Lastname, user.Username, user.Password);
+                _userService.AddUser(user);
                 return Ok();
             }
 
