@@ -31,13 +31,13 @@ namespace WebApi.Controllers
             return Ok(productList);
         }
         [HttpPost]
-        public IActionResult AddProduct([FromBody] Product product)
+        public IActionResult ProductAdd([FromBody] Product product)
         {
             _productService.AddProduct(product);
             return Ok();
         }
         [HttpPatch]
-        public IActionResult ProducttUpdate([FromBody] Product product)
+        public IActionResult ProductUpdate([FromBody] Product product)
         {
             _productService.UpdateProduct(product);
             return Ok();
