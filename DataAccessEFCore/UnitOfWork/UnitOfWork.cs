@@ -16,10 +16,12 @@ namespace DataAccessEFCore.UnitOfWork
             _context = context;
             Users = new UserRepository(_context);
             Products = new ProductRepository(_context);
+            Suppliers = new SupplierRepository(_context);
         }
         public IUserRepository Users { get; private set; }
 
         public IProductRepository Products { get; private set; }
+        public ISupplierRepository Suppliers { get; private set; }
 
         public int Complete()
         {
