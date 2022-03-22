@@ -23,9 +23,12 @@ namespace Services
         {
             var newProduct = new Product()
             {
+                Code = product.Code,
                 ProductName = product.ProductName,
                 Brand = product.Brand,
-                Quantity = product.Quantity
+                Price = product.Price,
+                Quantity = product.Quantity,
+                TotalPrice = product.Price * product.Quantity
             };
             _unitOfWork.Products.Add(newProduct);
             _unitOfWork.Complete();
@@ -36,9 +39,12 @@ namespace Services
         public void UpdateProduct(Product product)
         {
             var getProductId = _unitOfWork.Products.GetById(product.ProductId);
+            getProductId.Code = product.Code;
             getProductId.ProductName = product.ProductName;
             getProductId.Brand = product.Brand;
+            getProductId.Price = product.Price;
             getProductId.Quantity = product.Quantity;
+            getProductId.TotalPrice = getProductId.Price * getProductId.Quantity;
             _unitOfWork.Complete();
         }
         public void DeleteProduct(Product product)
