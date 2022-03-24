@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Services.Contructs;
+using Services.Contracts;
 using System;
 
 namespace WebApi.Auth

@@ -12,6 +12,8 @@ namespace Domain.Interfaces
         IProductRepository Products { get; }
         ISupplierRepository Suppliers { get; }
         ICustomerRepository Customers { get; }
+
+        IPurchaseRepository Purchases { get; }
         int Complete();
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Services.Contructs;
+using Services.Contracts;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;

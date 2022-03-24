@@ -2,7 +2,7 @@
 using Domain.Interfaces;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using Services.Contructs;
+using Services.Contracts;
 using System;
 using System.Linq;
 using System.Collections.Generic;

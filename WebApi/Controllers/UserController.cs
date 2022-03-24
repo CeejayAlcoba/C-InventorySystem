@@ -3,7 +3,7 @@ using Domain.Interfaces;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Services.Contructs;
+using Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

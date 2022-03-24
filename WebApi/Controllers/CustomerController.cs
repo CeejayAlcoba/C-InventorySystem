@@ -1,11 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Services.Contructs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Services.Contracts;
 
 namespace WebApi.Controllers
 {
@@ -17,7 +13,11 @@ namespace WebApi.Controllers
         private readonly ICustomerService _customerService;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IProductService _productService;
-        public CustomerController(IAccountService accountService, ICustomerService customerService, IUnitOfWork unitOfWork, IProductService productService)
+        public CustomerController(
+            IAccountService accountService, 
+            ICustomerService customerService, 
+            IUnitOfWork unitOfWork, 
+            IProductService productService)
         {
             _accountService = accountService;
             _productService = productService;
@@ -27,19 +27,21 @@ namespace WebApi.Controllers
         [HttpGet]
         public IActionResult CustomerList()
         { 
-            var getAllCustomer = _unitOfWork.Customers.GetAll();
-            return Ok(getAllCustomer);
+            var result = _unitOfWork.Customers.GetAll();
+
+            return Ok(result);
         }
         [HttpPost]
         public IActionResult CustomerAdd([FromBody] Customer customer)
         {
             _customerService.AddCustomer(customer);
-            return Ok();
+            return Ok(customer);
         }
-        [HttpPatch]
+        [HttpPut]
         public IActionResult CustomerUpdate([FromBody] Customer customer)
         {
             _customerService.UpdateCustomer(customer);
+
             return Ok();
         }
         [HttpDelete]

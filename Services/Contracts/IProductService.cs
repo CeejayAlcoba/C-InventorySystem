@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Entities;
 
-namespace Services.Contructs
+namespace Services.Contracts
 {
     public interface IProductService
     {

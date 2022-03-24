@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
-using Services.Contructs;
+using Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,12 +37,13 @@ namespace Services
             _unitOfWork.Complete();
         }
 
-        public void UpdateCustomer(Customer customer)
+        public void UpdateCustomer(Customer newCustomer)
         {
-            var getCustomerById = _unitOfWork.Customers.GetById(customer.CustomerId);
-            getCustomerById.CustomerName = customer.CustomerName;
-            getCustomerById.Address = customer.Address;
-            getCustomerById.ContactNumber = customer.ContactNumber;
+            var customer = _unitOfWork.Customers.GetById(newCustomer.CustomerId);
+            customer.CustomerName = newCustomer.CustomerName;
+            customer.Address = newCustomer.Address;
+            customer.ContactNumber = newCustomer.ContactNumber;
+
             _unitOfWork.Complete();
         }
     }

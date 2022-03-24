@@ -1,15 +1,11 @@
-using Antlr4.Runtime.Misc;
 using DataAccessEFCore;
 using DataAccessEFCore.Repositories;
 using DataAccessEFCore.UnitOfWork;
 using Domain.Interfaces;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,12 +13,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Services;
-using Services.Contructs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Services.Contracts;
 using System.Text;
-using System.Threading.Tasks;
 using WebApi.Auth;
 
 namespace WebApi
@@ -46,6 +38,7 @@ namespace WebApi
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<IPurchaseService, PurchaseService>();
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"),
