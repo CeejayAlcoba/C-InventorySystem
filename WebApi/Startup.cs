@@ -6,12 +6,14 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Serialization;
 using Services;
 using Services.Contracts;
 using System.Text;
@@ -43,6 +45,15 @@ namespace WebApi
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName)));
+            services.AddMvc(setupAction => {
+                setupAction.EnableEndpointRouting = false;
+            }).AddJsonOptions(jsonOptions =>
+            {
+                jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = null;
+            })
+         .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+
 
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
@@ -74,7 +85,7 @@ namespace WebApi
             services.AddRazorPages();
             services.AddCors(o => o.AddPolicy("MyCorsPolicy", builder =>
             {
-                builder.WithOrigins("http://localhost:3001")
+                builder.WithOrigins("http://localhost:3000")
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             }));
