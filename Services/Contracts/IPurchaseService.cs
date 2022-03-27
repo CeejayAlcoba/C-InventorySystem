@@ -10,5 +10,8 @@ namespace Services.Contracts
     public interface IPurchaseService
     {
         Purchase GetPurchase(int purchaseId);
+        Purchase AddPurchase(Purchase purchase);
+        Purchase UpdatePurchase(Purchase purchase);
+        void DeletePurchase(int purchaseId);
     }
 }

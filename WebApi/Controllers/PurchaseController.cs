@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Domain.Entities;
+using Domain.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
@@ -14,12 +16,15 @@ namespace WebApi.Controllers
     public class PurchaseController : BaseController
     {
         private readonly IPurchaseService _purchaseService;
+        private readonly IUnitOfWork _unitOfWork;
 
         public PurchaseController(
-            IPurchaseService purchaseService)
+            IPurchaseService purchaseService,
+            IUnitOfWork unitOfWork)
         {
             _purchaseService = purchaseService;
-        } 
+            _unitOfWork = unitOfWork;
+        }
 
         [HttpGet]
         [Route("/api/purchase/{id}")]
@@ -28,6 +33,46 @@ namespace WebApi.Controllers
             var result = _purchaseService.GetPurchase(id);
 
             return Ok(result);
+        }
+        [HttpGet]
+        public IActionResult PurchaseList()
+        {
+            var result = _unitOfWork.Purchases.GetAll();
+            return Ok(result);
+        }
+        [HttpPost]
+        public IActionResult AddPurchase([FromBody] Purchase purchase)
+        {
+            try
+            {
+                _purchaseService.AddPurchase(purchase);
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest(error: 415);
+            }
+            
+        }
+        [HttpPatch]
+        public IActionResult UpdatePurchase([FromBody] Purchase purchase)
+        {
+            try
+            {
+                var result = _purchaseService.UpdatePurchase(purchase);
+                return Ok(result);
+            }
+            catch
+            {
+                return BadRequest(error: 415);
+            }
+           
+        }
+        [HttpDelete]
+        public IActionResult ProductDelete([FromBody] int purchaseId)
+        {
+            _purchaseService.DeletePurchase(purchaseId);
+            return Ok();
         }
     }
 }

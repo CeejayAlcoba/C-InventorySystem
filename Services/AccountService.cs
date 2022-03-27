@@ -86,7 +86,7 @@ namespace Services
             if (user == null) return null;
             var hashedPassword = GenerateHashPassword(password, user.Salt);
             if (hashedPassword != user.HashPassword) return null;
-            return user;
+                return user;
         }
 
        

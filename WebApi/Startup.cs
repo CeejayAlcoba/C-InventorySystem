@@ -41,6 +41,7 @@ namespace WebApi
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IPurchaseService, PurchaseService>();
+            services.AddScoped<ISaleService, SaleService>();
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"),

@@ -12,10 +12,12 @@ namespace WebApi.Controllers
     {
         public User GetCurrentUser()
         {
-            var userJson = HttpContext.Items["User"].ToString();
+            var userJson = HttpContext.Items["User"]?.ToString();
+            if (userJson == null) return null;
 
             var user = JsonSerializer.Deserialize<User>
                 (userJson);
+
             return user;
         }
 

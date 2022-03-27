@@ -24,7 +24,7 @@ namespace DataAccessEFCore.Repositories
             if (includeProduct)
                 query = query.Include(x => x.Product);
 
-            return query.FirstOrDefault(x => x.Id == purchaseId);
+            return query.FirstOrDefault(x => x.PurchaseId == purchaseId);
         }
     }
 }

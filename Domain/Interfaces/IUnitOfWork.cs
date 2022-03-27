@@ -14,6 +14,7 @@ namespace Domain.Interfaces
         ICustomerRepository Customers { get; }
 
         IPurchaseRepository Purchases { get; }
+        ISaleRepository Sales { get; }
         int Complete();
     }
 }

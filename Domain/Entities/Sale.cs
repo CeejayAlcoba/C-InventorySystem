@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Purchase
+    public class Sale
     {
         [Key]
-        public int PurchaseId { get; set; }
+        public int SaleId { get; set; }
         [ForeignKey("Product")]
         public int ProductId { get; set; }
         public Product Product { get; set; }
-        [ForeignKey("Supplier")]
-        public int SupplierId { get; set; }
-        public Supplier Supplier { get; set; }
+        [ForeignKey("Customer")]
+        public int CustomerId { get; set; }
+        public Customer Customer { get; set; }
         public DateTime Date { get; set; }
         public int Quantity { get; set; }
         public int Total { get; set; }
