@@ -1,6 +1,8 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
 using Services.Contracts;
+using System;
+using System.Globalization;
 
 namespace Services
 {
@@ -14,12 +16,15 @@ namespace Services
 
         public Purchase AddPurchase(Purchase newPurchase)
         {
-            var purchase = new Purchase() {
-                SupplierId = newPurchase.SupplierId,
-                ProductId = newPurchase.ProductId,  
+            var getPurchase =_unitOfWork.Purchases.GetPurchase(newPurchase.PurchaseId);
+            var product = _unitOfWork.Products.GetProductByName(getPurchase.Product.ProductName);
+            var supplier = _unitOfWork.Suppliers.GetSupplierByName(getPurchase.Supplier.SupplierName);
+            var purchase = new Purchase {
+                SupplierId = supplier.SupplierId,
+                ProductId = product.ProductId,  
                 Date = newPurchase.Date,
                 Quantity= newPurchase.Quantity,
-                Total = newPurchase.Product.Price * newPurchase.Quantity
+                Total = product.Price * newPurchase.Quantity
                 
             };
             _unitOfWork.Purchases.Add(purchase);

@@ -2210,6 +2210,9 @@
       "Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "5.0.14"
+        },
         "compile": {
           "bin/placeholder/Domain.dll": {}
         },
@@ -7530,19 +7533,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "C:\\Users\\Alcoba\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Desktop\\inventory trial\\RepositoryPatter.WebApi\\WebApi\\WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\WebApi\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "C:\\Users\\User\\Desktop\\inventory trial\\RepositoryPatter.WebApi\\WebApi\\WebApi.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Desktop\\inventory trial\\RepositoryPatter.WebApi\\WebApi\\obj\\",
+      "projectPath": "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\WebApi\\WebApi.csproj",
+      "packagesPath": "C:\\Users\\Alcoba\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Alcoba\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7556,11 +7559,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\User\\Desktop\\inventory trial\\RepositoryPatter.WebApi\\DataAccessEFCore\\DataAccessEFCore.csproj": {
-              "projectPath": "C:\\Users\\User\\Desktop\\inventory trial\\RepositoryPatter.WebApi\\DataAccessEFCore\\DataAccessEFCore.csproj"
+            "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\DataAccessEFCore\\DataAccessEFCore.csproj": {
+              "projectPath": "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\DataAccessEFCore\\DataAccessEFCore.csproj"
             },
-            "C:\\Users\\User\\Desktop\\inventory trial\\RepositoryPatter.WebApi\\Services\\Services.csproj": {
-              "projectPath": "C:\\Users\\User\\Desktop\\inventory trial\\RepositoryPatter.WebApi\\Services\\Services.csproj"
+            "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\Services\\Services.csproj": {
+              "projectPath": "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\Services\\Services.csproj"
             }
           }
         }

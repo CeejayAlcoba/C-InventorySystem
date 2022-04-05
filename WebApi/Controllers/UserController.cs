@@ -33,34 +33,54 @@ namespace WebApi.Controllers
         public IActionResult AddUser([FromBody] User user)
         {
             var result = _unitOfWork.Users.GetUserByUsername(user.Username);
-            if (result == null)
+
+            if (user.Password == user.ReTypePassword)
             {
-                _userService.AddUser(user);
-                return Ok();
+                if (result == null) 
+                {
+                    _userService.AddUser(user);
+                    return Ok();
+                }
+                return BadRequest("Username is already exist");
             }
 
-            return BadRequest("Username is already exist");
+            return BadRequest("Password doesn't  match");
         }
 
         [HttpPatch]
-        [Authorize]
-        public IActionResult UpdateUser()
+        [Route("/api/user/username/{id}")]
+        public IActionResult UpdateUsername(int Id,[FromBody] User user)
         {
-            var currentUser = GetCurrentUser();
-            return Ok(currentUser);
-        }
-        [HttpPatch]
-        [Authorize]
-        [Route("username")]
-        public IActionResult UpdateUsername([FromBody] User user)
-        {
-            if (user.Username != null)
+            var userId = _unitOfWork.Users.GetById(Id);
+            var getUser = _unitOfWork.Users.GetUserByUsername(user.Username);
+            if (userId.Username != user.Username)
             {
-                var currentUser = GetCurrentUser();
-                _userService.UpdateUsername(user.Username, currentUser.Id);
+                if (getUser == null)
+                {
+                    _userService.UpdateUsername(user, Id);
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest("Username is already exist");
+                }
+               
+            }
+            else
+            {
+                _userService.UpdateUsername(user, Id);
                 return Ok();
             }
-            return BadRequest("Fill the username");
+           
+        }
+        [HttpGet]
+        [Route("/api/user/username/{id}")]
+        public IActionResult GetUser(int Id)
+        {
+            var user = _unitOfWork.Users.GetById(Id);
+            if(user !=null)
+            return Ok(user);
+            return BadRequest("Invalid user");
         }
         [HttpGet]
         public IActionResult UsersList()

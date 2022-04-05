@@ -86,7 +86,7 @@ namespace WebApi
             services.AddRazorPages();
             services.AddCors(o => o.AddPolicy("MyCorsPolicy", builder =>
             {
-                builder.WithOrigins("http://localhost:3000")
+                builder.AllowAnyOrigin()
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             }));

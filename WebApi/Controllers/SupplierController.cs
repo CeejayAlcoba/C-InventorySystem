@@ -44,7 +44,7 @@ namespace WebApi.Controllers
             return Ok();
         }
         [HttpGet]
-        public IActionResult SupplierList([FromBody] Supplier supplier)
+        public IActionResult SupplierList()
         {
             var getAllSupplier=_unitOfWork.Suppliers.GetAll();
             return Ok(getAllSupplier);

@@ -17,7 +17,7 @@ namespace Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAccountService _accountService;
         private readonly IUserRepository _userRepository;
-        public UserService(IUnitOfWork unitOfWork, IAccountService accountService,IUserRepository userRepository)
+        public UserService(IUnitOfWork unitOfWork, IAccountService accountService, IUserRepository userRepository)
         {
             _unitOfWork = unitOfWork;
             _accountService = accountService;
@@ -26,11 +26,12 @@ namespace Services
 
         public void AddUser(User user)
         {
+
             var salt = _accountService.GenerateSalt(user.Password);
             var hashedPassword = _accountService.GenerateHashPassword(user.Password, salt);
             var newUser = new User
             {
-                Firstname=user.Firstname,
+                Firstname = user.Firstname,
                 Lastname = user.Lastname,
                 Username = user.Username,
                 HashPassword = hashedPassword,
@@ -41,12 +42,14 @@ namespace Services
             _unitOfWork.Complete();
         }
 
-       
 
-        public void UpdateUsername(string username, int userId)
+
+        public void UpdateUsername(User user, int Id)
         {
-            var user = _unitOfWork.Users.GetById(userId);
-            user.Username = username;
+            var userId = _unitOfWork.Users.GetById(Id);
+            userId.Username = user.Username;
+            userId.Firstname = user.Firstname;
+            userId.Lastname = user.Lastname;
             _unitOfWork.Complete();
         }
         public void DeleteUser(int userId)
@@ -55,5 +58,6 @@ namespace Services
             _unitOfWork.Users.Remove(getUserId);
             _unitOfWork.Complete();
         }
+
     }
 }

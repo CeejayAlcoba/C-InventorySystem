@@ -9,6 +9,6 @@ namespace Domain.Interfaces
 {
      public interface IProductRepository : IGenericRepository<Product>
     {
-        Product GetProductById(int productId);
+        Product GetProductByName(string productName);
     }
 }

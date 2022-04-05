@@ -14,9 +14,9 @@ namespace DataAccessEFCore.Repositories
         {
         }
 
-        public Supplier getSupplierById(Supplier supplier)
+        public Supplier GetSupplierByName(string supplierName)
         {
-            return _context.Suppliers.FirstOrDefault(x => x.SupplierId== supplier.SupplierId);
+            return _context.Suppliers.FirstOrDefault(x => x.SupplierName== supplierName);
         }
     }
 }

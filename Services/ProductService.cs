@@ -30,7 +30,7 @@ namespace Services
                 Quantity = product.Quantity,
                 TotalPrice = product.Price * product.Quantity
             };
-            _unitOfWork.Products.Add(newProduct);
+                _unitOfWork.Products.Add(newProduct);
             _unitOfWork.Complete();
         }
 

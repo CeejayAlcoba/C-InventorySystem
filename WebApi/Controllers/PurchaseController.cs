@@ -37,7 +37,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public IActionResult PurchaseList()
         {
-            var result = _unitOfWork.Purchases.GetAll();
+            var result = _unitOfWork.Purchases.GetAllPurchase(true,true);
             return Ok(result);
         }
         [HttpPost]

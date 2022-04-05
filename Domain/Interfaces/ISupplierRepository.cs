@@ -9,6 +9,6 @@ namespace Domain.Interfaces
 {
     public interface ISupplierRepository : IGenericRepository<Supplier>
     {
-        Supplier getSupplierById(Supplier supplier);
+        Supplier GetSupplierByName(string supplierName);
     }
 }

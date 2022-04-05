@@ -13,9 +13,9 @@ namespace DataAccessEFCore.Repositories
         public ProductRepository(ApplicationContext context) : base(context)
         {
         }
-        public Product GetProductById(int productId)
+        public Product GetProductByName(string productName)
         {
-            return _context.Products.FirstOrDefault(x => x.ProductId == productId);
+            return _context.Products.FirstOrDefault(x => x.ProductName == productName);
         }
     }
 }

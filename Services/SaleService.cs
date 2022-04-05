@@ -41,7 +41,7 @@ namespace Services
 
         public Sale GetSale(int saleId)
         {
-            return _unitOfWork.Sales.GetPurchase(saleId);
+            return _unitOfWork.Sales.GetPurchase(saleId,true,true);
         }
 
         public Sale UpdateSale(Sale newSale)

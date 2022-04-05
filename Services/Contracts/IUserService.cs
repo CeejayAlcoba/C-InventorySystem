@@ -10,7 +10,7 @@ namespace Services.Contracts
     public interface IUserService
     {
         void AddUser(User user);
-        void UpdateUsername(string username, int userId);
+        void UpdateUsername(User user, int userId);
         void DeleteUser(int userId);
     }
 }

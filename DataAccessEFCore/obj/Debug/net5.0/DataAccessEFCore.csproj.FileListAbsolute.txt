@@ -64,3 +64,20 @@ C:\Users\User\Desktop\inventory trial\RepositoryPatter.WebApi\DataAccessEFCore\o
 C:\Users\User\Desktop\inventory trial\RepositoryPatter.WebApi\DataAccessEFCore\obj\Debug\net5.0\DataAccessEFCore.dll
 C:\Users\User\Desktop\inventory trial\RepositoryPatter.WebApi\DataAccessEFCore\obj\Debug\net5.0\ref\DataAccessEFCore.dll
 C:\Users\User\Desktop\inventory trial\RepositoryPatter.WebApi\DataAccessEFCore\obj\Debug\net5.0\DataAccessEFCore.pdb
+C:\Users\Alcoba\Desktop\Inventory\inventory\DataAccessEFCore\bin\Debug\net5.0\DataAccessEFCore.deps.json
+C:\Users\Alcoba\Desktop\Inventory\inventory\DataAccessEFCore\bin\Debug\net5.0\DataAccessEFCore.dll
+C:\Users\Alcoba\Desktop\Inventory\inventory\DataAccessEFCore\bin\Debug\net5.0\ref\DataAccessEFCore.dll
+C:\Users\Alcoba\Desktop\Inventory\inventory\DataAccessEFCore\bin\Debug\net5.0\DataAccessEFCore.pdb
+C:\Users\Alcoba\Desktop\Inventory\inventory\DataAccessEFCore\bin\Debug\net5.0\Domain.dll
+C:\Users\Alcoba\Desktop\Inventory\inventory\DataAccessEFCore\bin\Debug\net5.0\Services.dll
+C:\Users\Alcoba\Desktop\Inventory\inventory\DataAccessEFCore\bin\Debug\net5.0\Domain.pdb
+C:\Users\Alcoba\Desktop\Inventory\inventory\DataAccessEFCore\bin\Debug\net5.0\Services.pdb
+C:\Users\Alcoba\Desktop\Inventory\inventory\DataAccessEFCore\obj\Debug\net5.0\DataAccessEFCore.csproj.AssemblyReference.cache
+C:\Users\Alcoba\Desktop\Inventory\inventory\DataAccessEFCore\obj\Debug\net5.0\DataAccessEFCore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alcoba\Desktop\Inventory\inventory\DataAccessEFCore\obj\Debug\net5.0\DataAccessEFCore.AssemblyInfoInputs.cache
+C:\Users\Alcoba\Desktop\Inventory\inventory\DataAccessEFCore\obj\Debug\net5.0\DataAccessEFCore.AssemblyInfo.cs
+C:\Users\Alcoba\Desktop\Inventory\inventory\DataAccessEFCore\obj\Debug\net5.0\DataAccessEFCore.csproj.CoreCompileInputs.cache
+C:\Users\Alcoba\Desktop\Inventory\inventory\DataAccessEFCore\obj\Debug\net5.0\DataAccessEFCore.csproj.CopyComplete
+C:\Users\Alcoba\Desktop\Inventory\inventory\DataAccessEFCore\obj\Debug\net5.0\DataAccessEFCore.dll
+C:\Users\Alcoba\Desktop\Inventory\inventory\DataAccessEFCore\obj\Debug\net5.0\ref\DataAccessEFCore.dll
+C:\Users\Alcoba\Desktop\Inventory\inventory\DataAccessEFCore\obj\Debug\net5.0\DataAccessEFCore.pdb
