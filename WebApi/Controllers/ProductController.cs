@@ -37,7 +37,7 @@ namespace WebApi.Controllers
             return Ok();
         }
         [HttpPatch]
-        [Route("/api/user/id/{id}")]
+        [Route("/api/product/id/{id}")]
         public IActionResult UpdateProduct(int Id, [FromBody] Product product)
         {
             var prodcutId = _unitOfWork.Products.GetById(Id);
@@ -51,13 +51,13 @@ namespace WebApi.Controllers
                 }
                 else
                 {
-                    return BadRequest("Username is already exist");
+                    return BadRequest("Product name is already exist");
                 }
 
             }
             else
             {
-                _userService.UpdateUsername(user, Id);
+                _productService.UpdateProduct(product, Id);
                 return Ok();
             }
 

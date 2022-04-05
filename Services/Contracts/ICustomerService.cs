@@ -9,7 +9,7 @@ namespace Services.Contracts
 {
     public interface ICustomerService
     {
-        void UpdateCustomer(Customer customer);
+        void UpdateCustomer(Customer customer,int Id);
         void AddCustomer(Customer customer);
         void DeleteCustomer(Customer customer);
     }

@@ -37,12 +37,31 @@ namespace WebApi.Controllers
             _customerService.AddCustomer(customer);
             return Ok(customer);
         }
-        [HttpPut]
-        public IActionResult CustomerUpdate([FromBody] Customer customer)
+        [HttpPatch]
+        [Route("/api/customer/id/{id}")]
+        public IActionResult UpdateCustomer(int Id, [FromBody] Customer customer)
         {
-            _customerService.UpdateCustomer(customer);
+            var customerId = _unitOfWork.Customers.GetById(Id);
+            var getCustomer = _unitOfWork.Customers.GetCustomerByName(customer.CustomerName);
+            if (customerId.CustomerName != customer.CustomerName)
+            {
+                if (getCustomer == null)
+                {
+                    _customerService.UpdateCustomer(customer, Id);
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest("Customer name is already exist");
+                }
 
-            return Ok();
+            }
+            else
+            {
+                _customerService.UpdateCustomer(customer, Id);
+                return Ok();
+            }
+
         }
         [HttpDelete]
         public IActionResult CustomerDelete([FromBody] Customer customer)

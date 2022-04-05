@@ -37,9 +37,9 @@ namespace Services
             _unitOfWork.Complete();
         }
 
-        public void UpdateCustomer(Customer newCustomer)
+        public void UpdateCustomer(Customer newCustomer,int Id)
         {
-            var customer = _unitOfWork.Customers.GetById(newCustomer.CustomerId);
+            var customer = _unitOfWork.Customers.GetById(Id);
             customer.CustomerName = newCustomer.CustomerName;
             customer.Address = newCustomer.Address;
             customer.ContactNumber = newCustomer.ContactNumber;

@@ -9,6 +9,6 @@ namespace Domain.Interfaces
 {
     public interface ICustomerRepository: IGenericRepository<Customer>
     {
-
+        public Customer GetCustomerByName(string customerName);
     }
 }

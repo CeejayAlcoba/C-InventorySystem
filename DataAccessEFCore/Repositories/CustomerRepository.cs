@@ -13,5 +13,9 @@ namespace DataAccessEFCore.Repositories
         public CustomerRepository(ApplicationContext context) : base(context)
         {
         }
+        public Customer GetCustomerByName(string customerName)
+        {
+            return _context.Customers.FirstOrDefault(x => x.CustomerName == customerName);
+        }
     }
 }
