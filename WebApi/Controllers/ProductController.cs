@@ -37,10 +37,30 @@ namespace WebApi.Controllers
             return Ok();
         }
         [HttpPatch]
-        public IActionResult ProductUpdate([FromBody] Product product)
+        [Route("/api/user/id/{id}")]
+        public IActionResult UpdateProduct(int Id, [FromBody] Product product)
         {
-            _productService.UpdateProduct(product);
-            return Ok();
+            var prodcutId = _unitOfWork.Products.GetById(Id);
+            var getProduct = _unitOfWork.Products.GetProductByName(product.ProductName);
+            if (prodcutId.ProductName != product.ProductName)
+            {
+                if (getProduct == null)
+                {
+                    _productService.UpdateProduct(product, Id);
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest("Username is already exist");
+                }
+
+            }
+            else
+            {
+                _userService.UpdateUsername(user, Id);
+                return Ok();
+            }
+
         }
         [HttpDelete]
         public IActionResult ProductDelete([FromBody] Product product)

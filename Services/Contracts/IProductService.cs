@@ -9,7 +9,7 @@ namespace Services.Contracts
 {
     public interface IProductService
     {
-        void UpdateProduct(Product product);
+        void UpdateProduct(Product product,int Id);
         void AddProduct(Product product);
         void DeleteProduct(Product product);
     }

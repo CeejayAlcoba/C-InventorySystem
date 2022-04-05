@@ -36,9 +36,9 @@ namespace Services
 
 
 
-        public void UpdateProduct(Product product)
+        public void UpdateProduct(Product product,int Id)
         {
-            var getProductId = _unitOfWork.Products.GetById(product.ProductId);
+            var getProductId = _unitOfWork.Products.GetById(Id);
             getProductId.Code = product.Code;
             getProductId.ProductName = product.ProductName;
             getProductId.Brand = product.Brand;
