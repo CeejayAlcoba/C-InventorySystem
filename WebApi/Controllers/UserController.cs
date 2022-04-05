@@ -48,7 +48,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPatch]
-        [Route("/api/user/username/{id}")]
+        [Route("/api/user/id/{id}")]
         public IActionResult UpdateUsername(int Id,[FromBody] User user)
         {
             var userId = _unitOfWork.Users.GetById(Id);
@@ -74,7 +74,7 @@ namespace WebApi.Controllers
            
         }
         [HttpGet]
-        [Route("/api/user/username/{id}")]
+        [Route("/api/user/id/{id}")]
         public IActionResult GetUser(int Id)
         {
             var user = _unitOfWork.Users.GetById(Id);

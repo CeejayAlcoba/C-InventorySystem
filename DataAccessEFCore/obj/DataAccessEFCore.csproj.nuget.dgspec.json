@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\DataAccessEFCore\\DataAccessEFCore.csproj": {}
+    "C:\\Users\\User\\Desktop\\c#\\inventory\\DataAccessEFCore\\DataAccessEFCore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\DataAccessEFCore\\DataAccessEFCore.csproj": {
+    "C:\\Users\\User\\Desktop\\c#\\inventory\\DataAccessEFCore\\DataAccessEFCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\DataAccessEFCore\\DataAccessEFCore.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\c#\\inventory\\DataAccessEFCore\\DataAccessEFCore.csproj",
         "projectName": "DataAccessEFCore",
-        "projectPath": "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\DataAccessEFCore\\DataAccessEFCore.csproj",
-        "packagesPath": "C:\\Users\\Alcoba\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\DataAccessEFCore\\obj\\",
+        "projectPath": "C:\\Users\\User\\Desktop\\c#\\inventory\\DataAccessEFCore\\DataAccessEFCore.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\c#\\inventory\\DataAccessEFCore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Alcoba\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,11 +28,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\Domain\\Domain.csproj"
+              "C:\\Users\\User\\Desktop\\c#\\inventory\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\User\\Desktop\\c#\\inventory\\Domain\\Domain.csproj"
               },
-              "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\Services\\Services.csproj": {
-                "projectPath": "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\Services\\Services.csproj"
+              "C:\\Users\\User\\Desktop\\c#\\inventory\\Services\\Services.csproj": {
+                "projectPath": "C:\\Users\\User\\Desktop\\c#\\inventory\\Services\\Services.csproj"
               }
             }
           }
@@ -75,17 +75,17 @@
         }
       }
     },
-    "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\Domain\\Domain.csproj": {
+    "C:\\Users\\User\\Desktop\\c#\\inventory\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\c#\\inventory\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\Alcoba\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\User\\Desktop\\c#\\inventory\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\c#\\inventory\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Alcoba\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -135,17 +135,17 @@
         }
       }
     },
-    "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\Services\\Services.csproj": {
+    "C:\\Users\\User\\Desktop\\c#\\inventory\\Services\\Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\Services\\Services.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\c#\\inventory\\Services\\Services.csproj",
         "projectName": "Services",
-        "projectPath": "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\Services\\Services.csproj",
-        "packagesPath": "C:\\Users\\Alcoba\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\Services\\obj\\",
+        "projectPath": "C:\\Users\\User\\Desktop\\c#\\inventory\\Services\\Services.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\c#\\inventory\\Services\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Alcoba\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -159,8 +159,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\Domain\\Domain.csproj"
+              "C:\\Users\\User\\Desktop\\c#\\inventory\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\User\\Desktop\\c#\\inventory\\Domain\\Domain.csproj"
               }
             }
           }
