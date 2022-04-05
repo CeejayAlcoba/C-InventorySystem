@@ -31,16 +31,16 @@ namespace Services
 
         }
 
-        public void DeleteSupplier(Supplier supplier)
+        public void DeleteSupplier(int Id)
         {
-            var getSupplierById = _unitOfWork.Suppliers.GetById(supplier.SupplierId);
+            var getSupplierById = _unitOfWork.Suppliers.GetById(Id);
             _unitOfWork.Suppliers.Remove(getSupplierById);
             _unitOfWork.Complete();
         }
 
-        public void UpdateSupplier(Supplier supplier)
-        {
-            var getSupplierById = _unitOfWork.Suppliers.GetById(supplier.SupplierId);
+        public void UpdateSupplier(Supplier supplier,int Id)
+        {   
+            var getSupplierById = _unitOfWork.Suppliers.GetById(Id);
             getSupplierById.SupplierName = supplier.SupplierName;
             getSupplierById.Address = supplier.Address;
             getSupplierById.ContactNumber = supplier.ContactNumber;

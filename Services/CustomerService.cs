@@ -30,9 +30,9 @@ namespace Services
             _unitOfWork.Complete();
         }
 
-        public void DeleteCustomer(Customer customer)
+        public void DeleteCustomer(int Id)
         {
-            var getCustomerById = _unitOfWork.Customers.GetById(customer.CustomerId);
+            var getCustomerById = _unitOfWork.Customers.GetById(Id);
             _unitOfWork.Customers.Remove(getCustomerById);
             _unitOfWork.Complete();
         }

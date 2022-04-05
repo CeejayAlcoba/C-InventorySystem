@@ -32,16 +32,44 @@ namespace WebApi.Controllers
 
         }
         [HttpDelete]
-        public IActionResult SupplierDelete([FromBody] Supplier supplier)
+        [Route("/api/supplier/id/{id}")]
+        public IActionResult SupplierDelete(int Id)
         {
-            _supplierService.DeleteSupplier(supplier);
+            _supplierService.DeleteSupplier(Id);
             return Ok();
         }
         [HttpPatch]
-        public IActionResult SupplierUpdate([FromBody] Supplier supplier)
+        [Route("/api/supplier/id/{id}")]
+        public IActionResult UpdateSupplier(int Id, [FromBody] Supplier supplier)
         {
-            _supplierService.UpdateSupplier(supplier);
-            return Ok();
+            var supplierId = _unitOfWork.Suppliers.GetById(Id);
+            var getSupplier = _unitOfWork.Suppliers.GetSupplierByName(supplier.SupplierName);
+            if (supplierId.SupplierName != supplier.SupplierName)
+            {
+                if (getSupplier == null)
+                {
+                    _supplierService.UpdateSupplier(supplier, Id);
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest("Product name is already exist");
+                }
+
+            }
+            else
+            {
+                _supplierService.UpdateSupplier(supplier, Id);
+                return Ok();
+            }
+
+        }
+        [HttpGet]
+        [Route("/api/supplier/id/{id}")]
+        public IActionResult GetSupplier(int Id)
+        {
+            var supplier = _unitOfWork.Suppliers.GetById(Id);
+            return Ok(supplier);
         }
         [HttpGet]
         public IActionResult SupplierList()

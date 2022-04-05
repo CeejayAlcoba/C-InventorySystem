@@ -63,10 +63,19 @@ namespace WebApi.Controllers
             }
 
         }
-        [HttpDelete]
-        public IActionResult CustomerDelete([FromBody] Customer customer)
+        [HttpGet]
+        [Route("/api/customer/id/{id}")]
+        public IActionResult GetCustomer(int Id)
         {
-            _customerService.DeleteCustomer(customer);
+            var customer = _unitOfWork.Customers.GetById(Id);
+
+            return Ok(customer);
+        }
+        [HttpDelete]
+        [Route("/api/customer/id/{id}")]
+        public IActionResult CustomerDelete(int Id)
+        {
+            _customerService.DeleteCustomer(Id);
             return Ok();
         }
     }

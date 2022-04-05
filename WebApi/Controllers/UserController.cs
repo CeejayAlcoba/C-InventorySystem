@@ -89,9 +89,10 @@ namespace WebApi.Controllers
             return Ok(usersList);
         }
         [HttpDelete]
-        public IActionResult DeleteUser([FromBody]User user)
+        [Route("/api/user/id/{id}")]
+        public IActionResult DeleteUser(int Id)
         {
-            _userService.DeleteUser(user.Id);
+            _userService.DeleteUser(Id);
             return Ok();
         }
     }

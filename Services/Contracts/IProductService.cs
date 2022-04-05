@@ -11,6 +11,6 @@ namespace Services.Contracts
     {
         void UpdateProduct(Product product,int Id);
         void AddProduct(Product product);
-        void DeleteProduct(Product product);
+        void DeleteProduct(int Id);
     }
 }

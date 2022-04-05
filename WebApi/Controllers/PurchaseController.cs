@@ -54,20 +54,13 @@ namespace WebApi.Controllers
             }
             
         }
-        [HttpPatch]
-        public IActionResult UpdatePurchase([FromBody] Purchase purchase)
-        {
-            try
-            {
-                var result = _purchaseService.UpdatePurchase(purchase);
-                return Ok(result);
-            }
-            catch
-            {
-                return BadRequest(error: 415);
-            }
-           
-        }
+        //[HttpPatch]
+        //[Route("/api/purchase/id/{id}")]
+        //public IActionResult UpdatePurchase(int Id, [FromBody] Purchase purchase)
+        //{
+        //    var result = _unitOfWork.Purchases.
+
+        //}
         [HttpDelete]
         public IActionResult ProductDelete([FromBody] int purchaseId)
         {

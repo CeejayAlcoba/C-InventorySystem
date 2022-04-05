@@ -62,10 +62,19 @@ namespace WebApi.Controllers
             }
 
         }
-        [HttpDelete]
-        public IActionResult ProductDelete([FromBody] Product product)
+        [HttpGet]
+        [Route("/api/product/id/{id}")]
+        public IActionResult GetProduct(int Id)
         {
-            _productService.DeleteProduct(product);
+            var product = _unitOfWork.Products.GetById(Id);
+            return Ok(product);
+
+        }
+        [HttpDelete]
+        [Route("/api/product/id/{id}")]
+        public IActionResult DeleteProduct(int Id)
+        {
+            _productService.DeleteProduct(Id);
             return Ok();
         }
 

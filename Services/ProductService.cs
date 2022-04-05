@@ -47,9 +47,9 @@ namespace Services
             getProductId.TotalPrice = getProductId.Price * getProductId.Quantity;
             _unitOfWork.Complete();
         }
-        public void DeleteProduct(Product product)
+        public void DeleteProduct(int Id)
         {
-            var getProductId = _unitOfWork.Products.GetById(product.ProductId);
+            var getProductId = _unitOfWork.Products.GetById(Id);
             _unitOfWork.Products.Remove(getProductId);
             _unitOfWork.Complete();
         }
