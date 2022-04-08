@@ -49,7 +49,7 @@ namespace WebApi.Controllers
 
         [HttpPatch]
         [Route("/api/user/id/{id}")]
-        public IActionResult UpdateUsername(int Id,[FromBody] User user)
+        public IActionResult UpdateUsername(int Id, [FromBody] User user)
         {
             var userId = _unitOfWork.Users.GetById(Id);
             var getUser = _unitOfWork.Users.GetUserByUsername(user.Username);
@@ -64,14 +64,23 @@ namespace WebApi.Controllers
                 {
                     return BadRequest("Username is already exist");
                 }
-               
+
             }
             else
             {
                 _userService.UpdateUsername(user, Id);
                 return Ok();
             }
-           
+
+        }
+        [HttpGet]
+        [Route("user")]
+        public IActionResult CurrentUser()
+        {
+            var currentUser = GetCurrentUser();
+            if(currentUser!= null)
+            return Ok(currentUser);
+            return BadRequest();
         }
         [HttpGet]
         [Route("/api/user/id/{id}")]
