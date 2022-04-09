@@ -62,9 +62,10 @@ namespace WebApi.Controllers
 
         //}
         [HttpDelete]
-        public IActionResult ProductDelete([FromBody] int purchaseId)
+        [Route("/api/purchase/id/{id}")]
+        public IActionResult DeletePurchse(int Id)
         {
-            _purchaseService.DeletePurchase(purchaseId);
+            _purchaseService.DeletePurchase(Id);
             return Ok();
         }
     }

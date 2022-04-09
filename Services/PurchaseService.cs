@@ -16,17 +16,16 @@ namespace Services
 
         public Purchase AddPurchase(Purchase newPurchase)
         {
-            var getPurchase =_unitOfWork.Purchases.GetPurchase(newPurchase.PurchaseId);
-            var product = _unitOfWork.Products.GetProductByName(getPurchase.Product.ProductName);
-            var supplier = _unitOfWork.Suppliers.GetSupplierByName(getPurchase.Supplier.SupplierName);
+            var getProduct = _unitOfWork.Products.GetById(newPurchase.ProductId);
             var purchase = new Purchase {
-                SupplierId = supplier.SupplierId,
-                ProductId = product.ProductId,  
+                SupplierId = newPurchase.SupplierId,
+                ProductId = newPurchase.ProductId,  
                 Date = newPurchase.Date,
                 Quantity= newPurchase.Quantity,
-                Total = product.Price * newPurchase.Quantity
+                Total = getProduct.Price * newPurchase.Quantity
                 
             };
+            getProduct.Quantity = getProduct.Quantity + purchase.Quantity;
             _unitOfWork.Purchases.Add(purchase);
             _unitOfWork.Complete();
             return purchase;
