@@ -33,8 +33,13 @@ namespace WebApi.Controllers
         [HttpPost]
         public IActionResult ProductAdd([FromBody] Product product)
         {
-            _productService.AddProduct(product);
-            return Ok();
+           var getProduct= _productService.AddProduct(product);
+            if(getProduct != null)
+            {
+                return Ok(getProduct);
+            }
+            return BadRequest("Product is already exist");
+            
         }
         [HttpPatch]
         [Route("/api/product/id/{id}")]

@@ -10,7 +10,7 @@ namespace Services.Contracts
     public interface IProductService
     {
         void UpdateProduct(Product product,int Id);
-        void AddProduct(Product product);
+        Product AddProduct(Product product);
         void DeleteProduct(int Id);
     }
 }

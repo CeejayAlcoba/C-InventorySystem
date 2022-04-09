@@ -19,19 +19,28 @@ namespace Services
             _accountService = accountService;
         }
 
-        public void AddProduct(Product product)
+        public Product AddProduct(Product product)
         {
-            var newProduct = new Product()
+            var getProduct = _unitOfWork.Products.GetProductByName(product.ProductName);
+            if(getProduct ==null || getProduct.Brand != product.Brand)
             {
-                Code = product.Code,
-                ProductName = product.ProductName,
-                Brand = product.Brand,
-                Price = product.Price,
-                Quantity = product.Quantity,
-                TotalPrice = product.Price * product.Quantity
-            };
+                var newProduct = new Product()
+                {
+                    Code = product.Code,
+                    ProductName = product.ProductName,
+                    Brand = product.Brand,
+                    Price = product.Price,
+                    Quantity = product.Quantity,
+                    TotalPrice = product.Price * product.Quantity
+                };
                 _unitOfWork.Products.Add(newProduct);
-            _unitOfWork.Complete();
+                _unitOfWork.Complete();
+                return newProduct;
+            }
+            return null;
+
+
+
         }
 
 
