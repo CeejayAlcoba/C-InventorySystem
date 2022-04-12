@@ -35,8 +35,16 @@ namespace WebApi.Controllers
         [Route("/api/supplier/id/{id}")]
         public IActionResult SupplierDelete(int Id)
         {
-            _supplierService.DeleteSupplier(Id);
-            return Ok();
+            try
+            {
+                _supplierService.DeleteSupplier(Id);
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex);
+            }
+            
         }
         [HttpPatch]
         [Route("/api/supplier/id/{id}")]

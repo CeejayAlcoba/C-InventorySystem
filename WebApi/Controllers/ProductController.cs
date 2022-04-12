@@ -79,8 +79,15 @@ namespace WebApi.Controllers
         [Route("/api/product/id/{id}")]
         public IActionResult DeleteProduct(int Id)
         {
-            _productService.DeleteProduct(Id);
-            return Ok();
+            try
+            {
+                _productService.DeleteProduct(Id);
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
     }

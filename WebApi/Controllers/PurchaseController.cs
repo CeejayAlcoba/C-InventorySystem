@@ -65,8 +65,16 @@ namespace WebApi.Controllers
         [Route("/api/purchase/id/{id}")]
         public IActionResult DeletePurchse(int Id)
         {
-            _purchaseService.DeletePurchase(Id);
-            return Ok();
+            try
+            {
+                _purchaseService.DeletePurchase(Id);
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex);
+            }
+            
         }
     }
 }

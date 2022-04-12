@@ -14,10 +14,5 @@ namespace Services.Contracts
         string GenerateHashPassword(string password, byte[] salt);
         byte[] GenerateSalt(string password);
         User ValidateUser(string username, string password);
-        
-       
-
-
-
     }
 }

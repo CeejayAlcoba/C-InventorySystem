@@ -2,6 +2,7 @@
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
+using System;
 
 namespace WebApi.Controllers
 {
@@ -75,8 +76,16 @@ namespace WebApi.Controllers
         [Route("/api/customer/id/{id}")]
         public IActionResult CustomerDelete(int Id)
         {
-            _customerService.DeleteCustomer(Id);
-            return Ok();
+            try
+            {
+                _customerService.DeleteCustomer(Id);
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex);
+            }
+          
         }
     }
 }
