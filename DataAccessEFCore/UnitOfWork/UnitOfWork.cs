@@ -15,18 +15,9 @@ namespace DataAccessEFCore.UnitOfWork
         {
             _context = context;
             Users = new UserRepository(_context);
-            Products = new ProductRepository(_context);
-            Suppliers = new SupplierRepository(_context);
-            Customers = new CustomerRepository(_context);
-            Purchases = new PurchaseRepository(_context);
-            Sales = new SaleRepository(_context);
+
         }
         public IUserRepository Users { get; private set; }
-        public IProductRepository Products { get; private set; }
-        public ISupplierRepository Suppliers { get; private set; }
-        public ICustomerRepository Customers { get; private set; }
-        public IPurchaseRepository Purchases { get; private set; }
-        public ISaleRepository Sales { get; private set; }
 
         public int Complete()
         {
