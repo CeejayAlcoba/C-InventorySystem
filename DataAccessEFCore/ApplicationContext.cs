@@ -33,6 +33,6 @@ namespace DataAccessEFCore
         public DbSet<Shipper> Shippers { get; set; }
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Uom> Uoms { get; set; }
-        public DbSet<Vendor> Vendors { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
     }
 }

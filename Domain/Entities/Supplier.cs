@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Vendor
+    public class Supplier
     {
         [Key]
-        public int VendorId { get; set; }
+        public int SupplierId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Street { get; set; }

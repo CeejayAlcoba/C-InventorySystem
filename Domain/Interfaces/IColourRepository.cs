@@ -9,5 +9,6 @@ namespace Domain.Interfaces
 {
     public interface IColourRepository : IGenericRepository<Colour>
     {
+        Colour GetColourByName(string name);
     }
 }

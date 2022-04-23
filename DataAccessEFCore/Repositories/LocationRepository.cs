@@ -15,5 +15,9 @@ namespace DataAccessEFCore.Repositories
         {
         }
 
+        public Location GetLocationByName(string name)
+        {
+            return _context.Locations.FirstOrDefault(x => x.Name == name);
+        }
     }
 }

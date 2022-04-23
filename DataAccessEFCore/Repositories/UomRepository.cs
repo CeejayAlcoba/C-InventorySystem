@@ -15,5 +15,9 @@ namespace DataAccessEFCore.Repositories
         {
         }
 
+        public Uom GetUomByName(string name)
+        {
+            return _context.Uoms.FirstOrDefault(x => x.Name == name);
+        }
     }
 }

@@ -14,6 +14,10 @@ namespace DataAccessEFCore.Repositories
         public BrandRepository(ApplicationContext context) : base(context)
         {
         }
-       
+
+        public Brand GetBrandByName(string name)
+        {
+            return _context.Brands.FirstOrDefault(x => x.Name == name);
+        }
     }
 }

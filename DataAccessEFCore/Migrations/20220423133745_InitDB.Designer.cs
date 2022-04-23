@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessEFCore.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220423072127_InitDb")]
-    partial class InitDb
+    [Migration("20220423133745_InitDB")]
+    partial class InitDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -197,18 +197,18 @@ namespace DataAccessEFCore.Migrations
                     b.Property<double>("SubTotal")
                         .HasColumnType("float");
 
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("int");
+
                     b.Property<double>("TaxAmount")
                         .HasColumnType("float");
 
                     b.Property<double>("Total")
                         .HasColumnType("float");
 
-                    b.Property<int>("VendorId")
-                        .HasColumnType("int");
-
                     b.HasKey("PurchaseOrderId");
 
-                    b.HasIndex("VendorId");
+                    b.HasIndex("SupplierId");
 
                     b.ToTable("PurchaseOrders");
                 });
@@ -534,6 +534,39 @@ namespace DataAccessEFCore.Migrations
                     b.ToTable("Sizes");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Supplier", b =>
+                {
+                    b.Property<int>("SupplierId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SupplierId");
+
+                    b.ToTable("Suppliers");
+                });
+
             modelBuilder.Entity("Domain.Entities.Uom", b =>
                 {
                     b.Property<int>("UomId")
@@ -577,39 +610,6 @@ namespace DataAccessEFCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Vendor", b =>
-                {
-                    b.Property<int>("VendorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Street")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("VendorId");
-
-                    b.ToTable("Vendors");
                 });
 
             modelBuilder.Entity("Domain.Entities.Product", b =>
@@ -657,13 +657,13 @@ namespace DataAccessEFCore.Migrations
 
             modelBuilder.Entity("Domain.Entities.PurchaseOrder", b =>
                 {
-                    b.HasOne("Domain.Entities.Vendor", "Vendor")
+                    b.HasOne("Domain.Entities.Supplier", "Supplier")
                         .WithMany()
-                        .HasForeignKey("VendorId")
+                        .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Vendor");
+                    b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("Domain.Entities.PurchaseOrderItem", b =>

@@ -15,5 +15,9 @@ namespace DataAccessEFCore.Repositories
         {
         }
 
+        public Category GetCategoryByName(string name)
+        {
+            return _context.Categories.FirstOrDefault(x => x.Name == name);
+        }
     }
 }

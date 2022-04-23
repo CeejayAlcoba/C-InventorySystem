@@ -9,6 +9,6 @@ namespace Domain.Interfaces
 {
     public interface IBrandRepository : IGenericRepository<Brand>
     {
-
+        Brand GetBrandByName(string name);
     }
 }

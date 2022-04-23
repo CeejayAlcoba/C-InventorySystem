@@ -15,5 +15,9 @@ namespace DataAccessEFCore.Repositories
         {
         }
 
+        public Shipper GetShipperByName(string name)
+        {
+            return _context.Shippers.FirstOrDefault(x => x.Name == name);
+        }
     }
 }

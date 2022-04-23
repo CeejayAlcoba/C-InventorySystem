@@ -15,5 +15,9 @@ namespace DataAccessEFCore.Repositories
         {
         }
 
+        public Customer GetCustomerByName(string name)
+        {
+            return _context.Customers.FirstOrDefault(x => x.Name == name);
+        }
     }
 }

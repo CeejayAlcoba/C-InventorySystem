@@ -15,5 +15,9 @@ namespace DataAccessEFCore.Repositories
         {
         }
 
+        public Size GetSizeByName(double name)
+        {
+            return _context.Sizes.FirstOrDefault(x => x.Name == name);
+        }
     }
 }

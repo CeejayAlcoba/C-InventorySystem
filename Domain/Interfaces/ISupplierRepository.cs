@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Domain.Interfaces
 {
-    public interface IVendorRepository : IGenericRepository<Vendor>
+    public interface ISupplierRepository : IGenericRepository<Supplier>
     {
+        Supplier GetSupplierByName(string name);
     }
 }

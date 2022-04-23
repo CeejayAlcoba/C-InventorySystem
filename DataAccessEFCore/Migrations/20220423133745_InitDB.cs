@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccessEFCore.Migrations
 {
-    public partial class InitDb : Migration
+    public partial class InitDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -131,6 +131,25 @@ namespace DataAccessEFCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Suppliers",
+                columns: table => new
+                {
+                    SupplierId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    State = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Suppliers", x => x.SupplierId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Uoms",
                 columns: table => new
                 {
@@ -162,25 +181,6 @@ namespace DataAccessEFCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Vendors",
-                columns: table => new
-                {
-                    VendorId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    State = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Vendors", x => x.VendorId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "SalesOrders",
                 columns: table => new
                 {
@@ -205,6 +205,33 @@ namespace DataAccessEFCore.Migrations
                         column: x => x.SalesChannelId,
                         principalTable: "SalesChannels",
                         principalColumn: "SalesChannelId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PurchaseOrders",
+                columns: table => new
+                {
+                    PurchaseOrderId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SupplierId = table.Column<int>(type: "int", nullable: false),
+                    SubTotal = table.Column<double>(type: "float", nullable: false),
+                    Discount = table.Column<double>(type: "float", nullable: false),
+                    BeforeTax = table.Column<double>(type: "float", nullable: false),
+                    TaxAmount = table.Column<double>(type: "float", nullable: false),
+                    OtherCharge = table.Column<double>(type: "float", nullable: false),
+                    Total = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PurchaseOrders", x => x.PurchaseOrderId);
+                    table.ForeignKey(
+                        name: "FK_PurchaseOrders_Suppliers_SupplierId",
+                        column: x => x.SupplierId,
+                        principalTable: "Suppliers",
+                        principalColumn: "SupplierId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -255,33 +282,6 @@ namespace DataAccessEFCore.Migrations
                         column: x => x.UomId,
                         principalTable: "Uoms",
                         principalColumn: "UomId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PurchaseOrders",
-                columns: table => new
-                {
-                    PurchaseOrderId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    VendorId = table.Column<int>(type: "int", nullable: false),
-                    SubTotal = table.Column<double>(type: "float", nullable: false),
-                    Discount = table.Column<double>(type: "float", nullable: false),
-                    BeforeTax = table.Column<double>(type: "float", nullable: false),
-                    TaxAmount = table.Column<double>(type: "float", nullable: false),
-                    OtherCharge = table.Column<double>(type: "float", nullable: false),
-                    Total = table.Column<double>(type: "float", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PurchaseOrders", x => x.PurchaseOrderId);
-                    table.ForeignKey(
-                        name: "FK_PurchaseOrders_Vendors_VendorId",
-                        column: x => x.VendorId,
-                        principalTable: "Vendors",
-                        principalColumn: "VendorId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -339,29 +339,25 @@ namespace DataAccessEFCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SalesOrderItems",
+                name: "PurchaseReceipts",
                 columns: table => new
                 {
-                    SalesOrderItemsId = table.Column<int>(type: "int", nullable: false)
+                    PurchaseReceiptId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<double>(type: "float", nullable: false),
-                    DiscountAmount = table.Column<double>(type: "float", nullable: false),
-                    Quantity = table.Column<double>(type: "float", nullable: false),
-                    TaxPercentage = table.Column<double>(type: "float", nullable: false),
-                    SubTotal = table.Column<double>(type: "float", nullable: false),
-                    BeforeTax = table.Column<double>(type: "float", nullable: false),
-                    TaxAmount = table.Column<double>(type: "float", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ReceiptDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PurchaseOrderId = table.Column<int>(type: "int", nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Total = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SalesOrderItems", x => x.SalesOrderItemsId);
+                    table.PrimaryKey("PK_PurchaseReceipts", x => x.PurchaseReceiptId);
                     table.ForeignKey(
-                        name: "FK_SalesOrderItems_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "ProductId",
+                        name: "FK_PurchaseReceipts_PurchaseOrders_PurchaseOrderId",
+                        column: x => x.PurchaseOrderId,
+                        principalTable: "PurchaseOrders",
+                        principalColumn: "PurchaseOrderId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -400,25 +396,29 @@ namespace DataAccessEFCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PurchaseReceipts",
+                name: "SalesOrderItems",
                 columns: table => new
                 {
-                    PurchaseReceiptId = table.Column<int>(type: "int", nullable: false)
+                    SalesOrderItemsId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ReceiptDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PurchaseOrderId = table.Column<int>(type: "int", nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    DiscountAmount = table.Column<double>(type: "float", nullable: false),
+                    Quantity = table.Column<double>(type: "float", nullable: false),
+                    TaxPercentage = table.Column<double>(type: "float", nullable: false),
+                    SubTotal = table.Column<double>(type: "float", nullable: false),
+                    BeforeTax = table.Column<double>(type: "float", nullable: false),
+                    TaxAmount = table.Column<double>(type: "float", nullable: false),
                     Total = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PurchaseReceipts", x => x.PurchaseReceiptId);
+                    table.PrimaryKey("PK_SalesOrderItems", x => x.SalesOrderItemsId);
                     table.ForeignKey(
-                        name: "FK_PurchaseReceipts_PurchaseOrders_PurchaseOrderId",
-                        column: x => x.PurchaseOrderId,
-                        principalTable: "PurchaseOrders",
-                        principalColumn: "PurchaseOrderId",
+                        name: "FK_SalesOrderItems_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -499,9 +499,9 @@ namespace DataAccessEFCore.Migrations
                 column: "PurchaseOrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PurchaseOrders_VendorId",
+                name: "IX_PurchaseOrders_SupplierId",
                 table: "PurchaseOrders",
-                column: "VendorId");
+                column: "SupplierId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PurchaseReceipts_PurchaseOrderId",
@@ -601,7 +601,7 @@ namespace DataAccessEFCore.Migrations
                 name: "Uoms");
 
             migrationBuilder.DropTable(
-                name: "Vendors");
+                name: "Suppliers");
 
             migrationBuilder.DropTable(
                 name: "Customers");

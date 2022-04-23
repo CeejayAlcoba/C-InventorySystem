@@ -34,7 +34,7 @@ namespace DataAccessEFCore.UnitOfWork
             Shippers = new ShipperRepository(_context);
             Sizes = new SizeRepository(_context);
             Uoms = new UomRepository(_context);
-            Vendors = new VendorRepository(_context);
+            Suppliers = new SupplierRepository(_context);
 
         }
         public IUserRepository Users { get; private set; }
@@ -58,7 +58,7 @@ namespace DataAccessEFCore.UnitOfWork
         public IShipperRepository Shippers { get; private set; }
         public ISizeRepository Sizes { get; private set; }
         public IUomRepository Uoms { get; private set; }
-        public IVendorRepository Vendors { get; private set; }
+        public ISupplierRepository Suppliers { get; private set; }
 
         public int Complete()
         {

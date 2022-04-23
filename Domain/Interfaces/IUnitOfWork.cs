@@ -28,7 +28,7 @@ namespace Domain.Interfaces
         IShipperRepository Shippers { get; }
         ISizeRepository Sizes { get; }
         IUomRepository Uoms { get; }
-        IVendorRepository Vendors { get; }
+        ISupplierRepository Suppliers { get; }
         int Complete();
     }
 }

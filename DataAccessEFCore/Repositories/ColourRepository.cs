@@ -15,5 +15,9 @@ namespace DataAccessEFCore.Repositories
         {
         }
 
+        public Colour GetColourByName(string name)
+        {
+            return _context.Colours.FirstOrDefault(x => x.Name == name);
+        }
     }
 }

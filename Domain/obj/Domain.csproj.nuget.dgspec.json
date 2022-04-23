@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\c#\\inventory\\Domain\\Domain.csproj": {}
+    "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\c#\\inventory\\Domain\\Domain.csproj": {
+    "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\c#\\inventory\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\User\\Desktop\\c#\\inventory\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\c#\\inventory\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Alcoba\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Alcoba\\Desktop\\Inventory\\inventory\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Alcoba\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
