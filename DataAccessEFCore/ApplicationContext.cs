@@ -26,14 +26,13 @@ namespace DataAccessEFCore
         public DbSet<PurchaseReturn> PurchaseReturns { get; set; }
         public DbSet<SalesChannel> SalesChannels { get; set; }
         public DbSet<SalesDelivery> SalesDeliveries { get; set; }
-        public DbSet<SalesDeliveryItems> SalesDeliveryItems { get; set; }
+        public DbSet<SalesDeliveryItem> SalesDeliveryItems { get; set; }
         public DbSet<SalesOrder> SalesOrders { get; set; }
-        public DbSet<SalesOrderItems> SalesOrderItems { get; set; }
+        public DbSet<SalesOrderItem> SalesOrderItems { get; set; }
         public DbSet<SalesReturn> SalesReturns { get; set; }
         public DbSet<Shipper> Shippers { get; set; }
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Uom> Uoms { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
-        
     }
 }

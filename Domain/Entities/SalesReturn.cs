@@ -18,9 +18,9 @@ namespace Domain.Entities
         public int SalesOrderId { get; set; }
         public SalesOrder SalesOrder { get; set; }
         public string Location { get; set; }
-        [ForeignKey("SalesDeliveryItems")]
-        public int SalesDeliveryItemId { get; set; }
-        public SalesDeliveryItems SalesDeliveryItems { get; set; }
+        //[ForeignKey("SalesDeliveryItems")]
+        //public int SalesDeliveryItemId { get; set; }
+        //public SalesDeliveryItem SalesDeliveryItems { get; set; }
         public double Total { get; set; }
     }
 }

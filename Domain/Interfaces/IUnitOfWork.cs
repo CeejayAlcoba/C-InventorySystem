@@ -9,6 +9,26 @@ namespace Domain.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         IUserRepository Users { get; }
+        IBrandRepository Brands { get; }
+        ICategoryRepository Categories { get; }
+        IColourRepository Colours { get; }
+        ICustomerRepository Customers { get; }
+        ILocationRepository Locations { get; }
+        IProductRepository Products { get; }
+        IPurchaseOrderItemRepository PurchaseOrderItems { get; }
+        IPurchaseOrderRepository PurchaseOrders { get; }
+        IPurchaseReceiptRepository PurchaseReceipts { get; }
+        IPurchaseReturnRepository PurchaseReturns { get; }
+        ISalesChannelRepository SalesChannels { get; }
+        ISalesDeliveryRepository SalesDeliveries { get; }
+        ISalesDeliveryItemRepository SalesDeliveryItems { get; }
+        ISalesOrderRepository SalesOrders { get; }
+        ISalesOrderItemRepository SalesOrderItems { get; }
+        ISalesReturnRepository SalesReturns { get; }
+        IShipperRepository Shippers { get; }
+        ISizeRepository Sizes { get; }
+        IUomRepository Uoms { get; }
+        IVendorRepository Vendors { get; }
         int Complete();
     }
 }

@@ -273,9 +273,6 @@ namespace DataAccessEFCore.Migrations
                     b.Property<int>("PurchaseOrderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PurchaseOrderItemId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("ReceiptDate")
                         .HasColumnType("datetime2");
 
@@ -285,8 +282,6 @@ namespace DataAccessEFCore.Migrations
                     b.HasKey("PurchaseReceiptId");
 
                     b.HasIndex("PurchaseOrderId");
-
-                    b.HasIndex("PurchaseOrderItemId");
 
                     b.ToTable("PurchaseReceipts");
                 });
@@ -301,9 +296,6 @@ namespace DataAccessEFCore.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PurchaseOrderItemId")
-                        .HasColumnType("int");
-
                     b.Property<int>("PurchaseReceiptId")
                         .HasColumnType("int");
 
@@ -314,8 +306,6 @@ namespace DataAccessEFCore.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("PurchaseReturnId");
-
-                    b.HasIndex("PurchaseOrderItemId");
 
                     b.HasIndex("PurchaseReceiptId");
 
@@ -356,9 +346,6 @@ namespace DataAccessEFCore.Migrations
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SalesDeliveryItemsId")
-                        .HasColumnType("int");
-
                     b.Property<int>("SalesOrderId")
                         .HasColumnType("int");
 
@@ -370,8 +357,6 @@ namespace DataAccessEFCore.Migrations
 
                     b.HasKey("SalesDeliveryId");
 
-                    b.HasIndex("SalesDeliveryItemsId");
-
                     b.HasIndex("SalesOrderId");
 
                     b.HasIndex("ShipperId");
@@ -379,12 +364,10 @@ namespace DataAccessEFCore.Migrations
                     b.ToTable("SalesDeliveries");
                 });
 
-            modelBuilder.Entity("Domain.Entities.SalesDeliveryItems", b =>
+            modelBuilder.Entity("Domain.Entities.SalesDeliveryItem", b =>
                 {
                     b.Property<int>("SalesDeliveryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Product")
                         .HasColumnType("nvarchar(max)");
@@ -425,7 +408,7 @@ namespace DataAccessEFCore.Migrations
                     b.ToTable("SalesOrders");
                 });
 
-            modelBuilder.Entity("Domain.Entities.SalesOrderItems", b =>
+            modelBuilder.Entity("Domain.Entities.SalesOrderItem", b =>
                 {
                     b.Property<int>("SalesOrderItemsId")
                         .ValueGeneratedOnAdd()
@@ -482,9 +465,6 @@ namespace DataAccessEFCore.Migrations
                     b.Property<DateTime>("ReturnDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("SalesDeliveryItemId")
-                        .HasColumnType("int");
-
                     b.Property<int>("SalesOrderId")
                         .HasColumnType("int");
 
@@ -492,8 +472,6 @@ namespace DataAccessEFCore.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("SalesReturnId");
-
-                    b.HasIndex("SalesDeliveryItemId");
 
                     b.HasIndex("SalesOrderId");
 
@@ -695,7 +673,7 @@ namespace DataAccessEFCore.Migrations
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.PurchaseOrder", "PurchaseOrder")
-                        .WithMany()
+                        .WithMany("PurchaseOrderItems")
                         .HasForeignKey("PurchaseOrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -713,44 +691,22 @@ namespace DataAccessEFCore.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.PurchaseOrderItem", "PurchaseOrderItem")
-                        .WithMany()
-                        .HasForeignKey("PurchaseOrderItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("PurchaseOrder");
-
-                    b.Navigation("PurchaseOrderItem");
                 });
 
             modelBuilder.Entity("Domain.Entities.PurchaseReturn", b =>
                 {
-                    b.HasOne("Domain.Entities.PurchaseOrderItem", "PurchaseOrderItem")
-                        .WithMany()
-                        .HasForeignKey("PurchaseOrderItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Domain.Entities.PurchaseReceipt", "PurchaseReceipt")
                         .WithMany()
                         .HasForeignKey("PurchaseReceiptId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("PurchaseOrderItem");
-
                     b.Navigation("PurchaseReceipt");
                 });
 
             modelBuilder.Entity("Domain.Entities.SalesDelivery", b =>
                 {
-                    b.HasOne("Domain.Entities.SalesDeliveryItems", "SalesDeliveryItems")
-                        .WithMany()
-                        .HasForeignKey("SalesDeliveryItemsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Domain.Entities.SalesOrder", "SalesOrder")
                         .WithMany()
                         .HasForeignKey("SalesOrderId")
@@ -763,11 +719,18 @@ namespace DataAccessEFCore.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("SalesDeliveryItems");
-
                     b.Navigation("SalesOrder");
 
                     b.Navigation("Shipper");
+                });
+
+            modelBuilder.Entity("Domain.Entities.SalesDeliveryItem", b =>
+                {
+                    b.HasOne("Domain.Entities.SalesDelivery", null)
+                        .WithMany("SalesDeliveryItems")
+                        .HasForeignKey("SalesDeliveryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.SalesOrder", b =>
@@ -789,7 +752,7 @@ namespace DataAccessEFCore.Migrations
                     b.Navigation("SalesChannel");
                 });
 
-            modelBuilder.Entity("Domain.Entities.SalesOrderItems", b =>
+            modelBuilder.Entity("Domain.Entities.SalesOrderItem", b =>
                 {
                     b.HasOne("Domain.Entities.Product", "Product")
                         .WithMany()
@@ -802,21 +765,23 @@ namespace DataAccessEFCore.Migrations
 
             modelBuilder.Entity("Domain.Entities.SalesReturn", b =>
                 {
-                    b.HasOne("Domain.Entities.SalesDeliveryItems", "SalesDeliveryItems")
-                        .WithMany()
-                        .HasForeignKey("SalesDeliveryItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Domain.Entities.SalesOrder", "SalesOrder")
                         .WithMany()
                         .HasForeignKey("SalesOrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("SalesDeliveryItems");
-
                     b.Navigation("SalesOrder");
+                });
+
+            modelBuilder.Entity("Domain.Entities.PurchaseOrder", b =>
+                {
+                    b.Navigation("PurchaseOrderItems");
+                });
+
+            modelBuilder.Entity("Domain.Entities.SalesDelivery", b =>
+                {
+                    b.Navigation("SalesDeliveryItems");
                 });
 #pragma warning restore 612, 618
         }

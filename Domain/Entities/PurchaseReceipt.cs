@@ -19,9 +19,6 @@ namespace Domain.Entities
         public int PurchaseOrderId { get; set; }
         public PurchaseOrder PurchaseOrder { get; set; }
         public string Location { get; set; }
-        [ForeignKey("PurchaseOrderItem")]
-        public int PurchaseOrderItemId { get; set; }
-        public PurchaseOrderItem PurchaseOrderItem { get; set; }
         public double Total { get; set; }
     }
 }

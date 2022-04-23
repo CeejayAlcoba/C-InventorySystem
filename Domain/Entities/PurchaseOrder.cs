@@ -17,6 +17,9 @@ namespace Domain.Entities
         [ForeignKey("Vendor")]
         public int VendorId { get; set; }
         public Vendor Vendor { get; set; }
+        // one
+        [ForeignKey("PurchaseOrderId")]
+        public ICollection<PurchaseOrderItem> PurchaseOrderItems { get; set; }
         public double SubTotal { get; set; }
         public double Discount { get; set; }
         public double BeforeTax { get; set; }
