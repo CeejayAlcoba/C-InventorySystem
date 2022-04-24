@@ -39,7 +39,9 @@ namespace Services
 
         public void DeleteLocation(int Id)
         {
-            throw new NotImplementedException();
+            var location = _unitOfWork.Locations.GetById(Id);
+            _unitOfWork.Locations.Remove(location);
+            _unitOfWork.Complete();
         }
 
         public void UpdateLocation(Location location, int Id)
