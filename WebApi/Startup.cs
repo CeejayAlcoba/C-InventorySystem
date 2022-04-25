@@ -35,7 +35,17 @@ namespace WebApi
         {
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IBrandService, BrandService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IColourService, ColourService>();
+            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<ILocationService, LocationService>();
+            services.AddScoped<IShipperService, ShipperService>();
+            services.AddScoped<ISizeService, SizeService>();
+            services.AddScoped<ISupplierService, SupplierService>();
+            services.AddScoped<IUomService, UomService>();
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"),
