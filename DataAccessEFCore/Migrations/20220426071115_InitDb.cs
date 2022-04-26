@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccessEFCore.Migrations
 {
-    public partial class InitDB : Migration
+    public partial class InitDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -401,6 +401,7 @@ namespace DataAccessEFCore.Migrations
                 {
                     SalesOrderItemsId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    SalesOrderId = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
                     DiscountAmount = table.Column<double>(type: "float", nullable: false),
@@ -420,19 +421,33 @@ namespace DataAccessEFCore.Migrations
                         principalTable: "Products",
                         principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SalesOrderItems_SalesOrders_SalesOrderId",
+                        column: x => x.SalesOrderId,
+                        principalTable: "SalesOrders",
+                        principalColumn: "SalesOrderId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "SalesDeliveryItems",
                 columns: table => new
                 {
+                    SalesDeliveryItemId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     SalesDeliveryId = table.Column<int>(type: "int", nullable: false),
-                    Product = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SalesDeliveryItems", x => x.SalesDeliveryId);
+                    table.PrimaryKey("PK_SalesDeliveryItems", x => x.SalesDeliveryItemId);
+                    table.ForeignKey(
+                        name: "FK_SalesDeliveryItems_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_SalesDeliveryItems_SalesDeliveries_SalesDeliveryId",
                         column: x => x.SalesDeliveryId,
@@ -524,9 +539,24 @@ namespace DataAccessEFCore.Migrations
                 column: "ShipperId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SalesDeliveryItems_ProductId",
+                table: "SalesDeliveryItems",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SalesDeliveryItems_SalesDeliveryId",
+                table: "SalesDeliveryItems",
+                column: "SalesDeliveryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SalesOrderItems_ProductId",
                 table: "SalesOrderItems",
                 column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SalesOrderItems_SalesOrderId",
+                table: "SalesOrderItems",
+                column: "SalesOrderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SalesOrders_CustomerId",

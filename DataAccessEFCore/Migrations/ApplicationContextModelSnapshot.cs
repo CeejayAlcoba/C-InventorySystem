@@ -371,8 +371,8 @@ namespace DataAccessEFCore.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Product")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
                     b.Property<double>("Quantity")
                         .HasColumnType("float");
@@ -381,6 +381,8 @@ namespace DataAccessEFCore.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("SalesDeliveryItemId");
+
+                    b.HasIndex("ProductId");
 
                     b.HasIndex("SalesDeliveryId");
 
@@ -437,6 +439,9 @@ namespace DataAccessEFCore.Migrations
                     b.Property<double>("Quantity")
                         .HasColumnType("float");
 
+                    b.Property<int>("SalesOrderId")
+                        .HasColumnType("int");
+
                     b.Property<double>("SubTotal")
                         .HasColumnType("float");
 
@@ -452,6 +457,8 @@ namespace DataAccessEFCore.Migrations
                     b.HasKey("SalesOrderItemsId");
 
                     b.HasIndex("ProductId");
+
+                    b.HasIndex("SalesOrderId");
 
                     b.ToTable("SalesOrderItems");
                 });
@@ -733,11 +740,19 @@ namespace DataAccessEFCore.Migrations
 
             modelBuilder.Entity("Domain.Entities.SalesDeliveryItem", b =>
                 {
+                    b.HasOne("Domain.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Domain.Entities.SalesDelivery", "SalesDelivery")
                         .WithMany("SalesDeliveryItems")
                         .HasForeignKey("SalesDeliveryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Product");
 
                     b.Navigation("SalesDelivery");
                 });
@@ -769,7 +784,15 @@ namespace DataAccessEFCore.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Domain.Entities.SalesOrder", "SalesOrder")
+                        .WithMany()
+                        .HasForeignKey("SalesOrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Product");
+
+                    b.Navigation("SalesOrder");
                 });
 
             modelBuilder.Entity("Domain.Entities.SalesReturn", b =>

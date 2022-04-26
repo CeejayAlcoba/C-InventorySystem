@@ -10,7 +10,7 @@ namespace Services.Contracts
     public interface ISalesOrderItemService
     {
         void UpdateSalesOrderItem(SalesOrderItem salesOrderItem, int Id);
-        SalesOrderItem AddSalesOrderItem(SalesOrderItem salesOrderItem);
+        SalesOrderItem AddSalesOrderItem(SalesOrderItem salesOrderItem, int salesOrderId);
         void DeleteSalesOrderItem(int Id);
 
     }
