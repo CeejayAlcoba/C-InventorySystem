@@ -46,6 +46,18 @@ namespace WebApi
             services.AddScoped<ISizeService, SizeService>();
             services.AddScoped<ISupplierService, SupplierService>();
             services.AddScoped<IUomService, UomService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IPurchaseOrderItemService, PurchaseOrderItemService>();
+            services.AddScoped<IPurchaseOrderService, PurchaseOrderService>();
+            services.AddScoped<IPurchaseReceiptService, PurchaseReceiptService>();
+            services.AddScoped<IPurchaseReturnService, PurchaseReturnService>();
+            services.AddScoped<ISalesChannelService, SalesChannelService>();
+            services.AddScoped<ISalesDeliveryService, SalesDeliveryService>();
+            services.AddScoped<ISalesOrderItemService, SalesOrderItemService>();
+            services.AddScoped<ISalesOrderService, SalesOrderService>();
+            services.AddScoped<ISalesOrderService, SalesOrderService>();
+            services.AddScoped<ISalesReturnService, SalesReturnService>();
+            
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"),

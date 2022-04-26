@@ -20,17 +20,33 @@ namespace Services
         }
         public PurchaseReturn AddPurchaseReturn(PurchaseReturn purchaseReturn)
         {
-            throw new NotImplementedException();
+            var newPurchaseReturn = new PurchaseReturn()
+            {
+                Description = purchaseReturn.Description,
+                ReturnDate = purchaseReturn.ReturnDate,
+                PurchaseReceiptId = purchaseReturn.PurchaseReceiptId,
+                Total = purchaseReturn.Total
+            };
+            _unitOfWork.PurchaseReturns.Add(newPurchaseReturn);
+            _unitOfWork.Complete();
+            return newPurchaseReturn;
         }
 
         public void DeletePurchaseReturn(int Id)
         {
-            throw new NotImplementedException();
+            var purchaseReturn = _unitOfWork.PurchaseReturns.GetById(Id);
+            _unitOfWork.PurchaseReturns.Remove(purchaseReturn);
+            _unitOfWork.Complete();
         }
 
         public void UpdatePurchaseReturn(PurchaseReturn purchaseReturn, int Id)
         {
-            throw new NotImplementedException();
+            var getPurchaseReturn = _unitOfWork.PurchaseReturns.GetById(Id);
+            getPurchaseReturn.Description = purchaseReturn.Description;
+            getPurchaseReturn.ReturnDate = purchaseReturn.ReturnDate;
+            getPurchaseReturn.PurchaseReceiptId = purchaseReturn.PurchaseReceiptId;
+            getPurchaseReturn.Total = purchaseReturn.Total;
+            _unitOfWork.Complete();
         }
     }
 }

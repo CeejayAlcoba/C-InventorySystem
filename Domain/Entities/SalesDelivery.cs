@@ -21,10 +21,6 @@ namespace Domain.Entities
         public int ShipperId { get; set; }
         public Shipper Shipper { get; set; }
         public string Location { get; set; }
-
-        //one
-        [ForeignKey("SalesDeliveryId")]
-        public ICollection<SalesDeliveryItem> SalesDeliveryItems { get; set; }
         public double Total { get; set; }
     }
 }

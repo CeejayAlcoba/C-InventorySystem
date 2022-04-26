@@ -20,17 +20,33 @@ namespace Services
         }
         public SalesOrder AddSalesOrder(SalesOrder salesOrder)
         {
-            throw new NotImplementedException();
+            var newSalesOrder = new SalesOrder()
+            {
+                Description = salesOrder.Description,
+                OrderDate = salesOrder.OrderDate,
+                CustomerId=salesOrder.CustomerId,
+                SalesChannelId = salesOrder.SalesOrderId
+            };
+            _unitOfWork.SalesOrders.Add(newSalesOrder);
+            _unitOfWork.Complete();
+            return newSalesOrder;
         }
 
         public void DeleteSalesOrder(int Id)
         {
-            throw new NotImplementedException();
+            var salesOrder = _unitOfWork.SalesOrders.GetById(Id);
+            _unitOfWork.SalesOrders.Remove(salesOrder);
+            _unitOfWork.Complete();
         }
 
         public void UpdateSalesOrder(SalesOrder salesOrder, int Id)
         {
-            throw new NotImplementedException();
+            var getSalesOrder = _unitOfWork.SalesOrders.GetById(Id);
+            getSalesOrder.Description = salesOrder.Description;
+            getSalesOrder.OrderDate = salesOrder.OrderDate;
+            getSalesOrder.CustomerId = salesOrder.CustomerId;
+            getSalesOrder.SalesChannelId = salesOrder.SalesOrderId;
+            _unitOfWork.Complete();
         }
     }
 }

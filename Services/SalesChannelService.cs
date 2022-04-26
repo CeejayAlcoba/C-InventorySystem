@@ -20,17 +20,29 @@ namespace Services
         }
         public SalesChannel AddSalesChannel(SalesChannel salesChannel)
         {
-            throw new NotImplementedException();
+            var newSalesChannel = new SalesChannel()
+            {
+                Name = salesChannel.Name,
+                Description = salesChannel.Description
+            };
+            _unitOfWork.SalesChannels.Add(newSalesChannel);
+            _unitOfWork.Complete();
+            return newSalesChannel;
         }
 
         public void DeleteSalesChannel(int Id)
         {
-            throw new NotImplementedException();
+            var salesChannel = _unitOfWork.SalesChannels.GetById(Id);
+            _unitOfWork.SalesChannels.Remove(salesChannel);
+            _unitOfWork.Complete();
         }
 
         public void UpdateSalesChannel(SalesChannel salesChannel, int Id)
         {
-            throw new NotImplementedException();
+            var getSalesChannel = _unitOfWork.SalesChannels.GetById(Id);
+            getSalesChannel.Name = salesChannel.Name;
+            getSalesChannel.Description = salesChannel.Description;
+            _unitOfWork.Complete();
         }
     }
 }

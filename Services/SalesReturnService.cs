@@ -20,17 +20,36 @@ namespace Services
         }
         public SalesReturn AddSalesReturn(SalesReturn salesReturn)
         {
-            throw new NotImplementedException();
+            var newSalesReturn = new SalesReturn()
+            {
+                Description = salesReturn.Description,
+                ReturnDate = salesReturn.ReturnDate,
+                SalesOrderId = salesReturn.SalesOrderId,
+                Location = salesReturn.Location,
+                Total = salesReturn.Total
+            };
+            _unitOfWork.SalesReturns.Add(newSalesReturn);
+            _unitOfWork.Complete();
+            return newSalesReturn;
+
         }
 
         public void DeleteSalesReturn(int Id)
         {
-            throw new NotImplementedException();
+            var salesReturn = _unitOfWork.SalesReturns.GetById(Id);
+            _unitOfWork.SalesReturns.Remove(salesReturn);
+            _unitOfWork.Complete();
         }
 
         public void UpdateSalesReturn(SalesReturn salesReturn, int Id)
         {
-            throw new NotImplementedException();
+            var getSalesReturn = _unitOfWork.SalesReturns.GetById(Id);
+            getSalesReturn.Description = salesReturn.Description;
+            getSalesReturn.ReturnDate = salesReturn.ReturnDate;
+            getSalesReturn.SalesOrderId = salesReturn.SalesOrderId;
+            getSalesReturn.Location = salesReturn.Location;
+            getSalesReturn.Total = salesReturn.Total;
+            _unitOfWork.Complete();
         }
     }
 }

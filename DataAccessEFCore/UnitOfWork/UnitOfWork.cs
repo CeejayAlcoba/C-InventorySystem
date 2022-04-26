@@ -27,7 +27,6 @@ namespace DataAccessEFCore.UnitOfWork
             PurchaseReturns = new PurchaseReturnRepository(_context);
             SalesChannels = new SalesChannelRepository(_context);
             SalesDeliveries = new SalesDeliveryRepository(_context);
-            SalesDeliveryItems = new SalesDeliveryItemRepository(_context);
             SalesOrders = new SalesOrderRepository(_context);
             SalesOrderItems = new SalesOrderItemRepository(_context);
             SalesReturns = new SalesReturnRepository(_context);
@@ -39,7 +38,6 @@ namespace DataAccessEFCore.UnitOfWork
         }
         public IUserRepository Users { get; private set; }
         public IBrandRepository Brands { get; private set; }
-
         public ICategoryRepository Categories { get; private set; }
         public IColourRepository Colours { get; private set; }
         public ICustomerRepository Customers { get; private set; }
@@ -51,7 +49,6 @@ namespace DataAccessEFCore.UnitOfWork
         public IPurchaseReturnRepository PurchaseReturns { get; private set; }
         public ISalesChannelRepository SalesChannels { get; private set; }
         public ISalesDeliveryRepository SalesDeliveries { get; private set; }
-        public ISalesDeliveryItemRepository SalesDeliveryItems { get; private set; }
         public ISalesOrderRepository SalesOrders { get; private set; }
         public ISalesOrderItemRepository SalesOrderItems { get; private set; }
         public ISalesReturnRepository SalesReturns { get; private set; }
@@ -59,6 +56,8 @@ namespace DataAccessEFCore.UnitOfWork
         public ISizeRepository Sizes { get; private set; }
         public IUomRepository Uoms { get; private set; }
         public ISupplierRepository Suppliers { get; private set; }
+
+
 
         public int Complete()
         {

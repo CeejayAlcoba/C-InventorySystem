@@ -20,5 +20,7 @@ namespace Domain.Entities
         [ForeignKey("SalesChannel")]
         public int SalesChannelId { get; set; }
         public SalesChannel SalesChannel { get; set; }
+        [ForeignKey("SalesOrderId")]
+        public ICollection<SalesOrderItem> SalesOrderItem { get; set; }
     }
 }

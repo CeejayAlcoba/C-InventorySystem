@@ -20,17 +20,37 @@ namespace Services
         }
         public SalesDelivery AddSalesDelivery(SalesDelivery salesDelivery)
         {
-            throw new NotImplementedException();
+            var newSalesDelivery = new SalesDelivery()
+            {
+                Description = salesDelivery.Description,
+                DeliveryDate = salesDelivery.DeliveryDate,
+                SalesOrderId = salesDelivery.SalesOrderId,
+                ShipperId = salesDelivery.ShipperId,
+                Location = salesDelivery.Location,
+                Total = salesDelivery.Total
+            };
+            _unitOfWork.SalesDeliveries.Add(newSalesDelivery);
+            _unitOfWork.Complete();
+            return newSalesDelivery;
         }
 
         public void DeleteSalesDelivery(int Id)
         {
-            throw new NotImplementedException();
+            var salesDelivery = _unitOfWork.SalesDeliveries.GetById(Id);
+            _unitOfWork.SalesDeliveries.Remove(salesDelivery);
+            _unitOfWork.Complete();
         }
 
         public void UpdateSalesDelivery(SalesDelivery salesDelivery, int Id)
         {
-            throw new NotImplementedException();
+            var getSalesDelivery = _unitOfWork.SalesDeliveries.GetById(Id);
+            getSalesDelivery.Description = salesDelivery.Description;
+            getSalesDelivery.DeliveryDate = salesDelivery.DeliveryDate;
+            getSalesDelivery.SalesOrderId = salesDelivery.SalesOrderId;
+            getSalesDelivery.ShipperId = salesDelivery.ShipperId;
+            getSalesDelivery.Location = salesDelivery.Location;
+            getSalesDelivery.Total = salesDelivery.Total;
+            _unitOfWork.Complete();
         }
     }
 }

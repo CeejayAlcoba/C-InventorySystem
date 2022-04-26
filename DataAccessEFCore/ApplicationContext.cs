@@ -26,7 +26,6 @@ namespace DataAccessEFCore
         public DbSet<PurchaseReturn> PurchaseReturns { get; set; }
         public DbSet<SalesChannel> SalesChannels { get; set; }
         public DbSet<SalesDelivery> SalesDeliveries { get; set; }
-        public DbSet<SalesDeliveryItem> SalesDeliveryItems { get; set; }
         public DbSet<SalesOrder> SalesOrders { get; set; }
         public DbSet<SalesOrderItem> SalesOrderItems { get; set; }
         public DbSet<SalesReturn> SalesReturns { get; set; }

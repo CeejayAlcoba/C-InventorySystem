@@ -410,7 +410,8 @@ namespace DataAccessEFCore.Migrations
                     SubTotal = table.Column<double>(type: "float", nullable: false),
                     BeforeTax = table.Column<double>(type: "float", nullable: false),
                     TaxAmount = table.Column<double>(type: "float", nullable: false),
-                    Total = table.Column<double>(type: "float", nullable: false)
+                    Total = table.Column<double>(type: "float", nullable: false),
+                    SalesOrderItemId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -427,33 +428,12 @@ namespace DataAccessEFCore.Migrations
                         principalTable: "SalesOrders",
                         principalColumn: "SalesOrderId",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SalesDeliveryItems",
-                columns: table => new
-                {
-                    SalesDeliveryItemId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SalesDeliveryId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<double>(type: "float", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SalesDeliveryItems", x => x.SalesDeliveryItemId);
                     table.ForeignKey(
-                        name: "FK_SalesDeliveryItems_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_SalesDeliveryItems_SalesDeliveries_SalesDeliveryId",
-                        column: x => x.SalesDeliveryId,
-                        principalTable: "SalesDeliveries",
-                        principalColumn: "SalesDeliveryId",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_SalesOrderItems_SalesOrders_SalesOrderItemId",
+                        column: x => x.SalesOrderItemId,
+                        principalTable: "SalesOrders",
+                        principalColumn: "SalesOrderId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -539,16 +519,6 @@ namespace DataAccessEFCore.Migrations
                 column: "ShipperId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SalesDeliveryItems_ProductId",
-                table: "SalesDeliveryItems",
-                column: "ProductId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SalesDeliveryItems_SalesDeliveryId",
-                table: "SalesDeliveryItems",
-                column: "SalesDeliveryId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_SalesOrderItems_ProductId",
                 table: "SalesOrderItems",
                 column: "ProductId");
@@ -557,6 +527,11 @@ namespace DataAccessEFCore.Migrations
                 name: "IX_SalesOrderItems_SalesOrderId",
                 table: "SalesOrderItems",
                 column: "SalesOrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SalesOrderItems_SalesOrderItemId",
+                table: "SalesOrderItems",
+                column: "SalesOrderItemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SalesOrders_CustomerId",
@@ -586,7 +561,7 @@ namespace DataAccessEFCore.Migrations
                 name: "PurchaseReturns");
 
             migrationBuilder.DropTable(
-                name: "SalesDeliveryItems");
+                name: "SalesDeliveries");
 
             migrationBuilder.DropTable(
                 name: "SalesOrderItems");
@@ -601,19 +576,16 @@ namespace DataAccessEFCore.Migrations
                 name: "PurchaseReceipts");
 
             migrationBuilder.DropTable(
-                name: "SalesDeliveries");
+                name: "Shippers");
 
             migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "PurchaseOrders");
-
-            migrationBuilder.DropTable(
                 name: "SalesOrders");
 
             migrationBuilder.DropTable(
-                name: "Shippers");
+                name: "PurchaseOrders");
 
             migrationBuilder.DropTable(
                 name: "Brands");
@@ -631,13 +603,13 @@ namespace DataAccessEFCore.Migrations
                 name: "Uoms");
 
             migrationBuilder.DropTable(
-                name: "Suppliers");
-
-            migrationBuilder.DropTable(
                 name: "Customers");
 
             migrationBuilder.DropTable(
                 name: "SalesChannels");
+
+            migrationBuilder.DropTable(
+                name: "Suppliers");
         }
     }
 }

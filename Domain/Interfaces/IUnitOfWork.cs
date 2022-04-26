@@ -21,7 +21,6 @@ namespace Domain.Interfaces
         IPurchaseReturnRepository PurchaseReturns { get; }
         ISalesChannelRepository SalesChannels { get; }
         ISalesDeliveryRepository SalesDeliveries { get; }
-        ISalesDeliveryItemRepository SalesDeliveryItems { get; }
         ISalesOrderRepository SalesOrders { get; }
         ISalesOrderItemRepository SalesOrderItems { get; }
         ISalesReturnRepository SalesReturns { get; }

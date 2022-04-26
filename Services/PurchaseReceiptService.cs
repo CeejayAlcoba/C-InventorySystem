@@ -20,17 +20,35 @@ namespace Services
         }
         public PurchaseReceipt AddPurchaseReceipt(PurchaseReceipt purchaseReceipt)
         {
-            throw new NotImplementedException();
+            var newPurchaseReceipt = new PurchaseReceipt()
+            {
+                Description = purchaseReceipt.Description,
+                ReceiptDate = purchaseReceipt.ReceiptDate,
+                PurchaseOrderId = purchaseReceipt.PurchaseOrderId,
+                Location = purchaseReceipt.Location,
+                Total = purchaseReceipt.Total
+            };
+            _unitOfWork.PurchaseReceipts.Add(newPurchaseReceipt);
+            _unitOfWork.Complete();
+            return newPurchaseReceipt;
         }
 
         public void DeletePurchaseReceipt(int Id)
         {
-            throw new NotImplementedException();
+            var purchaseReceipt = _unitOfWork.PurchaseReceipts.GetById(Id);
+            _unitOfWork.PurchaseReceipts.Remove(purchaseReceipt);
+            _unitOfWork.Complete();
         }
 
         public void UpdatePurchaseReceipt(PurchaseReceipt purchaseReceipt, int Id)
         {
-            throw new NotImplementedException();
+            var getPurchaseReceipt = _unitOfWork.PurchaseReceipts.GetById(Id);
+            getPurchaseReceipt.Description = purchaseReceipt.Description;
+            getPurchaseReceipt.ReceiptDate = purchaseReceipt.ReceiptDate;
+            getPurchaseReceipt.PurchaseOrderId = purchaseReceipt.PurchaseOrderId;
+            getPurchaseReceipt.Location = purchaseReceipt.Location;
+            getPurchaseReceipt.Total = purchaseReceipt.Total;
+            _unitOfWork.Complete();
         }
     }
 }

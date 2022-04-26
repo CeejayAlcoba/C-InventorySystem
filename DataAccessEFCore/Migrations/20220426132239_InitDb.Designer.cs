@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessEFCore.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220426071115_InitDb")]
+    [Migration("20220426132239_InitDb")]
     partial class InitDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -366,31 +366,6 @@ namespace DataAccessEFCore.Migrations
                     b.ToTable("SalesDeliveries");
                 });
 
-            modelBuilder.Entity("Domain.Entities.SalesDeliveryItem", b =>
-                {
-                    b.Property<int>("SalesDeliveryItemId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Quantity")
-                        .HasColumnType("float");
-
-                    b.Property<int>("SalesDeliveryId")
-                        .HasColumnType("int");
-
-                    b.HasKey("SalesDeliveryItemId");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("SalesDeliveryId");
-
-                    b.ToTable("SalesDeliveryItems");
-                });
-
             modelBuilder.Entity("Domain.Entities.SalesOrder", b =>
                 {
                     b.Property<int>("SalesOrderId")
@@ -444,6 +419,9 @@ namespace DataAccessEFCore.Migrations
                     b.Property<int>("SalesOrderId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SalesOrderItemId")
+                        .HasColumnType("int");
+
                     b.Property<double>("SubTotal")
                         .HasColumnType("float");
 
@@ -461,6 +439,8 @@ namespace DataAccessEFCore.Migrations
                     b.HasIndex("ProductId");
 
                     b.HasIndex("SalesOrderId");
+
+                    b.HasIndex("SalesOrderItemId");
 
                     b.ToTable("SalesOrderItems");
                 });
@@ -740,25 +720,6 @@ namespace DataAccessEFCore.Migrations
                     b.Navigation("Shipper");
                 });
 
-            modelBuilder.Entity("Domain.Entities.SalesDeliveryItem", b =>
-                {
-                    b.HasOne("Domain.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.SalesDelivery", "SalesDelivery")
-                        .WithMany("SalesDeliveryItems")
-                        .HasForeignKey("SalesDeliveryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("SalesDelivery");
-                });
-
             modelBuilder.Entity("Domain.Entities.SalesOrder", b =>
                 {
                     b.HasOne("Domain.Entities.Customer", "Customer")
@@ -792,6 +753,10 @@ namespace DataAccessEFCore.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Domain.Entities.SalesOrder", null)
+                        .WithMany("SalesOrderItem")
+                        .HasForeignKey("SalesOrderItemId");
+
                     b.Navigation("Product");
 
                     b.Navigation("SalesOrder");
@@ -813,9 +778,9 @@ namespace DataAccessEFCore.Migrations
                     b.Navigation("PurchaseOrderItems");
                 });
 
-            modelBuilder.Entity("Domain.Entities.SalesDelivery", b =>
+            modelBuilder.Entity("Domain.Entities.SalesOrder", b =>
                 {
-                    b.Navigation("SalesDeliveryItems");
+                    b.Navigation("SalesOrderItem");
                 });
 #pragma warning restore 612, 618
         }
