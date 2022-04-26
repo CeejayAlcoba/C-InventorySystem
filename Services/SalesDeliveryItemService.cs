@@ -18,11 +18,13 @@ namespace Services
             _unitOfWork = unitOfWork;
 
         }
-        public SalesDeliveryItem AddSalesDeliveryItem(SalesDeliveryItem salesDeliveryItem)
+        public SalesDeliveryItem AddSalesDeliveryItem(SalesDeliveryItem salesDeliveryItem, int salesDeliveryId)
         {
             var newSalesDeliveryItem = new SalesDeliveryItem()
             {
-
+                SalesDeliveryId= salesDeliveryId,
+                ProductId = salesDeliveryItem.ProductId,
+                Quantity = salesDeliveryItem.Quantity
             };
             _unitOfWork.SalesDeliveryItems.Add(newSalesDeliveryItem);
             _unitOfWork.Complete();
@@ -31,12 +33,17 @@ namespace Services
 
         public void DeleteSalesDeliveryItem(int Id)
         {
-            throw new NotImplementedException();
+            var salesDeliveryItem = _unitOfWork.SalesDeliveryItems.GetById(Id);
+            _unitOfWork.SalesDeliveryItems.Remove(salesDeliveryItem);
+            _unitOfWork.Complete();
         }
 
         public void UpdateSalesDeliveryItem(SalesDeliveryItem salesDeliveryItem, int Id)
         {
-            throw new NotImplementedException();
+            var getSalesDeliveryItem = _unitOfWork.SalesDeliveryItems.GetById(Id);
+            getSalesDeliveryItem.ProductId = salesDeliveryItem.ProductId;
+            getSalesDeliveryItem.Quantity = salesDeliveryItem.Quantity;
+            _unitOfWork.Complete();
         }
     }
 }

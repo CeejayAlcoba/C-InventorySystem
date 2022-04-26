@@ -18,7 +18,9 @@ namespace Domain.Entities
 
         [JsonIgnore]
         public SalesDelivery SalesDelivery { get; set; }
-        public string Product { get; set; }
+        [ForeignKey("Product")]
+        public int ProductId { get; set; }
+        public Product Product { get; set; }
         public double Quantity { get; set; }
     }
 }

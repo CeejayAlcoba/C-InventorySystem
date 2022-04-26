@@ -20,17 +20,43 @@ namespace Services
         }
         public PurchaseOrder AddPurchaseOrder(PurchaseOrder purchaseOrder)
         {
-            throw new NotImplementedException();
+            var newPurchaseOrder = new PurchaseOrder()
+            {
+                Description = purchaseOrder.Description,
+                OrderDate = purchaseOrder.OrderDate,
+                SupplierId = purchaseOrder.SupplierId,
+                SubTotal = purchaseOrder.SubTotal,
+                Discount = purchaseOrder.Discount,
+                BeforeTax = purchaseOrder.BeforeTax,
+                TaxAmount = purchaseOrder.TaxAmount,
+                OtherCharge = purchaseOrder.OtherCharge,
+                Total = purchaseOrder.Total
+            };
+            _unitOfWork.PurchaseOrders.Add(newPurchaseOrder);
+            _unitOfWork.Complete();
+            return newPurchaseOrder;
         }
 
         public void DeletePurchaseOrder(int Id)
         {
-            throw new NotImplementedException();
+            var purchaseOrder = _unitOfWork.PurchaseOrders.GetById(Id);
+            _unitOfWork.PurchaseOrders.Remove(purchaseOrder);
+            _unitOfWork.Complete();
         }
 
         public void UpdatePurchaseOrder(PurchaseOrder purchaseOrder, int Id)
         {
-            throw new NotImplementedException();
+            var getPurchaseOrder = _unitOfWork.PurchaseOrders.GetById(Id);
+            getPurchaseOrder.Description = purchaseOrder.Description;
+            getPurchaseOrder.OrderDate = purchaseOrder.OrderDate;
+            getPurchaseOrder.SupplierId = purchaseOrder.SupplierId;
+            getPurchaseOrder.SubTotal = purchaseOrder.SubTotal;
+            getPurchaseOrder.Discount = purchaseOrder.Discount;
+            getPurchaseOrder.BeforeTax = purchaseOrder.BeforeTax;
+            getPurchaseOrder.TaxAmount = purchaseOrder.TaxAmount;
+            getPurchaseOrder.OtherCharge = purchaseOrder.OtherCharge;
+            getPurchaseOrder.Total = purchaseOrder.Total;
+            _unitOfWork.Complete();
         }
     }
 }
