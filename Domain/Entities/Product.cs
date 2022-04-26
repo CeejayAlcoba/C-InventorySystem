@@ -19,7 +19,7 @@ namespace Domain.Entities
         public Uom Uom { get; set; }
         public double Quantity { get; set; }
         [ForeignKey("Brand")]
-        public int BradnId { get; set; }
+        public int BrandId { get; set; }
         public Brand Brand { get; set; }
         [ForeignKey("Category")]
         public int CategoryId { get; set; }

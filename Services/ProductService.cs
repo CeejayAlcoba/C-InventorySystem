@@ -29,7 +29,7 @@ namespace Services
                 Description = product.Description,
                 UomId = product.UomId,
                 Quantity = product.Quantity,
-                BradnId = product.BradnId,
+                BrandId = product.BrandId,
                 CategoryId = product.CategoryId,
                 SizeId = product.SizeId,
                 ColourId = product.ColourId
@@ -54,7 +54,7 @@ namespace Services
             getProduct.Description = product.Description;
             getProduct.UomId = product.UomId;
             getProduct.Quantity = product.Quantity;
-            getProduct.BradnId = product.BradnId;
+            getProduct.BrandId = product.BrandId;
             getProduct.CategoryId = product.CategoryId;
             getProduct.SizeId = product.SizeId;
             getProduct.ColourId = product.ColourId;

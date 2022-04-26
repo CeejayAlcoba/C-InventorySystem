@@ -18,12 +18,12 @@ namespace Services
             _unitOfWork = unitOfWork;
 
         }
-        public PurchaseOrderItem AddPurchaseOrderItem(PurchaseOrderItem purchaseOrderItem, int purchaseOrderId)
+        public PurchaseOrderItem AddPurchaseOrderItem(PurchaseOrderItem purchaseOrderItem,int id)
         {
             var newPurchaseOrderItem = new PurchaseOrderItem()
             {
                 ProductId = purchaseOrderItem.ProductId,
-                PurchaseOrderId = purchaseOrderId,
+                PurchaseOrderId = id,
                 Price = purchaseOrderItem.Price,
                 DiscountAmount = purchaseOrderItem.DiscountAmount,
                 Quantity = purchaseOrderItem.Quantity,
