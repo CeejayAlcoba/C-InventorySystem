@@ -20,7 +20,13 @@ namespace Services
         }
         public SalesDeliveryItem AddSalesDeliveryItem(SalesDeliveryItem salesDeliveryItem)
         {
-            throw new NotImplementedException();
+            var newSalesDeliveryItem = new SalesDeliveryItem()
+            {
+
+            };
+            _unitOfWork.SalesDeliveryItems.Add(newSalesDeliveryItem);
+            _unitOfWork.Complete();
+            return newSalesDeliveryItem;
         }
 
         public void DeleteSalesDeliveryItem(int Id)
