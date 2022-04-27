@@ -56,7 +56,7 @@ namespace WebApi
             services.AddScoped<ISalesDeliveryService, SalesDeliveryService>();
             services.AddScoped<ISalesOrderItemService, SalesOrderItemService>();
             services.AddScoped<ISalesOrderService, SalesOrderService>();
-            services.AddScoped<ISalesOrderService, SalesOrderService>();
+            services.AddScoped<ISalesOrderRepository, SalesOrderRepository>();
             services.AddScoped<ISalesReturnService, SalesReturnService>();
             
             services.AddDbContext<ApplicationContext>(options =>

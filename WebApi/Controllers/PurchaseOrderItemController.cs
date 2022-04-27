@@ -37,8 +37,51 @@ namespace WebApi.Controllers
                 return BadRequest(ex);
 
             }
+        }
+        [HttpGet]
 
+        public IActionResult PurchaseOrderItemList()
+        {
+            var purchaseOrderItems = _unitOfWork.PurchaseOrderItems.GetAll();
+            return Ok(purchaseOrderItems);
+        }
+       
+        [HttpPatch]
+        [Route("/api/purchaseorderitem/id/{id}")]
+        public IActionResult UpdatePurchaseOrderItem(int Id, [FromBody] PurchaseOrderItem purchaseOrderItem)
+        {
+            try
+            {
+                var getPurchaseOrderItem = _unitOfWork.PurchaseOrderItems.GetById(Id);
+                _purchaseOrderItemService.UpdatePurchaseOrderItem(purchaseOrderItem, Id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+        [HttpGet]
+        [Route("/api/purchaseorderitem/id/{id}")]
+        public IActionResult GetPurchaseOrderItem(int Id)
+        {
+            var purchaseOrderItem = _unitOfWork.PurchaseOrderItems.GetById(Id);
+            return Ok(purchaseOrderItem);
 
+        }
+        [HttpDelete]
+        [Route("/api/purchaseorderitem/id/{id}")]
+        public IActionResult DeletePurchaseOrderItem(int Id)
+        {
+            try
+            {
+                _purchaseOrderItemService.DeletePurchaseOrderItem(Id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
     }
 }

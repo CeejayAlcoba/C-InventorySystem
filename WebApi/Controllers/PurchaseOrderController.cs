@@ -32,8 +32,8 @@ namespace WebApi.Controllers
             return Ok(purchaseOrders);
         }
         [HttpPost]
-       
-        public IActionResult AddPurchaseOrder(int id,[FromBody] PurchaseOrder purchaseOrder)
+
+        public IActionResult AddPurchaseOrder(int id, [FromBody] PurchaseOrder purchaseOrder)
         {
             try
             {
@@ -45,8 +45,43 @@ namespace WebApi.Controllers
                 return BadRequest(ex);
 
             }
+        }
+        [HttpPatch]
+        [Route("/api/purchaseorder/id/{id}")]
+        public IActionResult UpdatePurchaseOrder(int Id, [FromBody] PurchaseOrder purchaseOrder)
+        {
+            try
+            {
+                var getPurchaseOrder = _unitOfWork.PurchaseOrders.GetById(Id);
+                _purchaseOrderService.UpdatePurchaseOrder(purchaseOrder, Id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+        [HttpGet]
+        [Route("/api/purchaseorder/id/{id}")]
+        public IActionResult GetPurchaseOrder(int Id)
+        {
+            var purchaseOrder = _unitOfWork.PurchaseOrders.GetById(Id);
+            return Ok(purchaseOrder);
 
-
+        }
+        [HttpDelete]
+        [Route("/api/purchaseorder/id/{id}")]
+        public IActionResult DeletePurchaseOrder(int Id)
+        {
+            try
+            {
+                _purchaseOrderService.DeletePurchaseOrder(Id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
     }
 }

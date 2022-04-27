@@ -1,6 +1,8 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,36 @@ namespace DataAccessEFCore.Repositories
         {
         }
 
+        public IEnumerable GetAllSalesOrder(int salesOrderId, bool includeCustomer, bool includeSalesChannel, bool includeSalesOrderItem)
+        {
+
+            var query = _context.SalesOrders.AsQueryable();
+
+            if (includeCustomer)
+                query = query.Include(x => x.Customer);
+
+            if (includeSalesChannel)
+                query = query.Include(x => x.SalesChannel);
+
+            if (includeSalesOrderItem)
+                query = query.Include(x => x.SalesOrderItem);
+            return query.ToList();
+        }
+
+        public SalesOrder GetSalesOrder(int salesOrderId, bool includeCustomer, bool includeSalesChannel, bool includeSalesOrderItem)
+        {
+            var query = _context.SalesOrders.AsQueryable();
+
+            if (includeCustomer)
+                query = query.Include(x => x.Customer);
+
+            if (includeSalesChannel)
+                query = query.Include(x => x.SalesChannel);
+            if (includeSalesOrderItem)
+                query = query.Include(x => x.SalesOrderItem);
+
+            return query.FirstOrDefault(x => x.SalesOrderId== salesOrderId);
+        }
     }
 }
 
