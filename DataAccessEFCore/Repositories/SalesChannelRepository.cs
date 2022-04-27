@@ -15,5 +15,9 @@ namespace DataAccessEFCore.Repositories
         {
         }
 
+        public SalesChannel GetSalesChannelByName(string name)
+        {
+             return _context.SalesChannels.FirstOrDefault(x => x.Name == name);
+        }
     }
 }

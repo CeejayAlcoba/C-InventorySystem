@@ -9,5 +9,6 @@ namespace Domain.Interfaces
 {
     public interface ISalesChannelRepository : IGenericRepository<SalesChannel>
     {
+        SalesChannel GetSalesChannelByName(string name);
     }
 }

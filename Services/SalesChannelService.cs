@@ -20,14 +20,21 @@ namespace Services
         }
         public SalesChannel AddSalesChannel(SalesChannel salesChannel)
         {
-            var newSalesChannel = new SalesChannel()
+            var getSalesChannel = _unitOfWork.SalesChannels.GetSalesChannelByName(salesChannel.Name);
+            if (getSalesChannel == null)
             {
-                Name = salesChannel.Name,
-                Description = salesChannel.Description
-            };
-            _unitOfWork.SalesChannels.Add(newSalesChannel);
-            _unitOfWork.Complete();
-            return newSalesChannel;
+                var newSalesChannel = new SalesChannel()
+                {
+                    Name = salesChannel.Name,
+                    Description = salesChannel.Description
+                };
+                _unitOfWork.SalesChannels.Add(newSalesChannel);
+                _unitOfWork.Complete();
+                return newSalesChannel;
+            }
+            else
+                return null;
+            
         }
 
         public void DeleteSalesChannel(int Id)

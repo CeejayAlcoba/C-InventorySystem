@@ -17,7 +17,7 @@ namespace DataAccessEFCore.Repositories
         {
         }
 
-        public IEnumerable GetAllSalesOrder(int salesOrderId, bool includeCustomer, bool includeSalesChannel, bool includeSalesOrderItem)
+        public IEnumerable GetAllSalesOrder(bool includeCustomer, bool includeSalesChannel, bool includeSalesOrderItem)
         {
 
             var query = _context.SalesOrders.AsQueryable();
