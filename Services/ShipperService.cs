@@ -31,6 +31,7 @@ namespace Services
                     City = shipper.City,
                     State = shipper.State,
                     Phone = shipper.Phone,
+                    ZipCode = shipper.ZipCode,
                     Email = shipper.Email
                 };
                 _unitOfWork.Shippers.Add(newShipper);
@@ -58,6 +59,7 @@ namespace Services
             getShipper.Street = shipper.Street;
             getShipper.City = shipper.City;
             getShipper.State = shipper.State;
+            getShipper.ZipCode = shipper.ZipCode;
             getShipper.Phone = shipper.Phone;
             getShipper.Email = shipper.Email;
             _unitOfWork.Complete();

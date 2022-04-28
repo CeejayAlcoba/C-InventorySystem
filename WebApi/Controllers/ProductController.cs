@@ -16,17 +16,18 @@ namespace WebApi.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IProductService _productService;
-        public ProductController(IUnitOfWork unitOfWork, IProductService productService)
+        private readonly IProductRepository _productRepository;
+        public ProductController(IUnitOfWork unitOfWork, IProductService productService, IProductRepository productRepository)
         {
 
             _productService = productService;
-
+            _productRepository = productRepository;
             _unitOfWork = unitOfWork;
         }
         [HttpGet]
         public IActionResult ProductList()
         {
-            var products = _unitOfWork.Products.GetAll();
+            var products = _productRepository.GetAllProduct(true, true, true, true, true);
             return Ok(products);
         }
         [HttpPost]
@@ -64,7 +65,7 @@ namespace WebApi.Controllers
         [Route("/api/product/id/{id}")]
         public IActionResult GetProduct(int Id)
         {
-            var product = _unitOfWork.Products.GetById(Id);
+            var product = _productRepository.GetProduct(Id, true, true, true, true, true);
             return Ok(product);
 
         }

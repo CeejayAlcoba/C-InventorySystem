@@ -86,7 +86,7 @@ namespace WebApi.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("error");
+                return BadRequest(ex);
             }
         }
 

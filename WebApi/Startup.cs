@@ -47,6 +47,7 @@ namespace WebApi
             services.AddScoped<ISupplierService, SupplierService>();
             services.AddScoped<IUomService, UomService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IPurchaseOrderItemService, PurchaseOrderItemService>();
             services.AddScoped<IPurchaseOrderService, PurchaseOrderService>();
             services.AddScoped<IPurchaseOrderRepository, PurchaseOrderRepository>();
