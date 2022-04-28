@@ -47,7 +47,7 @@ namespace WebApi.Controllers
         {
             var brandId = _unitOfWork.Brands.GetById(Id);
             var getBrand = _unitOfWork.Brands.GetBrandByName(brand.Name);
-            if (brandId.Name != getBrand.Name)
+            if (brandId.Name != brand.Name)
             {
                 if (getBrand == null)
                 {

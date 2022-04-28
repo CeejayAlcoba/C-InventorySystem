@@ -39,12 +39,12 @@ namespace WebApi.Controllers
 
         }
         [HttpPatch]
-        [Route("/api/]saleschannel/id/{id}")]
+        [Route("/api/saleschannel/id/{id}")]
         public IActionResult UpdateSalesChannel(int Id, [FromBody] SalesChannel salesChannel)
         {
             var salesChannelId = _unitOfWork.SalesChannels.GetById(Id);
             var getSalesChannel = _unitOfWork.SalesChannels.GetSalesChannelByName(salesChannel.Name);
-            if (salesChannelId.Name != getSalesChannel.Name)
+            if (salesChannelId.Name != salesChannel.Name)
             {
                 if (getSalesChannel == null)
                 {

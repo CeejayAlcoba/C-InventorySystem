@@ -44,7 +44,7 @@ namespace WebApi.Controllers
         {
             var supplierId = _unitOfWork.Suppliers.GetById(Id);
             var getSupplier = _unitOfWork.Suppliers.GetSupplierByName(supplier.Name);
-            if (supplierId.Name != getSupplier.Name)
+            if (supplierId.Name != supplier.Name)
             {
                 if (getSupplier == null)
                 {

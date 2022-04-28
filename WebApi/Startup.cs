@@ -35,8 +35,8 @@ namespace WebApi
         {
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IBrandService, BrandService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IColourService, ColourService>();
@@ -169,11 +169,6 @@ namespace WebApi
                 app.UseDeveloperExceptionPage();
             }
             app.UseHttpsRedirection();
-
-            //app.UseCors(options => 
-            //    options.WithOrigins("http://localhost:3000")
-            //    .AllowAnyMethod()
-            //    .AllowAnyHeader());
             app.UseRouting();
             app.UseCors("MyCorsPolicy");
             app.UseAuthentication();

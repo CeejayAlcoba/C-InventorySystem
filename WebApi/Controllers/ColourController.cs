@@ -44,7 +44,7 @@ namespace WebApi.Controllers
         {
             var colourId = _unitOfWork.Colours.GetById(Id);
             var getColour = _unitOfWork.Colours.GetColourByName(colour.Name);
-            if (colourId.Name != getColour.Name)
+            if (colourId.Name != colour.Name)
             {
                 if (getColour == null)
                 {

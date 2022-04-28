@@ -44,7 +44,7 @@ namespace WebApi.Controllers
         {
             var locationId = _unitOfWork.Locations.GetById(Id);
             var getLocation = _unitOfWork.Locations.GetLocationByName(location.Name);
-            if (locationId.Name != getLocation.Name)
+            if (locationId.Name != location.Name)
             {
                 if (getLocation == null)
                 {

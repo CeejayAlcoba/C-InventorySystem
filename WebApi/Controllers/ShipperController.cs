@@ -44,7 +44,7 @@ namespace WebApi.Controllers
         {
             var shipperId = _unitOfWork.Shippers.GetById(Id);
             var getShipper = _unitOfWork.Shippers.GetShipperByName(shipper.Name);
-            if (shipperId.Name != getShipper.Name)
+            if (shipperId.Name != shipper.Name)
             {
                 if (getShipper == null)
                 {

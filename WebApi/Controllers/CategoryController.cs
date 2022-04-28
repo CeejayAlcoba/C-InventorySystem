@@ -44,7 +44,7 @@ namespace WebApi.Controllers
         {
             var categoryId = _unitOfWork.Categories.GetById(Id);
             var getCategory = _unitOfWork.Categories.GetCategoryByName(category.Name);
-            if (categoryId.Name != getCategory.Name)
+            if (categoryId.Name != category.Name)
             {
                 if (getCategory == null)
                 {

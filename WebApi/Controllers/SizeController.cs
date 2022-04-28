@@ -44,7 +44,7 @@ namespace WebApi.Controllers
         {
             var sizeId = _unitOfWork.Sizes.GetById(Id);
             var getSize = _unitOfWork.Sizes.GetSizeByName(size.Name);
-            if (sizeId.Name != getSize.Name)
+            if (sizeId.Name != size.Name)
             {
                 if (getSize == null)
                 {

@@ -44,7 +44,7 @@ namespace WebApi.Controllers
         {
             var customerId = _unitOfWork.Customers.GetById(Id);
             var getCustomer = _unitOfWork.Customers.GetCustomerByName(customer.Name);
-            if (customerId.Name != getCustomer.Name)
+            if (customerId.Name != customer.Name)
             {
                 if (getCustomer == null)
                 {

@@ -44,7 +44,7 @@ namespace WebApi.Controllers
         {
             var uomId = _unitOfWork.Uoms.GetById(Id);
             var getUom = _unitOfWork.Uoms.GetUomByName(uom.Name);
-            if (uomId.Name != getUom.Name)
+            if (uomId.Name != uom.Name)
             {
                 if (getUom == null)
                 {
