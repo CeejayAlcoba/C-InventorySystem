@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessEFCore.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220426132239_InitDb")]
+    [Migration("20220501114843_InitDb")]
     partial class InitDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -133,7 +133,7 @@ namespace DataAccessEFCore.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BradnId")
+                    b.Property<int>("BrandId")
                         .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
@@ -159,7 +159,7 @@ namespace DataAccessEFCore.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.HasIndex("BradnId");
+                    b.HasIndex("BrandId");
 
                     b.HasIndex("CategoryId");
 
@@ -419,9 +419,6 @@ namespace DataAccessEFCore.Migrations
                     b.Property<int>("SalesOrderId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SalesOrderItemId")
-                        .HasColumnType("int");
-
                     b.Property<double>("SubTotal")
                         .HasColumnType("float");
 
@@ -439,8 +436,6 @@ namespace DataAccessEFCore.Migrations
                     b.HasIndex("ProductId");
 
                     b.HasIndex("SalesOrderId");
-
-                    b.HasIndex("SalesOrderItemId");
 
                     b.ToTable("SalesOrderItems");
                 });
@@ -610,7 +605,7 @@ namespace DataAccessEFCore.Migrations
                 {
                     b.HasOne("Domain.Entities.Brand", "Brand")
                         .WithMany()
-                        .HasForeignKey("BradnId")
+                        .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -748,14 +743,10 @@ namespace DataAccessEFCore.Migrations
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.SalesOrder", "SalesOrder")
-                        .WithMany()
+                        .WithMany("SalesOrderItem")
                         .HasForeignKey("SalesOrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Domain.Entities.SalesOrder", null)
-                        .WithMany("SalesOrderItem")
-                        .HasForeignKey("SalesOrderItemId");
 
                     b.Navigation("Product");
 

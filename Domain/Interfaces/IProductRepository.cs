@@ -24,5 +24,6 @@ namespace Domain.Interfaces
   bool includeSize,
   bool includeColour);
         Product GetProductByName(string name);
+        IEnumerable GetMinimumStocks(bool includeUom, bool includeBrand, bool includeCategory, bool includeSize, bool includeColour);
     }
 }

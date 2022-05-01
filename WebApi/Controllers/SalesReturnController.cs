@@ -80,5 +80,12 @@ namespace WebApi.Controllers
                 return BadRequest(ex);
             }
         }
+        [HttpGet]
+        [Route("/api/salesreturn/quantity")]
+        public IActionResult GetTotalQuantity()
+        {
+            var totalQuantity = _unitOfWork.SalesReturns.GetTotalQuantity();
+            return Ok(totalQuantity);
+        }
     }
 }

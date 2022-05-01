@@ -14,6 +14,11 @@ namespace DataAccessEFCore.Repositories
         public SalesReturnRepository(ApplicationContext context) : base(context)
         {
         }
-
+        public double GetTotalQuantity()
+        {
+            var salesReturns = GetAll();
+            var totalQuantity = salesReturns.Select(c => c.Total).Sum();
+            return totalQuantity;
+        }
     }
 }

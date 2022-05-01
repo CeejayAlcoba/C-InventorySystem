@@ -9,5 +9,6 @@ namespace Domain.Interfaces
 {
     public interface ISalesDeliveryRepository : IGenericRepository<SalesDelivery>
     {
+        double GetTotalQuantity();
     }
 }

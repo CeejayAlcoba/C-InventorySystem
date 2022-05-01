@@ -9,5 +9,6 @@ namespace Domain.Interfaces
 {
     public interface IPurchaseReturnRepository : IGenericRepository<PurchaseReturn>
     {
+        double GetTotalQuantity();
     }
 }

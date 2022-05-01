@@ -245,7 +245,7 @@ namespace DataAccessEFCore.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UomId = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<double>(type: "float", nullable: false),
-                    BradnId = table.Column<int>(type: "int", nullable: false),
+                    BrandId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     SizeId = table.Column<int>(type: "int", nullable: false),
                     ColourId = table.Column<int>(type: "int", nullable: false)
@@ -254,8 +254,8 @@ namespace DataAccessEFCore.Migrations
                 {
                     table.PrimaryKey("PK_Products", x => x.ProductId);
                     table.ForeignKey(
-                        name: "FK_Products_Brands_BradnId",
-                        column: x => x.BradnId,
+                        name: "FK_Products_Brands_BrandId",
+                        column: x => x.BrandId,
                         principalTable: "Brands",
                         principalColumn: "BrandId",
                         onDelete: ReferentialAction.Cascade);
@@ -410,8 +410,7 @@ namespace DataAccessEFCore.Migrations
                     SubTotal = table.Column<double>(type: "float", nullable: false),
                     BeforeTax = table.Column<double>(type: "float", nullable: false),
                     TaxAmount = table.Column<double>(type: "float", nullable: false),
-                    Total = table.Column<double>(type: "float", nullable: false),
-                    SalesOrderItemId = table.Column<int>(type: "int", nullable: true)
+                    Total = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -428,12 +427,6 @@ namespace DataAccessEFCore.Migrations
                         principalTable: "SalesOrders",
                         principalColumn: "SalesOrderId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_SalesOrderItems_SalesOrders_SalesOrderItemId",
-                        column: x => x.SalesOrderItemId,
-                        principalTable: "SalesOrders",
-                        principalColumn: "SalesOrderId",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -459,9 +452,9 @@ namespace DataAccessEFCore.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_BradnId",
+                name: "IX_Products_BrandId",
                 table: "Products",
-                column: "BradnId");
+                column: "BrandId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
@@ -527,11 +520,6 @@ namespace DataAccessEFCore.Migrations
                 name: "IX_SalesOrderItems_SalesOrderId",
                 table: "SalesOrderItems",
                 column: "SalesOrderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SalesOrderItems_SalesOrderItemId",
-                table: "SalesOrderItems",
-                column: "SalesOrderItemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SalesOrders_CustomerId",

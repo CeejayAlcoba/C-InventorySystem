@@ -15,5 +15,11 @@ namespace DataAccessEFCore.Repositories
         {
         }
 
+        public double GetTotalQuantity()
+        {
+            var salesDeliveries = GetAll();
+            var totalQuantity = salesDeliveries.Select(c => c.Total).Sum();
+            return totalQuantity;
+        }
     }
 }

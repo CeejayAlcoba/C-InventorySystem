@@ -57,5 +57,24 @@ namespace DataAccessEFCore.Repositories
         {
             return _context.Products.FirstOrDefault(x => x.Name == name);
         }
+        public IEnumerable GetMinimumStocks(bool includeUom, bool includeBrand, bool includeCategory, bool includeSize, bool includeColour)
+        {
+            var query = _context.Products.AsQueryable();
+
+            if (includeUom)
+                query = query.Include(x => x.Uom);
+            if (includeBrand)
+                query = query.Include(x => x.Brand);
+            if (includeCategory)
+                query = query.Include(x => x.Category);
+            if (includeSize)
+                query = query.Include(x => x.Size);
+            if (includeColour)
+                query = query.Include(x => x.Colour);
+
+            var getQuantity = query.Where(c=>c.Quantity <=20);
+            
+            return getQuantity;
+        }
     }
 }

@@ -82,6 +82,14 @@ namespace WebApi.Controllers
             {
                 return BadRequest(ex);
             }
-        }   
+        }
+        [HttpGet]
+        [Route("/api/product/minimum")]
+        public ActionResult GetProductSortByQuantity()
+        {
+            var products =_unitOfWork.Products.GetMinimumStocks(true,false,false,false,false);
+            return Ok(products);
+        }
+
     }
 }
