@@ -18,23 +18,45 @@ namespace Services
             _unitOfWork = unitOfWork;
 
         }
+        //public PurchaseOrder AddPurchaseOrder(PurchaseOrder purchaseOrder, PurchaseOrderItem purchaseOrderItem)
+        //{
+        //    var newPurchaseOrder = new PurchaseOrder()
+        //    {
+        //        Description = purchaseOrder.Description,
+        //        OrderDate = purchaseOrder.OrderDate,
+        //        SupplierId = purchaseOrder.SupplierId,
+        //        SubTotal = purchaseOrder.SubTotal,
+        //        Discount = purchaseOrder.Discount,
+        //        BeforeTax = purchaseOrder.BeforeTax,
+        //        TaxAmount = purchaseOrder.TaxAmount,
+        //        OtherCharge = purchaseOrder.OtherCharge,
+        //        Total = purchaseOrder.Total
+                
+        //    };
+        //    List<PurchaseOrderItem> item = new List<PurchaseOrderItem>();
+        //    item.Add(purchaseOrderItem);
+              
+        //    _unitOfWork.PurchaseOrders.Add(newPurchaseOrder);
+        //    _unitOfWork.Complete();
+        //    return newPurchaseOrder;
+        //}
+
         public PurchaseOrder AddPurchaseOrder(PurchaseOrder purchaseOrder)
         {
-            var newPurchaseOrder = new PurchaseOrder()
-            {
-                Description = purchaseOrder.Description,
-                OrderDate = purchaseOrder.OrderDate,
-                SupplierId = purchaseOrder.SupplierId,
-                SubTotal = purchaseOrder.SubTotal,
-                Discount = purchaseOrder.Discount,
-                BeforeTax = purchaseOrder.BeforeTax,
-                TaxAmount = purchaseOrder.TaxAmount,
-                OtherCharge = purchaseOrder.OtherCharge,
-                Total = purchaseOrder.Total
-            };
-            _unitOfWork.PurchaseOrders.Add(newPurchaseOrder);
+            _unitOfWork.PurchaseOrders.Add(purchaseOrder);
+
+            var purchasedProductIds = purchaseOrder.PurchaseOrderItems
+                .Select(x => x.ProductId);
+            var purchasedProducts = _unitOfWork.Products
+                .Find(x => purchasedProductIds.Contains(x.ProductId));
+
+            purchasedProducts.ToList()
+                .ForEach(p => p.Quantity +=
+                    purchaseOrder.PurchaseOrderItems.First(poi => poi.ProductId == p.ProductId).Quantity);
+
             _unitOfWork.Complete();
-            return newPurchaseOrder;
+
+            return purchaseOrder;
         }
 
         public void DeletePurchaseOrder(int Id)

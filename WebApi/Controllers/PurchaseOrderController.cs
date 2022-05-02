@@ -33,7 +33,7 @@ namespace WebApi.Controllers
         }
         [HttpPost]
 
-        public IActionResult AddPurchaseOrder(int id, [FromBody] PurchaseOrder purchaseOrder)
+        public IActionResult AddPurchaseOrder([FromBody] PurchaseOrder purchaseOrder)
         {
             try
             {

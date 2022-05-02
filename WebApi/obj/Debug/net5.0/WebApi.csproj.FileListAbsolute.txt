@@ -787,3 +787,6 @@ C:\Users\smith\OneDrive\Desktop\c#\inventory\WebApi\obj\Debug\net5.0\WebApi.dll
 C:\Users\smith\OneDrive\Desktop\c#\inventory\WebApi\obj\Debug\net5.0\ref\WebApi.dll
 C:\Users\smith\OneDrive\Desktop\c#\inventory\WebApi\obj\Debug\net5.0\WebApi.pdb
 C:\Users\smith\OneDrive\Desktop\c#\inventory\WebApi\obj\Debug\net5.0\WebApi.genruntimeconfig.cache
+C:\Users\smith\OneDrive\Desktop\c#\inventory\WebApi\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\smith\OneDrive\Desktop\c#\inventory\WebApi\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\smith\OneDrive\Desktop\c#\inventory\WebApi\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

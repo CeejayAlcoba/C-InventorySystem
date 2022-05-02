@@ -17,6 +17,7 @@ using Newtonsoft.Json.Serialization;
 using Services;
 using Services.Contracts;
 using System.Text;
+using System.Text.Json.Serialization;
 using WebApi.Auth;
 
 namespace WebApi
@@ -59,18 +60,19 @@ namespace WebApi
             services.AddScoped<ISalesOrderService, SalesOrderService>();
             services.AddScoped<ISalesOrderRepository, SalesOrderRepository>();
             services.AddScoped<ISalesReturnService, SalesReturnService>();
-            
+
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName)));
-            services.AddMvc(setupAction => {
-                setupAction.EnableEndpointRouting = false;
-            }).AddJsonOptions(jsonOptions =>
+            services.AddMvc(setupAction =>
             {
-                jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = null;
+                setupAction.EnableEndpointRouting = false;
+            }).AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             })
-         .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
 
 
