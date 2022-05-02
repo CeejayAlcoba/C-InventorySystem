@@ -20,7 +20,9 @@ namespace Domain.Entities
         [ForeignKey("Shipper")]
         public int ShipperId { get; set; }
         public Shipper Shipper { get; set; }
-        public string Location { get; set; }
+        [ForeignKey("Location")]
+        public int LocationId { get; set; }
+        public Location Location { get; set; }
         public double Total { get; set; }
     }
 }
