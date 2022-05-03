@@ -71,6 +71,7 @@ namespace WebApi
             }).AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                options.UseMemberCasing();
             })
             .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
