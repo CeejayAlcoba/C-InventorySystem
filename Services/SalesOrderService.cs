@@ -20,16 +20,19 @@ namespace Services
         }
         public SalesOrder AddSalesOrder(SalesOrder salesOrder)
         {
-            var newSalesOrder = new SalesOrder()
-            {
-                Description = salesOrder.Description,
-                OrderDate = salesOrder.OrderDate,
-                CustomerId=salesOrder.CustomerId,
-                SalesChannelId = salesOrder.SalesOrderId
-            };
-            _unitOfWork.SalesOrders.Add(newSalesOrder);
+            _unitOfWork.SalesOrders.Add(salesOrder);
+            var orderedProductIds = salesOrder.SalesOrderItem
+                .Select(x => x.ProductId);
+            var orderedProducts = _unitOfWork.Products
+                .Find(x => orderedProductIds.Contains(x.ProductId));
+
+            orderedProducts.ToList()
+                .ForEach(p => p.Quantity -=
+                    salesOrder.SalesOrderItem.First(poi => poi.ProductId == p.ProductId).Quantity);
+
             _unitOfWork.Complete();
-            return newSalesOrder;
+
+            return salesOrder;
         }
 
         public void DeleteSalesOrder(int Id)

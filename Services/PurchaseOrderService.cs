@@ -18,29 +18,6 @@ namespace Services
             _unitOfWork = unitOfWork;
 
         }
-        //public PurchaseOrder AddPurchaseOrder(PurchaseOrder purchaseOrder, PurchaseOrderItem purchaseOrderItem)
-        //{
-        //    var newPurchaseOrder = new PurchaseOrder()
-        //    {
-        //        Description = purchaseOrder.Description,
-        //        OrderDate = purchaseOrder.OrderDate,
-        //        SupplierId = purchaseOrder.SupplierId,
-        //        SubTotal = purchaseOrder.SubTotal,
-        //        Discount = purchaseOrder.Discount,
-        //        BeforeTax = purchaseOrder.BeforeTax,
-        //        TaxAmount = purchaseOrder.TaxAmount,
-        //        OtherCharge = purchaseOrder.OtherCharge,
-        //        Total = purchaseOrder.Total
-                
-        //    };
-        //    List<PurchaseOrderItem> item = new List<PurchaseOrderItem>();
-        //    item.Add(purchaseOrderItem);
-              
-        //    _unitOfWork.PurchaseOrders.Add(newPurchaseOrder);
-        //    _unitOfWork.Complete();
-        //    return newPurchaseOrder;
-        //}
-
         public PurchaseOrder AddPurchaseOrder(PurchaseOrder purchaseOrder)
         {
             _unitOfWork.PurchaseOrders.Add(purchaseOrder);
