@@ -7,11 +7,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.Auth;
 
 namespace WebApi.Controllers
 {
     [Route("api/colour")]
     [ApiController]
+    [Authorize]
     public class ColourController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;

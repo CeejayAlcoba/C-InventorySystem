@@ -7,11 +7,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.Auth;
 
 namespace WebApi.Controllers
 {
     [Route("api/brand")]
     [ApiController]
+    [Authorize]
+
     public class BrandController : ControllerBase
     {
        

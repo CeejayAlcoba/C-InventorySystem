@@ -16,7 +16,7 @@ namespace WebApi.Controllers
 {
     [Route("api/user")]
     [ApiController]
-    //[EnableCors("AllowOrigin")]
+    [Authorize]
     public class UserController : BaseController
     {
         private readonly IAccountService _accountService;

@@ -7,11 +7,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.Auth;
 
 namespace WebApi.Controllers
 {
     [Route("api/category")]
     [ApiController]
+    [Authorize]
     public class CategoryController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;

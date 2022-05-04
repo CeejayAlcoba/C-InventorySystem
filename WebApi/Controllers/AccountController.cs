@@ -2,12 +2,13 @@
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
+using WebApi.Auth;
 
 namespace WebApi.Controllers
 {
     [Route("api/account")]
     [ApiController]
-    //[EnableCors("AllowOrigin")]
+
     public class AccountController : ControllerBase
     {
         private IUserService _userService;
