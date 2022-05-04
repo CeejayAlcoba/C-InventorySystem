@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\newC#\\inventory\\Domain\\Domain.csproj": {}
+    "C:\\Users\\smith\\OneDrive\\Desktop\\c# updated\\inventory\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\newC#\\inventory\\Domain\\Domain.csproj": {
+    "C:\\Users\\smith\\OneDrive\\Desktop\\c# updated\\inventory\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\newC#\\inventory\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\smith\\OneDrive\\Desktop\\c# updated\\inventory\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\User\\Desktop\\newC#\\inventory\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\newC#\\inventory\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\smith\\OneDrive\\Desktop\\c# updated\\inventory\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\smith\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\smith\\OneDrive\\Desktop\\c# updated\\inventory\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\smith\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.407\\RuntimeIdentifierGraph.json"
         }
       }
     }

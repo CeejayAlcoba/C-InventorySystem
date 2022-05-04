@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
-    [Route("api/salesordercontroller")]
+    [Route("api/salesorder")]
     [ApiController]
     public class SalesOrderController : ControllerBase
     {
