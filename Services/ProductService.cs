@@ -44,6 +44,10 @@ namespace Services
             getProduct.CategoryId = product.CategoryId;
             getProduct.SizeId = product.SizeId;
             getProduct.ColourId = product.ColourId;
+            getProduct.PurchasePrice = product.PurchasePrice;
+            getProduct.SalesPrice = product.SalesPrice;
+            getProduct.PurchaseTax = product.PurchaseTax;
+            getProduct.SalesTax = product.SalesTax;
             _unitOfWork.Complete();
         }
     }
