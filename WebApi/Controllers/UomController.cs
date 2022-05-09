@@ -13,7 +13,6 @@ namespace WebApi.Controllers
 {
     [Route("api/uom")]
     [ApiController]
-    [Authorize]
     public class UomController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;

@@ -13,7 +13,6 @@ namespace WebApi.Controllers
 {
     [Route("api/category")]
     [ApiController]
-    [Authorize]
     public class CategoryController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;

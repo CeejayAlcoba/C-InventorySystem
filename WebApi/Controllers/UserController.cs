@@ -16,7 +16,6 @@ namespace WebApi.Controllers
 {
     [Route("api/user")]
     [ApiController]
-    [Authorize]
     public class UserController : BaseController
     {
         private readonly IAccountService _accountService;

@@ -13,7 +13,6 @@ namespace WebApi.Controllers
 {
     [Route("api/size")]
     [ApiController]
-    [Authorize]
     public class SizeController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;

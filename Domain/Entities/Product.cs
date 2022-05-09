@@ -30,5 +30,9 @@ namespace Domain.Entities
         [ForeignKey("Colour")]
         public int ColourId { get; set; }
         public Colour Colour { get; set; }
+        public double PurchasePrice { get; set; }
+        public double PurchaseSalesPrice { get; set; }
+        public double PurchaseTax { get; set; }
+        public double SalesTax { get; set; }
     }
 }
