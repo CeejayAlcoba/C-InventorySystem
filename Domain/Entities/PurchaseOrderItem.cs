@@ -31,5 +31,6 @@ namespace Domain.Entities
         public double BeforeTotal { get; set; }
         public double TaxAmount { get; set; }
         public double Total { get; set; }
+        public bool IsDelete { get; set; }
     }
 }

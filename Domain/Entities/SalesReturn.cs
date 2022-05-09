@@ -22,5 +22,6 @@ namespace Domain.Entities
         //public int SalesDeliveryItemId { get; set; }
         //public SalesDeliveryItem SalesDeliveryItems { get; set; }
         public double Total { get; set; }
+        public bool IsDelete { get; set; }
     }
 }

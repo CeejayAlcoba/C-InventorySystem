@@ -34,5 +34,6 @@ namespace Domain.Entities
         public double SalesPrice { get; set; }
         public double PurchaseTax { get; set; }
         public double SalesTax { get; set; }
+        public bool IsDelete { get; set; }
     }
 }

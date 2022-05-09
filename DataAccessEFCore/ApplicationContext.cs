@@ -33,5 +33,77 @@ namespace DataAccessEFCore
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Uom> Uoms { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PurchaseOrder>()
+                .Property(b => b.Status)
+                .HasDefaultValue("Open");
+            modelBuilder.Entity<PurchaseOrder>()
+              .Property(b => b.IsDelete)
+              .HasDefaultValue(false);
+            modelBuilder.Entity<SalesOrder>()
+              .Property(b => b.IsDelete)
+              .HasDefaultValue(false);
+            modelBuilder.Entity<SalesOrder>()
+                .Property(b => b.Status)
+                .HasDefaultValue("Open");
+            modelBuilder.Entity<PurchaseOrder>()
+              .Property(b => b.IsDelete)
+              .HasDefaultValue(false);
+            modelBuilder.Entity<User>()
+              .Property(b => b.IsDelete)
+              .HasDefaultValue(false);
+            modelBuilder.Entity<Brand>()
+             .Property(b => b.IsDelete)
+             .HasDefaultValue(false);
+            modelBuilder.Entity<Category>()
+            .Property(b => b.IsDelete)
+           .HasDefaultValue(false);
+            modelBuilder.Entity<Colour>()
+             .Property(b => b.IsDelete)
+             .HasDefaultValue(false);
+            modelBuilder.Entity<Location>()
+            .Property(b => b.IsDelete)
+            .HasDefaultValue(false);
+            modelBuilder.Entity<Product>()
+            .Property(b => b.IsDelete)
+            .HasDefaultValue(false);
+            modelBuilder.Entity<PurchaseOrderItem>()
+            .Property(b => b.IsDelete)
+            .HasDefaultValue(false);
+            modelBuilder.Entity<PurchaseReceipt>()
+            .Property(b => b.IsDelete)
+            .HasDefaultValue(false);
+            modelBuilder.Entity<PurchaseReturn>()
+            .Property(b => b.IsDelete)
+            .HasDefaultValue(false);
+            modelBuilder.Entity<SalesChannel>()
+            .Property(b => b.IsDelete)
+            .HasDefaultValue(false);
+            modelBuilder.Entity<SalesDelivery>()
+            .Property(b => b.IsDelete)
+            .HasDefaultValue(false);
+            modelBuilder.Entity<SalesDeliveryItem>()
+            .Property(b => b.IsDelete)
+            .HasDefaultValue(false);
+            modelBuilder.Entity<SalesOrderItem>()
+            .Property(b => b.IsDelete)
+            .HasDefaultValue(false);
+            modelBuilder.Entity<SalesReturn>()
+            .Property(b => b.IsDelete)
+            .HasDefaultValue(false);
+            modelBuilder.Entity<Shipper>()
+           .Property(b => b.IsDelete)
+           .HasDefaultValue(false);
+            modelBuilder.Entity<Size>()
+           .Property(b => b.IsDelete)
+           .HasDefaultValue(false);
+            modelBuilder.Entity<Supplier>()
+           .Property(b => b.IsDelete)
+           .HasDefaultValue(false);
+            modelBuilder.Entity<Uom>()
+           .Property(b => b.IsDelete)
+           .HasDefaultValue(false);
+        }
     }
 }

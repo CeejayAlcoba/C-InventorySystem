@@ -29,7 +29,7 @@ namespace WebApi.Controllers
 
         public IActionResult PurchaseOrderList()
         {
-            var purchaseOrders = _purchaseOrderRepository.GetAllPurchase(true,true);
+            var purchaseOrders = _purchaseOrderRepository.GetAllPurchase(true, true, "Open", false);
             return Ok(purchaseOrders);
         }
         [HttpPost]
@@ -67,6 +67,14 @@ namespace WebApi.Controllers
         public IActionResult GetPurchaseOrder(int Id)
         {
             var purchaseOrder = _unitOfWork.PurchaseOrders.GetById(Id);
+            return Ok(purchaseOrder);
+
+        }
+        [HttpGet]
+        [Route("/api/purchaseorder/deleted")]
+        public IActionResult GetPurchaseOrderDeletedList(int Id)
+        {
+            var purchaseOrder = _unitOfWork.PurchaseOrders.GetAllPurchase(true, true, "Open", true);
             return Ok(purchaseOrder);
 
         }

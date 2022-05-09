@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace Domain.Entities
     {
         [Key]
         public int PurchaseOrderId { get; set; }
+        public string Name { get; set; }
         public string Description { get; set; }
         public DateTime OrderDate { get; set; }
         [ForeignKey("Supplier")]
@@ -26,5 +28,7 @@ namespace Domain.Entities
         public double TaxAmount { get; set; }
         public double OtherCharge { get; set; }
         public double Total { get; set; }
+        public string Status { get; set; }
+        public bool IsDelete { get; set; }
     }
 }

@@ -20,5 +20,6 @@ namespace Domain.Entities
         public PurchaseOrder PurchaseOrder { get; set; }
         public string Location { get; set; }
         public double Total { get; set; }
+        public bool IsDelete { get; set; }
     }
 }

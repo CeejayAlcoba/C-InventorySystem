@@ -12,7 +12,6 @@ namespace Services
     public class PurchaseOrderService : IPurchaseOrderService
     {
         private readonly IUnitOfWork _unitOfWork;
-
         public PurchaseOrderService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -20,7 +19,13 @@ namespace Services
         }
         public PurchaseOrder AddPurchaseOrder(PurchaseOrder purchaseOrder)
         {
-            _unitOfWork.PurchaseOrders.Add(purchaseOrder);
+            var newPurchaseOrder = new PurchaseOrder()
+            {
+                Name = "PO/" + _unitOfWork.PurchaseOrders.GetNextId().ToString(),
+                SupplierId=purchaseOrder.SupplierId,
+                PurchaseOrderItems=purchaseOrder.PurchaseOrderItems
+            };
+            _unitOfWork.PurchaseOrders.Add(newPurchaseOrder);
 
             var purchasedProductIds = purchaseOrder.PurchaseOrderItems
                 .Select(x => x.ProductId);
@@ -39,7 +44,7 @@ namespace Services
         public void DeletePurchaseOrder(int Id)
         {
             var purchaseOrder = _unitOfWork.PurchaseOrders.GetById(Id);
-            _unitOfWork.PurchaseOrders.Remove(purchaseOrder);
+            purchaseOrder.IsDelete = true;
             _unitOfWork.Complete();
         }
 

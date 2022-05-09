@@ -24,5 +24,6 @@ namespace Domain.Entities
         public int LocationId { get; set; }
         public Location Location { get; set; }
         public double Total { get; set; }
+        public bool IsDelete { get; set; }
     }
 }

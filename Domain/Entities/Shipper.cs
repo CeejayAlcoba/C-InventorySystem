@@ -19,6 +19,7 @@ namespace Domain.Entities
         public string ZipCode { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
+        public bool IsDelete { get; set; }
 
     }
 }

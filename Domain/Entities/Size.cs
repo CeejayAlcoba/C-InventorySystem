@@ -13,5 +13,6 @@ namespace Domain.Entities
         public int SizeId { get; set; }
         public double Name { get; set; }
         public string Description { get; set; }
+        public bool IsDelete { get; set; }
     }
 }

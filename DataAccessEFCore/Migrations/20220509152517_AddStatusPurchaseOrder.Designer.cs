@@ -4,14 +4,16 @@ using DataAccessEFCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccessEFCore.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220509152517_AddStatusPurchaseOrder")]
+    partial class AddStatusPurchaseOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,11 +30,6 @@ namespace DataAccessEFCore.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDelete")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -52,11 +49,6 @@ namespace DataAccessEFCore.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDelete")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -74,11 +66,6 @@ namespace DataAccessEFCore.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDelete")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -103,9 +90,6 @@ namespace DataAccessEFCore.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -134,11 +118,6 @@ namespace DataAccessEFCore.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDelete")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -165,11 +144,6 @@ namespace DataAccessEFCore.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDelete")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -226,24 +200,11 @@ namespace DataAccessEFCore.Migrations
                     b.Property<double>("Discount")
                         .HasColumnType("float");
 
-                    b.Property<bool>("IsDelete")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
                     b.Property<double>("OtherCharge")
                         .HasColumnType("float");
-
-                    b.Property<string>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)")
-                        .HasDefaultValue("Open");
 
                     b.Property<double>("SubTotal")
                         .HasColumnType("float");
@@ -256,6 +217,9 @@ namespace DataAccessEFCore.Migrations
 
                     b.Property<double>("Total")
                         .HasColumnType("float");
+
+                    b.Property<string>("status")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PurchaseOrderId");
 
@@ -276,11 +240,6 @@ namespace DataAccessEFCore.Migrations
 
                     b.Property<double>("DiscountAmount")
                         .HasColumnType("float");
-
-                    b.Property<bool>("IsDelete")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
@@ -325,11 +284,6 @@ namespace DataAccessEFCore.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDelete")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
@@ -359,11 +313,6 @@ namespace DataAccessEFCore.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDelete")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
                     b.Property<int>("PurchaseReceiptId")
                         .HasColumnType("int");
 
@@ -390,11 +339,6 @@ namespace DataAccessEFCore.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDelete")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -415,11 +359,6 @@ namespace DataAccessEFCore.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDelete")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
 
                     b.Property<int>("LocationId")
                         .HasColumnType("int");
@@ -444,36 +383,6 @@ namespace DataAccessEFCore.Migrations
                     b.ToTable("SalesDeliveries");
                 });
 
-            modelBuilder.Entity("Domain.Entities.SalesDeliveryItem", b =>
-                {
-                    b.Property<int>("SalesDeliveryItemId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("IsDelete")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Quantity")
-                        .HasColumnType("float");
-
-                    b.Property<int>("SalesDeliveryId")
-                        .HasColumnType("int");
-
-                    b.HasKey("SalesDeliveryItemId");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("SalesDeliveryId");
-
-                    b.ToTable("SalesDeliveryItem");
-                });
-
             modelBuilder.Entity("Domain.Entities.SalesOrder", b =>
                 {
                     b.Property<int>("SalesOrderId")
@@ -487,21 +396,11 @@ namespace DataAccessEFCore.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDelete")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("SalesChannelId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)")
-                        .HasDefaultValue("Open");
 
                     b.HasKey("SalesOrderId");
 
@@ -524,11 +423,6 @@ namespace DataAccessEFCore.Migrations
 
                     b.Property<double>("DiscountAmount")
                         .HasColumnType("float");
-
-                    b.Property<bool>("IsDelete")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
@@ -573,11 +467,6 @@ namespace DataAccessEFCore.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDelete")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
@@ -613,11 +502,6 @@ namespace DataAccessEFCore.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDelete")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -648,11 +532,6 @@ namespace DataAccessEFCore.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDelete")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
                     b.Property<double>("Name")
                         .HasColumnType("float");
 
@@ -676,11 +555,6 @@ namespace DataAccessEFCore.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDelete")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -709,11 +583,6 @@ namespace DataAccessEFCore.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDelete")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -734,11 +603,6 @@ namespace DataAccessEFCore.Migrations
 
                     b.Property<string>("HashPassword")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDelete")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
 
                     b.Property<string>("Lastname")
                         .HasColumnType("nvarchar(max)");
@@ -874,25 +738,6 @@ namespace DataAccessEFCore.Migrations
                     b.Navigation("SalesOrder");
 
                     b.Navigation("Shipper");
-                });
-
-            modelBuilder.Entity("Domain.Entities.SalesDeliveryItem", b =>
-                {
-                    b.HasOne("Domain.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.SalesDelivery", "SalesDelivery")
-                        .WithMany()
-                        .HasForeignKey("SalesDeliveryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("SalesDelivery");
                 });
 
             modelBuilder.Entity("Domain.Entities.SalesOrder", b =>
