@@ -20,23 +20,9 @@ namespace Services
         }
         public Product AddProduct(Product product)
         {
-
-
-            var newProduct = new Product()
-            {
-
-                Name = product.Name,
-                Description = product.Description,
-                UomId = product.UomId,
-                Quantity = product.Quantity,
-                BrandId = product.BrandId,
-                CategoryId = product.CategoryId,
-                SizeId = product.SizeId,
-                ColourId = product.ColourId
-            };
-            _unitOfWork.Products.Add(newProduct);
+            _unitOfWork.Products.Add(product);
             _unitOfWork.Complete();
-            return newProduct;
+            return product;
 
         }
 
