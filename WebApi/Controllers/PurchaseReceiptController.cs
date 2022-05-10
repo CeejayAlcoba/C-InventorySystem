@@ -17,10 +17,8 @@ namespace WebApi.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPurchaseReceiptService _purchaseReceiptService;
-        private readonly IPurchaseOrderService _purchaseOrderService;
-        public PurchaseReceiptController(IUnitOfWork unitOfWork, IPurchaseReceiptService purchaseReceiptService, IPurchaseOrderService purchaseOrderService)
+        public PurchaseReceiptController(IUnitOfWork unitOfWork, IPurchaseReceiptService purchaseReceiptService)
         {
-            _purchaseOrderService = purchaseOrderService;
             _purchaseReceiptService = purchaseReceiptService;
             _unitOfWork = unitOfWork;
         }

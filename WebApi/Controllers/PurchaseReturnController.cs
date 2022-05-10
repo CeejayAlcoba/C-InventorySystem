@@ -13,14 +13,12 @@ namespace WebApi.Controllers
 {
     [Route("api/purchasereturn")]
     [ApiController]
-    [Authorize]
     public class PurchaseReturnController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPurchaseReturnService _purchaseReturnService;
         public PurchaseReturnController(IUnitOfWork unitOfWork, IPurchaseReturnService purchaseReturnService)
         {
-
             _purchaseReturnService = purchaseReturnService;
             _unitOfWork = unitOfWork;
         }
@@ -28,7 +26,7 @@ namespace WebApi.Controllers
 
         public IActionResult PurchaseReturnList()
         {
-            var purchaseReturns = _unitOfWork.PurchaseReturns.GetAll();
+            var purchaseReturns = _unitOfWork.PurchaseOrders.GetAllPurchase(true,true,"Returned",false);
             return Ok(purchaseReturns);
         }
         [HttpPost]

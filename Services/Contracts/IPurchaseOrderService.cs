@@ -10,6 +10,7 @@ namespace Services.Contracts
     public interface IPurchaseOrderService
     {
         PurchaseOrder CompletePurchaseOrder(int id, DateTime date);
+        PurchaseOrder ReturnPurchaseOrder(int id, DateTime date);
         void UpdatePurchaseOrder(PurchaseOrder purchaseOrder, int Id);
         PurchaseOrder AddPurchaseOrder(PurchaseOrder purchaseOrder);
         PurchaseOrder CancelPurchaseOrder(int id, DateTime date);

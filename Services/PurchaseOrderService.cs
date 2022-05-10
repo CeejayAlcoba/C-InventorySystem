@@ -25,6 +25,14 @@ namespace Services
             _unitOfWork.Complete();
             return getPurchaseOrder;
         }
+        public PurchaseOrder ReturnPurchaseOrder(int id, DateTime date)
+        {
+            var getPurchaseOrder = _unitOfWork.PurchaseOrders.GetById(id);
+            getPurchaseOrder.Status = "Returned";
+            getPurchaseOrder.Date = date;
+            _unitOfWork.Complete();
+            return getPurchaseOrder;
+        }
         public PurchaseOrder CancelPurchaseOrder(int id, DateTime date)
         {
             var getPurchaseOrder = _unitOfWork.PurchaseOrders.GetById(id);

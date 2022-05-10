@@ -63,6 +63,21 @@ namespace WebApi.Controllers
             }
         }
         [HttpPatch]
+        [Route("/api/purchaseorder/return/{id}/{date}")]
+        public IActionResult ReturnPurchaseOrder(int Id, DateTime Date)
+        {
+            try
+            {
+                var order = _purchaseOrderService.ReturnPurchaseOrder(Id, Date);
+                return Ok(order);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+
+            }
+        }
+        [HttpPatch]
         [Route("/api/purchaseorder/cancel/{id}/{date}")]
         public IActionResult CancelPurchaseOrder(int Id, DateTime Date)
         {
