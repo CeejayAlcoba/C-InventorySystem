@@ -17,12 +17,37 @@ namespace Services
             _unitOfWork = unitOfWork;
 
         }
+        public PurchaseOrder CompletePurchaseOrder(int id,DateTime date)
+        {
+            var getPurchaseOrder = _unitOfWork.PurchaseOrders.GetById(id);
+            getPurchaseOrder.Status = "Completed";
+            getPurchaseOrder.Date = date;
+            _unitOfWork.Complete();
+            return getPurchaseOrder;
+        }
+        public PurchaseOrder CancelPurchaseOrder(int id, DateTime date)
+        {
+            var getPurchaseOrder = _unitOfWork.PurchaseOrders.GetById(id);
+            getPurchaseOrder.Status = "Cancelled";
+            getPurchaseOrder.Date = date;
+            _unitOfWork.Complete();
+            return getPurchaseOrder;
+        }
+        public PurchaseOrder ReOpenPurchaseOrder(int id)
+        {
+            var getPurchaseOrder = _unitOfWork.PurchaseOrders.GetById(id);
+            getPurchaseOrder.Status = "Open";
+            getPurchaseOrder.Date = getPurchaseOrder.DefaultDate;
+            _unitOfWork.Complete();
+            return getPurchaseOrder;
+        }
         public PurchaseOrder AddPurchaseOrder(PurchaseOrder purchaseOrder)
         {
             var newPurchaseOrder = new PurchaseOrder()
             {
                 Name = "PO/" + _unitOfWork.PurchaseOrders.GetNextId().ToString(),
-                SupplierId=purchaseOrder.SupplierId,
+                SupplierId = purchaseOrder.SupplierId,
+                DefaultDate = purchaseOrder.Date,
                 PurchaseOrderItems=purchaseOrder.PurchaseOrderItems
             };
             _unitOfWork.PurchaseOrders.Add(newPurchaseOrder);
@@ -52,7 +77,7 @@ namespace Services
         {
             var getPurchaseOrder = _unitOfWork.PurchaseOrders.GetById(Id);
             getPurchaseOrder.Description = purchaseOrder.Description;
-            getPurchaseOrder.OrderDate = purchaseOrder.OrderDate;
+            getPurchaseOrder.Date = purchaseOrder.Date;
             getPurchaseOrder.SupplierId = purchaseOrder.SupplierId;
             getPurchaseOrder.SubTotal = purchaseOrder.SubTotal;
             getPurchaseOrder.Discount = purchaseOrder.Discount;

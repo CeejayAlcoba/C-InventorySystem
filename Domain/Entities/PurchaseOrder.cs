@@ -15,7 +15,8 @@ namespace Domain.Entities
         public int PurchaseOrderId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public DateTime OrderDate { get; set; }
+        public DateTime Date { get; set; }
+        public DateTime DefaultDate { get; set; }
         [ForeignKey("Supplier")]
         public int SupplierId { get; set; }
         public Supplier Supplier { get; set; }

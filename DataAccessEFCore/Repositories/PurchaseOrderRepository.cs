@@ -58,7 +58,15 @@ namespace DataAccessEFCore.Repositories
 
             if (includePurchaseOrderItem)
                 query = query.Include(x => x.PurchaseOrderItems);
-            return query.ToList().Where(c=>c.Status == status && c.IsDelete == isDelete);
+            if(status == null || status=="")
+            {
+                return query.ToList();
+            }
+            else
+            {
+                return query.ToList().Where(c => c.Status == status && c.IsDelete == isDelete);
+            }
+            
 
         }
 

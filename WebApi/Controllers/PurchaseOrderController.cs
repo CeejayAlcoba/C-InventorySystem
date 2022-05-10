@@ -29,7 +29,7 @@ namespace WebApi.Controllers
 
         public IActionResult PurchaseOrderList()
         {
-            var purchaseOrders = _purchaseOrderRepository.GetAllPurchase(true, true, "Open", false);
+            var purchaseOrders = _purchaseOrderRepository.GetAllPurchase(true,true,"",false);
             return Ok(purchaseOrders);
         }
         [HttpPost]
@@ -48,6 +48,50 @@ namespace WebApi.Controllers
             }
         }
         [HttpPatch]
+        [Route("/api/purchaseorder/complete/{id}/{date}")]
+        public IActionResult CompletePurchaseOrder(int Id, DateTime Date)
+        {
+            try
+            {
+                var order =_purchaseOrderService.CompletePurchaseOrder(Id,Date);
+                return Ok(order);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+
+            }
+        }
+        [HttpPatch]
+        [Route("/api/purchaseorder/cancel/{id}/{date}")]
+        public IActionResult CancelPurchaseOrder(int Id, DateTime Date)
+        {
+            try
+            {
+                var order = _purchaseOrderService.CancelPurchaseOrder(Id, Date);
+                return Ok(order);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+
+            }
+        }
+        [HttpPatch]
+        [Route("/api/purchaseorder/reopen/{id}")]
+        public IActionResult ReopenPurchaseOrder(int Id)
+        {
+            try
+            {
+                var order = _purchaseOrderService.ReOpenPurchaseOrder(Id);
+                return Ok(order);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+        [HttpPatch]
         [Route("/api/purchaseorder/id/{id}")]
         public IActionResult UpdatePurchaseOrder(int Id, [FromBody] PurchaseOrder purchaseOrder)
         {
@@ -62,6 +106,7 @@ namespace WebApi.Controllers
                 return BadRequest(ex);
             }
         }
+        
         [HttpGet]
         [Route("/api/purchaseorder/id/{id}")]
         public IActionResult GetPurchaseOrder(int Id)
