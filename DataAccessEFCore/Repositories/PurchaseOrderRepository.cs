@@ -64,10 +64,9 @@ namespace DataAccessEFCore.Repositories
             }
             else
             {
-                return query.ToList().Where(c => c.Status == status && c.IsDelete == isDelete);
+                var list = query.Where(c => c.Status == status && c.IsDelete == isDelete).ToList();
+                return list;
             }
-            
-
         }
 
     }

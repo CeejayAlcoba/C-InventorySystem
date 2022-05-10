@@ -11,16 +11,16 @@ using WebApi.Auth;
 
 namespace WebApi.Controllers
 {
-    [Route("api/purchasereciept")]
+    [Route("api/purchasereceipt")]
     [ApiController]
-    [Authorize]
     public class PurchaseReceiptController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPurchaseReceiptService _purchaseReceiptService;
-        public PurchaseReceiptController(IUnitOfWork unitOfWork, IPurchaseReceiptService purchaseReceiptService)
+        private readonly IPurchaseOrderService _purchaseOrderService;
+        public PurchaseReceiptController(IUnitOfWork unitOfWork, IPurchaseReceiptService purchaseReceiptService, IPurchaseOrderService purchaseOrderService)
         {
-
+            _purchaseOrderService = purchaseOrderService;
             _purchaseReceiptService = purchaseReceiptService;
             _unitOfWork = unitOfWork;
         }
@@ -28,7 +28,7 @@ namespace WebApi.Controllers
 
         public IActionResult PurchaseReceiptList()
         {
-            var purchaseReceipts = _unitOfWork.PurchaseReceipts.GetAll();
+            var purchaseReceipts = _unitOfWork.PurchaseOrders.GetAllPurchase(true, true, "Completed", false);
             return Ok(purchaseReceipts);
         }
         [HttpPost]
