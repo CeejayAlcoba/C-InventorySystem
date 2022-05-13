@@ -152,5 +152,12 @@ namespace WebApi.Controllers
                 return BadRequest(ex);
             }
         }
+        [HttpGet]
+        [Route("/api/purchaseorder/dailypurchases")]
+        public IActionResult GetDailyPurchases()
+        {
+                var dailyPurchases = _unitOfWork.PurchaseOrders.GetDailyPurchase(true, true, false);
+                return Ok(dailyPurchases);           
+        }
     }
 }

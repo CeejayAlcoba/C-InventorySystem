@@ -63,7 +63,7 @@ namespace WebApi.Controllers
         [Route("/api/purchasereceipt/id/{id}")]
         public IActionResult GetPurchaseReceipt(int Id)
         {
-            var purchaseReceipt = _unitOfWork.PurchaseReceipts.GetById(Id);
+            var purchaseReceipt = _unitOfWork.PurchaseOrders.GetPurchase(Id, true, true, "Completed",false);
             return Ok(purchaseReceipt);
 
         }
@@ -85,7 +85,7 @@ namespace WebApi.Controllers
         [Route("/api/purchasereceipt/quantity")]
         public IActionResult GetTotalQuantity()
         {
-            var quantity = _unitOfWork.PurchaseReceipts.GetTotalQuantity();
+            var quantity = _unitOfWork.PurchaseOrders.GetPurchaseOrderItemsTotalQuantity("Completed");
             return Ok(quantity);
         }
     }

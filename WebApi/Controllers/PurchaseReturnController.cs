@@ -85,7 +85,7 @@ namespace WebApi.Controllers
         [Route("/api/purchasereturn/quantity")]
         public IActionResult GetTotalQuantity()
         {
-            var totalQuantity = _unitOfWork.PurchaseReturns.GetTotalQuantity();
+            var totalQuantity = _unitOfWork.PurchaseOrders.GetPurchaseOrderItemsTotalQuantity("Returned");
             return Ok(totalQuantity);
         }
     }

@@ -14,6 +14,5 @@ namespace DataAccessEFCore.Repositories
         public PurchaseOrderItemRepository(ApplicationContext context) : base(context)
         {
         }
-
     }
 }

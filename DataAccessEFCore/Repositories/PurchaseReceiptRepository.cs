@@ -14,12 +14,7 @@ namespace DataAccessEFCore.Repositories
         public PurchaseReceiptRepository(ApplicationContext context) : base(context)
         {
         }
-        public double GetTotalQuantity()
-        {
-            var purchaseReciepts = GetAll();
-            var TotalQuantity = purchaseReciepts.Select(c => c.Total).Sum();
-            return TotalQuantity;
-        }
+        
 
     }
 }
