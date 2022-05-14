@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pagSLPcxg8ShN8Qq5hiV58ximCU3wn491p1Hrn3VnPmOhuzGIhOGJ8UDUqZaaeL5BmV2d3IJC9aHY+pPhSq5iQ==",
+  "dgSpecHash": "Cr4NLnoV/RAbL9CWauAkm8K2/soz/nSw3i97r2k1Zpi9iLCbnH1FKQK7kQKqbNQsFF3gfKmKrRJcSkaw0uW6pQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\smith\\OneDrive\\Desktop\\c# updated\\inventory\\WebApi\\WebApi.csproj",
+  "projectFilePath": "C:\\Users\\smith\\OneDrive\\Desktop\\c# fixed\\inventory\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\smith\\.nuget\\packages\\antlr4.runtime\\4.6.6\\antlr4.runtime.4.6.6.nupkg.sha512",
     "C:\\Users\\smith\\.nuget\\packages\\azure.core\\1.22.0\\azure.core.1.22.0.nupkg.sha512",

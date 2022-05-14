@@ -7634,11 +7634,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\smith\\OneDrive\\Desktop\\c# updated\\inventory\\WebApi\\WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\smith\\OneDrive\\Desktop\\c# fixed\\inventory\\WebApi\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "C:\\Users\\smith\\OneDrive\\Desktop\\c# updated\\inventory\\WebApi\\WebApi.csproj",
+      "projectPath": "C:\\Users\\smith\\OneDrive\\Desktop\\c# fixed\\inventory\\WebApi\\WebApi.csproj",
       "packagesPath": "C:\\Users\\smith\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\smith\\OneDrive\\Desktop\\c# updated\\inventory\\WebApi\\obj\\",
+      "outputPath": "C:\\Users\\smith\\OneDrive\\Desktop\\c# fixed\\inventory\\WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\smith\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7655,11 +7655,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\smith\\OneDrive\\Desktop\\c# updated\\inventory\\DataAccessEFCore\\DataAccessEFCore.csproj": {
-              "projectPath": "C:\\Users\\smith\\OneDrive\\Desktop\\c# updated\\inventory\\DataAccessEFCore\\DataAccessEFCore.csproj"
+            "C:\\Users\\smith\\OneDrive\\Desktop\\c# fixed\\inventory\\DataAccessEFCore\\DataAccessEFCore.csproj": {
+              "projectPath": "C:\\Users\\smith\\OneDrive\\Desktop\\c# fixed\\inventory\\DataAccessEFCore\\DataAccessEFCore.csproj"
             },
-            "C:\\Users\\smith\\OneDrive\\Desktop\\c# updated\\inventory\\Services\\Services.csproj": {
-              "projectPath": "C:\\Users\\smith\\OneDrive\\Desktop\\c# updated\\inventory\\Services\\Services.csproj"
+            "C:\\Users\\smith\\OneDrive\\Desktop\\c# fixed\\inventory\\Services\\Services.csproj": {
+              "projectPath": "C:\\Users\\smith\\OneDrive\\Desktop\\c# fixed\\inventory\\Services\\Services.csproj"
             }
           }
         }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bkIZ0aIb9goOLBgiVd/7oS6asLgJZe5aC4p98g/m3OUgiKYoxlN4S1FbXNRluIJKULZklR5SJwLuFe8Snn2AZQ==",
+  "dgSpecHash": "3j1tWJXUgwaarQtJm3ZC+ccOys98oHXu8Cx5AUckWttm2ziHixzd2LyDnKkFnfss7Emi9fYAG5yACwTLEAJIqQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\smith\\OneDrive\\Desktop\\c# updated\\inventory\\Services\\Services.csproj",
+  "projectFilePath": "C:\\Users\\smith\\OneDrive\\Desktop\\c# fixed\\inventory\\Services\\Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\smith\\.nuget\\packages\\google.apis\\1.56.0\\google.apis.1.56.0.nupkg.sha512",
     "C:\\Users\\smith\\.nuget\\packages\\google.apis.admin.directory.directory_v1\\1.56.0.2609\\google.apis.admin.directory.directory_v1.1.56.0.2609.nupkg.sha512",

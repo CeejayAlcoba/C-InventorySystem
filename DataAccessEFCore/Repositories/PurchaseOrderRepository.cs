@@ -19,13 +19,13 @@ namespace DataAccessEFCore.Repositories
         public int GetNextId()
         {
 
-            var purchaseOrders = _context.PurchaseOrderItems.ToList();
-            if (purchaseOrders != null)
+            var purchaseOrders = GetAll();
+            if (purchaseOrders.Count()!=0)
             {
                 int lastId = _context.PurchaseOrders.Select(c => c.PurchaseOrderId).Max();
                 return lastId + 1;
             }
-            else return 0;
+            else return 1;
             
         }
         public PurchaseOrder GetPurchase(

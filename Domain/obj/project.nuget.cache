@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iDlztvUkgbWaEFtbnhTN506Tj9tNshoMlQBmIqctmsUuUYiVYScXCw5rcxY+fB6B/84gdckwOvMNro3hdLNn7A==",
+  "dgSpecHash": "JfvRIqaPYRFjywMdEsf3BDXqw6qtTpT6hYVi761dSfDhG2Kd0O0rkqbNxOL692TRe+n2vLKzbDK8XbIOe9MS+w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\smith\\OneDrive\\Desktop\\c# updated\\inventory\\Domain\\Domain.csproj",
+  "projectFilePath": "C:\\Users\\smith\\OneDrive\\Desktop\\c# fixed\\inventory\\Domain\\Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\smith\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.14\\microsoft.entityframeworkcore.5.0.14.nupkg.sha512",
     "C:\\Users\\smith\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.14\\microsoft.entityframeworkcore.abstractions.5.0.14.nupkg.sha512",

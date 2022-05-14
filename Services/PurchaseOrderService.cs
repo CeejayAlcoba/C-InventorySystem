@@ -51,12 +51,20 @@ namespace Services
         }
         public PurchaseOrder AddPurchaseOrder(PurchaseOrder purchaseOrder)
         {
+            var lastId = _unitOfWork.PurchaseOrders.GetNextId();
             var newPurchaseOrder = new PurchaseOrder()
             {
-                Name = "PO/" + _unitOfWork.PurchaseOrders.GetNextId().ToString(),
+                Name = "PO/"+lastId.ToString(),
                 SupplierId = purchaseOrder.SupplierId,
                 DefaultDate = purchaseOrder.Date,
-                PurchaseOrderItems=purchaseOrder.PurchaseOrderItems
+                PurchaseOrderItems=purchaseOrder.PurchaseOrderItems,
+                BeforeTax=purchaseOrder.BeforeTax,
+                Description=purchaseOrder.Description,
+                SubTotal=purchaseOrder.SubTotal,
+                Discount=purchaseOrder.Discount,
+                TaxAmount=purchaseOrder.TaxAmount,
+                OtherCharge=purchaseOrder.OtherCharge,
+                Total=purchaseOrder.Total
             };
             _unitOfWork.PurchaseOrders.Add(newPurchaseOrder);
 
