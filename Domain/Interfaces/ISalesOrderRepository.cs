@@ -10,12 +10,10 @@ namespace Domain.Interfaces
 {
     public interface ISalesOrderRepository : IGenericRepository<SalesOrder>
     {
-        SalesOrder GetSalesOrder(int salesOrderId,
+        SalesOrder GetSalesOrderById(int salesOrderId,
             bool includeCustomer, 
             bool includeSalesChannel, 
-            bool includeSalesOrderItem,
-            string status,
-            bool isDelete);
+            bool includeSalesOrderItem);
         IEnumerable GetAllSalesOrder(bool includeCustomer, 
             bool includeSalesChannel, 
             bool includeSalesOrderItem,

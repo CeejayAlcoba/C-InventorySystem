@@ -63,7 +63,7 @@ namespace WebApi.Controllers
         [Route("/api/purchasereceipt/id/{id}")]
         public IActionResult GetPurchaseReceipt(int Id)
         {
-            var purchaseReceipt = _unitOfWork.PurchaseOrders.GetPurchase(Id, true, true, "Completed",false);
+            var purchaseReceipt = _unitOfWork.PurchaseOrders.GetPurchaseById(Id, true, true);
             return Ok(purchaseReceipt);
 
         }

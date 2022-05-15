@@ -28,12 +28,10 @@ namespace DataAccessEFCore.Repositories
             else return 1;
             
         }
-        public PurchaseOrder GetPurchase(
+        public PurchaseOrder GetPurchaseById(
            int purchaseOrderId,
            bool includeSupplier = false,
-           bool includePurchaseOrderItem = false,
-           string status = "Open",
-           bool isDelete =false
+           bool includePurchaseOrderItem = false
            )
         {
             var query = _context.PurchaseOrders.AsQueryable();
@@ -46,14 +44,7 @@ namespace DataAccessEFCore.Repositories
                 query = query.Include(x => x.PurchaseOrderItems);
             var purchaseOrder = query.FirstOrDefault(x => x.PurchaseOrderId == purchaseOrderId);
 
-            if(purchaseOrder.Status == status && purchaseOrder.IsDelete== isDelete)
-            {
-                return purchaseOrder;
-            }
-            else
-            {
-                return null;
-            }
+            return purchaseOrder;
            
         }
         public IEnumerable GetAllPurchase(

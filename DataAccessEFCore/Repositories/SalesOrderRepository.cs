@@ -56,12 +56,10 @@ namespace DataAccessEFCore.Repositories
             }
         }
 
-        public SalesOrder GetSalesOrder(int salesOrderId,
+        public SalesOrder GetSalesOrderById(int salesOrderId,
             bool includeCustomer = false,
             bool includeSalesChannel = false,
-            bool includeSalesOrderItem = false,
-            string status = "Open",
-           bool isDelete = false)
+            bool includeSalesOrderItem = false)
         {
             var query = _context.SalesOrders.AsQueryable();
 
@@ -74,14 +72,7 @@ namespace DataAccessEFCore.Repositories
                 query = query.Include(x => x.SalesOrderItem);
 
             var salesOrder = query.FirstOrDefault(x => x.SalesOrderId == salesOrderId);
-            if (salesOrder.Status == status && salesOrder.IsDelete == isDelete)
-            {
-                return salesOrder;
-            }
-            else
-            {
-                return null;
-            }
+            return salesOrder;
         }
             public double GetSalesOrderItemsTotalQuantity(string status)
             {

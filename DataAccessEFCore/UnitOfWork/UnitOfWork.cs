@@ -34,8 +34,10 @@ namespace DataAccessEFCore.UnitOfWork
             Sizes = new SizeRepository(_context);
             Uoms = new UomRepository(_context);
             Suppliers = new SupplierRepository(_context);
+            ProductHistories = new ProductHistoryRepository(_context);
 
         }
+        public IProductHistoryRepository ProductHistories { get; private set; }
         public IUserRepository Users { get; private set; }
         public IBrandRepository Brands { get; private set; }
         public ICategoryRepository Categories { get; private set; }

@@ -21,6 +21,14 @@ namespace Services
         public SalesOrder AddSalesOrder(SalesOrder salesOrder)
         {
             var lastId = _unitOfWork.SalesOrders.GetNextId();
+            var orderedProductIds = salesOrder.SalesOrderItem
+    .Select(x => x.ProductId);
+            var orderedProducts = _unitOfWork.Products
+                .Find(x => orderedProductIds.Contains(x.ProductId));
+
+            orderedProducts.ToList()
+               .ForEach(p => p.Quantity -=
+                   salesOrder.SalesOrderItem.First(poi => poi.ProductId == p.ProductId).Quantity);
             var newSalesOrder = new SalesOrder()
             {
                 Name = "PO/" + lastId.ToString(),
@@ -37,15 +45,6 @@ namespace Services
                 Total = salesOrder.Total
             };
             _unitOfWork.SalesOrders.Add(newSalesOrder);
-            var orderedProductIds = salesOrder.SalesOrderItem
-                .Select(x => x.ProductId);
-            var orderedProducts = _unitOfWork.Products
-                .Find(x => orderedProductIds.Contains(x.ProductId));
-
-            orderedProducts.ToList()
-                .ForEach(p => p.Quantity -=
-                    salesOrder.SalesOrderItem.First(poi => poi.ProductId == p.ProductId).Quantity);
-
             _unitOfWork.Complete();
 
             return salesOrder;
@@ -69,35 +68,85 @@ namespace Services
         }
         public SalesOrder CompleteSalesOrder(int id, DateTime date)
         {
-            var getSalesOrder = _unitOfWork.SalesOrders.GetById(id);
-            getSalesOrder.Status = "Completed";
-            getSalesOrder.Date = date;
-            _unitOfWork.Complete();
-            return getSalesOrder;
+            var getSalesOrder = _unitOfWork.SalesOrders.GetSalesOrderById(id, true, true, true);
+            if (getSalesOrder.Status == "Open")
+            {
+                getSalesOrder.Status = "Completed";
+                getSalesOrder.Date = date;
+                _unitOfWork.Complete();
+                return getSalesOrder;
+            }
+            else return null;
+            
         }
         public SalesOrder ReturnSalesOrder(int id, DateTime date)
         {
-            var getSalesOrder = _unitOfWork.SalesOrders.GetById(id);
-            getSalesOrder.Status = "Returned";
-            getSalesOrder.Date = date;
-            _unitOfWork.Complete();
-            return getSalesOrder;
+            var salesOrder = _unitOfWork.SalesOrders.GetSalesOrderById(id, true, true, true);
+            if (salesOrder.Status == "Completed")
+            {
+                salesOrder.Status = "Returned";
+                salesOrder.Date = date;
+
+                var orderedProductIds = salesOrder.SalesOrderItem
+                    .Select(x => x.ProductId);
+                var orderedProducts = _unitOfWork.Products
+                    .Find(x => orderedProductIds.Contains(x.ProductId));
+                orderedProducts.ToList()
+                    .ForEach(p => p.Quantity +=
+                        salesOrder.SalesOrderItem.First(poi => poi.ProductId == p.ProductId).Quantity);
+
+                _unitOfWork.Complete();
+                return salesOrder;
+            }
+            else
+                return null;
+            
         }
         public SalesOrder CancelSalesOrder(int id, DateTime date)
         {
-            var getSalesOrder = _unitOfWork.SalesOrders.GetById(id);
-            getSalesOrder.Status = "Cancelled";
-            getSalesOrder.Date = date;
-            _unitOfWork.Complete();
-            return getSalesOrder;
+            var salesOrder = _unitOfWork.SalesOrders.GetSalesOrderById(id, true, true, true);
+            if (salesOrder.Status == "Open")
+            {
+                salesOrder.Status = "Cancelled";
+                salesOrder.Date = date;
+                var orderedProductIds = salesOrder.SalesOrderItem
+                    .Select(x => x.ProductId);
+                var orderedProducts = _unitOfWork.Products
+                    .Find(x => orderedProductIds.Contains(x.ProductId));
+                orderedProducts.ToList()
+                    .ForEach(p => p.Quantity +=
+                        salesOrder.SalesOrderItem.First(poi => poi.ProductId == p.ProductId).Quantity);
+                _unitOfWork.Complete();
+                return salesOrder;
+            }
+            else
+                return null;
+            
         }
         public SalesOrder ReOpenSalesOrder(int id)
         {
-            var getSalesOrder = _unitOfWork.SalesOrders.GetById(id);
-            getSalesOrder.Status = "Open";
-            getSalesOrder.Date = getSalesOrder.DefaultDate;
-            _unitOfWork.Complete();
-            return getSalesOrder;
+
+            var salesOrder = _unitOfWork.SalesOrders.GetSalesOrderById(id, true, true, true);
+            if (salesOrder.Status == "Completed" || salesOrder.Status == "Cancelled")
+            {
+                if (salesOrder.Status == "Cancelled")
+                {
+                    var purchasedProductIds = salesOrder.SalesOrderItem
+                .Select(x => x.ProductId);
+                    var purchasedProducts = _unitOfWork.Products
+                        .Find(x => purchasedProductIds.Contains(x.ProductId));
+
+                    purchasedProducts.ToList()
+                        .ForEach(p => p.Quantity -=
+                            salesOrder.SalesOrderItem.First(poi => poi.ProductId == p.ProductId).Quantity);
+                }
+                salesOrder.Status = "Open";
+                salesOrder.Date = salesOrder.DefaultDate;
+                _unitOfWork.Complete();
+                return salesOrder;
+            }
+            else return null;
+            
         }
     }
 }

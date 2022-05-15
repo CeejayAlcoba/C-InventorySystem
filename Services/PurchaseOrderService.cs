@@ -19,35 +19,86 @@ namespace Services
         }
         public PurchaseOrder CompletePurchaseOrder(int id,DateTime date)
         {
-            var getPurchaseOrder = _unitOfWork.PurchaseOrders.GetById(id);
-            getPurchaseOrder.Status = "Completed";
-            getPurchaseOrder.Date = date;
-            _unitOfWork.Complete();
-            return getPurchaseOrder;
+            var getPurchaseOrder = _unitOfWork.PurchaseOrders.GetPurchaseById(id, true, true);
+            if(getPurchaseOrder.Status=="Open")
+            {
+                getPurchaseOrder.Status = "Completed";
+                getPurchaseOrder.Date = date;
+                _unitOfWork.Complete();
+                return getPurchaseOrder;
+            }
+            else return null;
+            
         }
         public PurchaseOrder ReturnPurchaseOrder(int id, DateTime date)
         {
-            var getPurchaseOrder = _unitOfWork.PurchaseOrders.GetById(id);
-            getPurchaseOrder.Status = "Returned";
-            getPurchaseOrder.Date = date;
-            _unitOfWork.Complete();
-            return getPurchaseOrder;
+            var getPurchaseOrder = _unitOfWork.PurchaseOrders.GetPurchaseById(id, true, true);
+            if (getPurchaseOrder.Status == "Completed")
+            {
+                getPurchaseOrder.Status = "Returned";
+                getPurchaseOrder.Date = date;
+
+                var purchasedProductIds = getPurchaseOrder.PurchaseOrderItems
+                .Select(x => x.ProductId);
+                var purchasedProducts = _unitOfWork.Products
+                    .Find(x => purchasedProductIds.Contains(x.ProductId));
+
+                purchasedProducts.ToList()
+                    .ForEach(p => p.Quantity -=
+                        getPurchaseOrder.PurchaseOrderItems.First(poi => poi.ProductId == p.ProductId).Quantity);
+
+                _unitOfWork.Complete();
+                return getPurchaseOrder;
+            }
+            else return null;
         }
         public PurchaseOrder CancelPurchaseOrder(int id, DateTime date)
         {
-            var getPurchaseOrder = _unitOfWork.PurchaseOrders.GetById(id);
-            getPurchaseOrder.Status = "Cancelled";
-            getPurchaseOrder.Date = date;
-            _unitOfWork.Complete();
-            return getPurchaseOrder;
+            var getPurchaseOrder = _unitOfWork.PurchaseOrders.GetPurchaseById(id, true, true);
+            if(getPurchaseOrder.Status=="Open")
+            {
+                getPurchaseOrder.Status = "Cancelled";
+                getPurchaseOrder.Date = date;
+
+                var purchasedProductIds = getPurchaseOrder.PurchaseOrderItems
+                .Select(x => x.ProductId);
+                var purchasedProducts = _unitOfWork.Products
+                    .Find(x => purchasedProductIds.Contains(x.ProductId));
+
+                purchasedProducts.ToList()
+                    .ForEach(p => p.Quantity -=
+                        getPurchaseOrder.PurchaseOrderItems.First(poi => poi.ProductId == p.ProductId).Quantity);
+
+                _unitOfWork.Complete();
+                return getPurchaseOrder;
+            }
+            return null;
+
         }
         public PurchaseOrder ReOpenPurchaseOrder(int id)
         {
-            var getPurchaseOrder = _unitOfWork.PurchaseOrders.GetById(id);
-            getPurchaseOrder.Status = "Open";
-            getPurchaseOrder.Date = getPurchaseOrder.DefaultDate;
-            _unitOfWork.Complete();
-            return getPurchaseOrder;
+            var getPurchaseOrder = _unitOfWork.PurchaseOrders.GetPurchaseById(id, true, true);
+            if (getPurchaseOrder.Status=="Completed"|| getPurchaseOrder.Status == "Cancelled")
+            {
+                
+                if(getPurchaseOrder.Status== "Cancelled")
+                {
+                    var purchasedProductIds = getPurchaseOrder.PurchaseOrderItems
+                .Select(x => x.ProductId);
+                    var purchasedProducts = _unitOfWork.Products
+                        .Find(x => purchasedProductIds.Contains(x.ProductId));
+
+                    purchasedProducts.ToList()
+                        .ForEach(p => p.Quantity +=
+                            getPurchaseOrder.PurchaseOrderItems.First(poi => poi.ProductId == p.ProductId).Quantity);
+                }
+                getPurchaseOrder.Status = "Open";
+                getPurchaseOrder.Date = getPurchaseOrder.DefaultDate;
+                _unitOfWork.Complete();
+                return getPurchaseOrder;
+            }
+            else return null;
+            
         }
         public PurchaseOrder AddPurchaseOrder(PurchaseOrder purchaseOrder)
         {

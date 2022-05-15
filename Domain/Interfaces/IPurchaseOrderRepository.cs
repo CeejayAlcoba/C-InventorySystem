@@ -11,12 +11,10 @@ namespace Domain.Interfaces
     public interface IPurchaseOrderRepository : IGenericRepository<PurchaseOrder>
     {
         int GetNextId();
-        PurchaseOrder GetPurchase(
+        PurchaseOrder GetPurchaseById(
           int purchaseOrderId,
           bool includeSupplier,
-          bool includePurchaseOrderItem,
-          string status,
-          bool isDelete
+          bool includePurchaseOrderItem
          );
         IEnumerable GetAllPurchase(
           bool includeSupplier,

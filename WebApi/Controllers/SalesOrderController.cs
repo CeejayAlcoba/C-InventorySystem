@@ -30,7 +30,7 @@ namespace WebApi.Controllers
         public IActionResult SalesOrderList()
         {
             var salesOrders = _salesOrderRepository.GetAllSalesOrder(true, true,true, "", false);
-            return Ok();
+            return Ok(salesOrders);
         }
         [HttpPost]
 
@@ -91,8 +91,13 @@ namespace WebApi.Controllers
             try
             {
                 var order = _salesOrderService.CompleteSalesOrder(Id, Date);
-                return Ok(order);
+                if (order != null)
+                {
+                    return Ok(order);
+                }
+                else return BadRequest();
             }
+
             catch (Exception ex)
             {
                 return BadRequest(ex);
@@ -106,8 +111,13 @@ namespace WebApi.Controllers
             try
             {
                 var order = _salesOrderService.ReturnSalesOrder(Id, Date);
-                return Ok(order);
+                if (order != null)
+                {
+                    return Ok(order);
+                }
+                else return BadRequest();
             }
+
             catch (Exception ex)
             {
                 return BadRequest(ex);
@@ -121,8 +131,13 @@ namespace WebApi.Controllers
             try
             {
                 var order = _salesOrderService.CancelSalesOrder(Id, Date);
-                return Ok(order);
+                if (order != null)
+                {
+                    return Ok(order);
+                }
+                else return BadRequest();
             }
+
             catch (Exception ex)
             {
                 return BadRequest(ex);
@@ -136,11 +151,17 @@ namespace WebApi.Controllers
             try
             {
                 var order = _salesOrderService.ReOpenSalesOrder(Id);
-                return Ok(order);
+                if (order != null)
+                {
+                    return Ok(order);
+                }
+                else return BadRequest();
             }
+
             catch (Exception ex)
             {
                 return BadRequest(ex);
+
             }
         }
         [HttpGet]

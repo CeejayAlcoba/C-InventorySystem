@@ -19,6 +19,7 @@ namespace DataAccessEFCore
         public DbSet<Colour> Colours { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Location> Locations { get; set; }
+        public DbSet<ProductHistory> ProductHistories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
         public DbSet<PurchaseOrderItem> PurchaseOrderItems { get; set; }
@@ -68,6 +69,12 @@ namespace DataAccessEFCore
             modelBuilder.Entity<Product>()
             .Property(b => b.IsDelete)
             .HasDefaultValue(false);
+            modelBuilder.Entity<ProductHistory>()
+            .Property(b => b.IsDelete)
+            .HasDefaultValue(false);
+            modelBuilder.Entity<ProductHistory>()
+                .Property(b => b.Status)
+                .HasDefaultValue("Open");
             modelBuilder.Entity<PurchaseOrderItem>()
             .Property(b => b.IsDelete)
             .HasDefaultValue(false);

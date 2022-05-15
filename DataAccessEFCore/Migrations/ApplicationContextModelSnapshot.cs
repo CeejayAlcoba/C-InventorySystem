@@ -210,6 +210,37 @@ namespace DataAccessEFCore.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("Domain.Entities.ProductHistory", b =>
+                {
+                    b.Property<int>("ProductHistoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDelete")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("Open");
+
+                    b.Property<string>("Transac")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProductHistoryId");
+
+                    b.ToTable("ProductHistories");
+                });
+
             modelBuilder.Entity("Domain.Entities.PurchaseOrder", b =>
                 {
                     b.Property<int>("PurchaseOrderId")

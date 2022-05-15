@@ -53,9 +53,14 @@ namespace WebApi.Controllers
         {
             try
             {
-                var order =_purchaseOrderService.CompletePurchaseOrder(Id,Date);
-                return Ok(order);
+                var order = _purchaseOrderService.CompletePurchaseOrder(Id, Date);
+                if (order != null)
+                {
+                    return Ok(order);
+                }
+                else return BadRequest();
             }
+            
             catch (Exception ex)
             {
                 return BadRequest(ex);
@@ -69,8 +74,13 @@ namespace WebApi.Controllers
             try
             {
                 var order = _purchaseOrderService.ReturnPurchaseOrder(Id, Date);
-                return Ok(order);
+                if (order != null)
+                {
+                    return Ok(order);
+                }
+                else return BadRequest();
             }
+
             catch (Exception ex)
             {
                 return BadRequest(ex);
@@ -84,8 +94,13 @@ namespace WebApi.Controllers
             try
             {
                 var order = _purchaseOrderService.CancelPurchaseOrder(Id, Date);
-                return Ok(order);
+                if (order != null)
+                {
+                    return Ok(order);
+                }
+                else return BadRequest();
             }
+
             catch (Exception ex)
             {
                 return BadRequest(ex);
@@ -99,11 +114,17 @@ namespace WebApi.Controllers
             try
             {
                 var order = _purchaseOrderService.ReOpenPurchaseOrder(Id);
-                return Ok(order);
+                if (order != null)
+                {
+                    return Ok(order);
+                }
+                else return BadRequest();
             }
+
             catch (Exception ex)
             {
                 return BadRequest(ex);
+
             }
         }
         [HttpPatch]
