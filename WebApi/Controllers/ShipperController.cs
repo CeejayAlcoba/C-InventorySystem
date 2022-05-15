@@ -13,7 +13,6 @@ namespace WebApi.Controllers
 {
     [Route("api/shipper")]
     [ApiController]
-    [Authorize]
     public class ShipperController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;

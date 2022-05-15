@@ -13,7 +13,6 @@ namespace WebApi.Controllers
 {
     [Route("api/saleschannel")]
     [ApiController]
-    [Authorize]
     public class SalesChannelController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
