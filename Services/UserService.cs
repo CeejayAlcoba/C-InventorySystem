@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using System.Collections;
 
 namespace Services
 {
@@ -52,11 +53,34 @@ namespace Services
             userId.Lastname = user.Lastname;
             _unitOfWork.Complete();
         }
-        public void DeleteUser(int userId)
+        public User DeleteUser(int userId)
         {
-            var getUserId = _unitOfWork.Users.GetById(userId);
-            _unitOfWork.Users.Remove(getUserId);
-            _unitOfWork.Complete();
+            var user = _unitOfWork.Users.GetById(userId);
+            if (user.IsDelete == false)
+            {
+                user.IsDelete = true;
+                _unitOfWork.Complete();
+                return user;
+            }
+            else return null;
+        }
+        public User RecoverUser(int userId)
+        {
+            var user = _unitOfWork.Users.GetById(userId);
+            if (user.IsDelete == true)
+            {
+                user.IsDelete = false;
+                _unitOfWork.Complete();
+                return user;
+            }
+            else return null;
+            
+        }
+        public IEnumerable GetUser(bool isDelete = false)
+        {
+            var getUser = _unitOfWork.Users.GetAll();
+            var filter = getUser.Where(c => c.IsDelete == isDelete);
+            return filter;
         }
 
     }

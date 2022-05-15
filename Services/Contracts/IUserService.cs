@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,8 @@ namespace Services.Contracts
     {
         void AddUser(User user);
         void UpdateUsername(User user, int userId);
-        void DeleteUser(int userId);
+        User DeleteUser(int userId);
+        User RecoverUser(int userId);
+        IEnumerable GetUser(bool isDelete = false);
     }
 }

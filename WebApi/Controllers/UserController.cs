@@ -91,17 +91,58 @@ namespace WebApi.Controllers
             return BadRequest("Invalid user");
         }
         [HttpGet]
-        public IActionResult UsersList()
+        [Route("/api/user/active")]
+        public IActionResult ActiveUsersList()
         {
-            var usersList = _unitOfWork.Users.GetAll();
+            var usersList = _userService.GetUser(false);
             return Ok(usersList);
         }
-        [HttpDelete]
-        [Route("/api/user/id/{id}")]
+        [HttpGet]
+        [Route("/api/user/disabled")]
+        public IActionResult DisabledUsersList()
+        {
+            var usersList = _userService.GetUser(true);
+            return Ok(usersList);
+        }
+        [HttpPatch]
+        [Route("/api/user/delete/{id}")]
         public IActionResult DeleteUser(int Id)
         {
-            _userService.DeleteUser(Id);
-            return Ok();
+            try
+            {
+                var user = _userService.DeleteUser(Id);
+                if (user != null)
+                {
+
+                    return Ok(user);
+                }
+                else return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+            
+        }
+        [HttpPatch]
+        [Route("/api/user/recover/{id}")]
+        public IActionResult RecoverUser(int Id)
+        {
+            try
+            {
+                var user = _userService.RecoverUser(Id);
+                if (user != null)
+                {
+
+                    return Ok(user);
+                }
+                else return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+            
         }
     }
 }

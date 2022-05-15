@@ -28,7 +28,7 @@ namespace WebApi.Controllers
         {
             var validatedUser = _accountService.ValidateUser(user.Username, user.Password);
 
-            if (validatedUser != null)
+            if (validatedUser != null && validatedUser.IsDelete==false)
             {
                 var getUser = _unitofWork.Users.GetUserByUsername(user.Username);
                 var tokenString = _accountService.GenerateJwtToken(getUser);
