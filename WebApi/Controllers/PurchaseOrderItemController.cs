@@ -13,7 +13,6 @@ namespace WebApi.Controllers
 {
     [Route("api/purchaseorderitem")]
     [ApiController]
-    [Authorize]
     public class PurchaseOrderItemController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -25,65 +24,22 @@ namespace WebApi.Controllers
 
             _unitOfWork = unitOfWork;
         }
-        [HttpPost]
+        [HttpGet]
         [Route("/api/purchaseorderitem/{id}")]
-        public IActionResult AddPurchaseOrderItem(int id,[FromBody] PurchaseOrderItem purchaseOrderItem)
+        public IActionResult PurchaseOrderItemList(int id)
         {
             try
             {
-                var addPurchaseOrderItem = _purchaseOrderItemService.AddPurchaseOrderItem(purchaseOrderItem,id);
-                return Ok(addPurchaseOrderItem);
+                var purchaseOrderItems = _unitOfWork.PurchaseOrderItems.GetPurchaseOrderItemById(id);
+                return Ok(purchaseOrderItems);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 return BadRequest(ex);
-
             }
-        }
-        [HttpGet]
-
-        public IActionResult PurchaseOrderItemList()
-        {
-            var purchaseOrderItems = _unitOfWork.PurchaseOrderItems.GetAll();
-            return Ok(purchaseOrderItems);
+            
         }
        
-        [HttpPatch]
-        [Route("/api/purchaseorderitem/id/{id}")]
-        public IActionResult UpdatePurchaseOrderItem(int Id, [FromBody] PurchaseOrderItem purchaseOrderItem)
-        {
-            try
-            {
-                var getPurchaseOrderItem = _unitOfWork.PurchaseOrderItems.GetById(Id);
-                _purchaseOrderItemService.UpdatePurchaseOrderItem(purchaseOrderItem, Id);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-        }
-        [HttpGet]
-        [Route("/api/purchaseorderitem/id/{id}")]
-        public IActionResult GetPurchaseOrderItem(int Id)
-        {
-            var purchaseOrderItem = _unitOfWork.PurchaseOrderItems.GetById(Id);
-            return Ok(purchaseOrderItem);
-
-        }
-        [HttpDelete]
-        [Route("/api/purchaseorderitem/id/{id}")]
-        public IActionResult DeletePurchaseOrderItem(int Id)
-        {
-            try
-            {
-                _purchaseOrderItemService.DeletePurchaseOrderItem(Id);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-        }
+        
     }
 }
