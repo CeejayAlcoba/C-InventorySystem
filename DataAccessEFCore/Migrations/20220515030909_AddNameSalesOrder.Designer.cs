@@ -4,14 +4,16 @@ using DataAccessEFCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccessEFCore.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220515030909_AddNameSalesOrder")]
+    partial class AddNameSalesOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -484,9 +486,6 @@ namespace DataAccessEFCore.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("BeforeTax")
-                        .HasColumnType("float");
-
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
@@ -499,9 +498,6 @@ namespace DataAccessEFCore.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Discount")
-                        .HasColumnType("float");
-
                     b.Property<bool>("IsDelete")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
@@ -510,9 +506,6 @@ namespace DataAccessEFCore.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("OtherCharge")
-                        .HasColumnType("float");
-
                     b.Property<int>("SalesChannelId")
                         .HasColumnType("int");
 
@@ -520,15 +513,6 @@ namespace DataAccessEFCore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(max)")
                         .HasDefaultValue("Open");
-
-                    b.Property<double>("SubTotal")
-                        .HasColumnType("float");
-
-                    b.Property<double>("TaxAmount")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Total")
-                        .HasColumnType("float");
 
                     b.HasKey("SalesOrderId");
 

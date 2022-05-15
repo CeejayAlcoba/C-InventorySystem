@@ -12,6 +12,10 @@ namespace Services.Contracts
         void UpdateSalesOrder(SalesOrder salesOrder, int Id);
         SalesOrder AddSalesOrder(SalesOrder salesOrder);
         void DeleteSalesOrder(int Id);
+        SalesOrder CancelSalesOrder(int id, DateTime date);
+        SalesOrder ReOpenSalesOrder(int id);
+        SalesOrder CompleteSalesOrder(int id, DateTime date);
+        SalesOrder ReturnSalesOrder(int id, DateTime date);
 
     }
 }

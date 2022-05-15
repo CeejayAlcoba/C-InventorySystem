@@ -20,7 +20,23 @@ namespace Services
         }
         public SalesOrder AddSalesOrder(SalesOrder salesOrder)
         {
-            _unitOfWork.SalesOrders.Add(salesOrder);
+            var lastId = _unitOfWork.SalesOrders.GetNextId();
+            var newSalesOrder = new SalesOrder()
+            {
+                Name = "PO/" + lastId.ToString(),
+                CustomerId = salesOrder.CustomerId,
+                DefaultDate = salesOrder.Date,
+                SalesChannelId=salesOrder.SalesChannelId,
+                SalesOrderItem = salesOrder.SalesOrderItem,
+                BeforeTax = salesOrder.BeforeTax,
+                Description = salesOrder.Description,
+                SubTotal = salesOrder.SubTotal,
+                Discount = salesOrder.Discount,
+                TaxAmount = salesOrder.TaxAmount,
+                OtherCharge = salesOrder.OtherCharge,
+                Total = salesOrder.Total
+            };
+            _unitOfWork.SalesOrders.Add(newSalesOrder);
             var orderedProductIds = salesOrder.SalesOrderItem
                 .Select(x => x.ProductId);
             var orderedProducts = _unitOfWork.Products
@@ -46,10 +62,42 @@ namespace Services
         {
             var getSalesOrder = _unitOfWork.SalesOrders.GetById(Id);
             getSalesOrder.Description = salesOrder.Description;
-            getSalesOrder.OrderDate = salesOrder.OrderDate;
+            getSalesOrder.Date = salesOrder.Date;
             getSalesOrder.CustomerId = salesOrder.CustomerId;
             getSalesOrder.SalesChannelId = salesOrder.SalesOrderId;
             _unitOfWork.Complete();
+        }
+        public SalesOrder CompleteSalesOrder(int id, DateTime date)
+        {
+            var getSalesOrder = _unitOfWork.SalesOrders.GetById(id);
+            getSalesOrder.Status = "Completed";
+            getSalesOrder.Date = date;
+            _unitOfWork.Complete();
+            return getSalesOrder;
+        }
+        public SalesOrder ReturnSalesOrder(int id, DateTime date)
+        {
+            var getSalesOrder = _unitOfWork.SalesOrders.GetById(id);
+            getSalesOrder.Status = "Returned";
+            getSalesOrder.Date = date;
+            _unitOfWork.Complete();
+            return getSalesOrder;
+        }
+        public SalesOrder CancelSalesOrder(int id, DateTime date)
+        {
+            var getSalesOrder = _unitOfWork.SalesOrders.GetById(id);
+            getSalesOrder.Status = "Cancelled";
+            getSalesOrder.Date = date;
+            _unitOfWork.Complete();
+            return getSalesOrder;
+        }
+        public SalesOrder ReOpenSalesOrder(int id)
+        {
+            var getSalesOrder = _unitOfWork.SalesOrders.GetById(id);
+            getSalesOrder.Status = "Open";
+            getSalesOrder.Date = getSalesOrder.DefaultDate;
+            _unitOfWork.Complete();
+            return getSalesOrder;
         }
     }
 }

@@ -13,7 +13,6 @@ namespace WebApi.Controllers
 {
     [Route("api/salesorder")]
     [ApiController]
-    [Authorize]
     public class SalesOrderController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -30,8 +29,8 @@ namespace WebApi.Controllers
 
         public IActionResult SalesOrderList()
         {
-            var salesOrder = _salesOrderRepository.GetAllSalesOrder(true,true, true);
-            return Ok(salesOrder);
+            var salesOrders = _salesOrderRepository.GetAllSalesOrder(true, true,true, "", false);
+            return Ok();
         }
         [HttpPost]
 
@@ -84,6 +83,72 @@ namespace WebApi.Controllers
             {
                 return BadRequest(ex);
             }
+        }
+        [HttpPatch]
+        [Route("/api/salesorder/complete/{id}/{date}")]
+        public IActionResult CompleteSalesOrder(int Id, DateTime Date)
+        {
+            try
+            {
+                var order = _salesOrderService.CompleteSalesOrder(Id, Date);
+                return Ok(order);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+
+            }
+        }
+        [HttpPatch]
+        [Route("/api/salesorder/return/{id}/{date}")]
+        public IActionResult ReturnSalesOrder(int Id, DateTime Date)
+        {
+            try
+            {
+                var order = _salesOrderService.ReturnSalesOrder(Id, Date);
+                return Ok(order);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+
+            }
+        }
+        [HttpPatch]
+        [Route("/api/salesorder/cancel/{id}/{date}")]
+        public IActionResult CancelSalesOrder(int Id, DateTime Date)
+        {
+            try
+            {
+                var order = _salesOrderService.CancelSalesOrder(Id, Date);
+                return Ok(order);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+
+            }
+        }
+        [HttpPatch]
+        [Route("/api/salesorder/reopen/{id}")]
+        public IActionResult ReopenSalesOrder(int Id)
+        {
+            try
+            {
+                var order = _salesOrderService.ReOpenSalesOrder(Id);
+                return Ok(order);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+        [HttpGet]
+        [Route("/api/salesorder/dailysales")]
+        public IActionResult GetDailySales()
+        {
+            var dailySales = _unitOfWork.SalesOrders.GetDailySales(true, true, false);
+            return Ok(dailySales);
         }
     }
 }
