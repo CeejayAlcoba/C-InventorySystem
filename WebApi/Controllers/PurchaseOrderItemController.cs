@@ -13,6 +13,7 @@ namespace WebApi.Controllers
 {
     [Route("api/purchaseorderitem")]
     [ApiController]
+    [Authorize]
     public class PurchaseOrderItemController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;

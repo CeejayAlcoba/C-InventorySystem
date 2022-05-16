@@ -147,8 +147,8 @@ namespace WebApi.Controllers
         [Route("/api/purchaseorder/id/{id}")]
         public IActionResult GetPurchaseOrder(int Id)
         {
-            var purchaseOrder = _unitOfWork.PurchaseOrders.GetById(Id);
-            return Ok(purchaseOrder);
+            var purchaseReceipt = _unitOfWork.PurchaseOrders.GetPurchaseById(Id, true, true);
+            return Ok(purchaseReceipt);
 
         }
         [HttpGet]
@@ -172,6 +172,27 @@ namespace WebApi.Controllers
             {
                 return BadRequest(ex);
             }
+        }
+        [HttpGet]
+        [Route("/api/purchaseorder/open")]
+        public IActionResult GetPurchaseOrderOpenList()
+        {
+            var purchaseOrder = _unitOfWork.PurchaseOrders.GetAllPurchase(true, true, "Open", false);
+            return Ok(purchaseOrder);
+        }
+        [HttpGet]
+        [Route("/api/purchaseorder/completed")]
+        public IActionResult GetPurchaseOrderCompletedList()
+        {
+            var purchaseOrder = _unitOfWork.PurchaseOrders.GetAllPurchase(true, true, "Completed", false);
+            return Ok(purchaseOrder);
+        }
+        [HttpGet]
+        [Route("/api/purchaseorder/returned")]
+        public IActionResult GetPurchaseReturnedOpenList()
+        {
+            var purchaseOrder = _unitOfWork.PurchaseOrders.GetAllPurchase(true, true, "Returned", false);
+            return Ok(purchaseOrder);
         }
         [HttpGet]
         [Route("/api/purchaseorder/dailypurchases")]

@@ -13,6 +13,7 @@ namespace WebApi.Controllers
 {
     [Route("api/colour")]
     [ApiController]
+    [Authorize]
     public class ColourController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;

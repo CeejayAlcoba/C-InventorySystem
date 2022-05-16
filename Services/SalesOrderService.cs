@@ -127,9 +127,9 @@ namespace Services
         {
 
             var salesOrder = _unitOfWork.SalesOrders.GetSalesOrderById(id, true, true, true);
-            if (salesOrder.Status == "Completed" || salesOrder.Status == "Cancelled")
+            if (salesOrder.Status != "Open")
             {
-                if (salesOrder.Status == "Cancelled")
+                if (salesOrder.Status == "Cancelled" || salesOrder.Status == "Returned")
                 {
                     var purchasedProductIds = salesOrder.SalesOrderItem
                 .Select(x => x.ProductId);

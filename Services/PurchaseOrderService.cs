@@ -78,10 +78,10 @@ namespace Services
         public PurchaseOrder ReOpenPurchaseOrder(int id)
         {
             var getPurchaseOrder = _unitOfWork.PurchaseOrders.GetPurchaseById(id, true, true);
-            if (getPurchaseOrder.Status=="Completed"|| getPurchaseOrder.Status == "Cancelled")
+            if (getPurchaseOrder.Status!="Open")
             {
                 
-                if(getPurchaseOrder.Status== "Cancelled")
+                if(getPurchaseOrder.Status== "Cancelled" || getPurchaseOrder.Status == "Returned")
                 {
                     var purchasedProductIds = getPurchaseOrder.PurchaseOrderItems
                 .Select(x => x.ProductId);

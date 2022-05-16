@@ -13,6 +13,7 @@ namespace WebApi.Controllers
 {
     [Route("api/location")]
     [ApiController]
+    [Authorize]
     public class LocationController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;

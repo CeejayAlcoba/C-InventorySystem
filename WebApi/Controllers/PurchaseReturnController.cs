@@ -13,6 +13,7 @@ namespace WebApi.Controllers
 {
     [Route("api/purchasereturn")]
     [ApiController]
+    [Authorize]
     public class PurchaseReturnController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;

@@ -110,7 +110,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var user = _userService.DeleteUser(Id);
+                var user = _userService.DeleteUser  (Id);
                 if (user != null)
                 {
 

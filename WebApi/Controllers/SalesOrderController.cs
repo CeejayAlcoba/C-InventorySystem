@@ -13,6 +13,7 @@ namespace WebApi.Controllers
 {
     [Route("api/salesorder")]
     [ApiController]
+    [Authorize]
     public class SalesOrderController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -66,7 +67,7 @@ namespace WebApi.Controllers
         [Route("/api/salesorder/id/{id}")]
         public IActionResult GetSalesOrder(int Id)
         {
-            var salesOrder = _unitOfWork.SalesOrders.GetById(Id);
+            var salesOrder = _unitOfWork.SalesOrders.GetSalesOrderById(Id,true,true,true);
             return Ok(salesOrder);
 
         }
@@ -163,6 +164,27 @@ namespace WebApi.Controllers
                 return BadRequest(ex);
 
             }
+        }
+        [HttpGet]
+        [Route("/api/salesorder/open")]
+        public IActionResult GetSalesOrderOpenList()
+        {
+            var purchaseOrder = _unitOfWork.SalesOrders.GetAllSalesOrder(true,true, true, "Open", false);
+            return Ok(purchaseOrder);
+        }
+        [HttpGet]
+        [Route("/api/salesorder/complete")]
+        public IActionResult GetSalesOrderCompletedList()
+        {
+            var purchaseOrder = _unitOfWork.SalesOrders.GetAllSalesOrder(true, true, true, "Completed", false);
+            return Ok(purchaseOrder);
+        }
+        [HttpGet]
+        [Route("/api/salesorder/return")]
+        public IActionResult GetSalesOrderReturnedList()
+        {
+            var purchaseOrder = _unitOfWork.SalesOrders.GetAllSalesOrder(true, true, true, "Returned", false);
+            return Ok(purchaseOrder);
         }
         [HttpGet]
         [Route("/api/salesorder/dailysales")]

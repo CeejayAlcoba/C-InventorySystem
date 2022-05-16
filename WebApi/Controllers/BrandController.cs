@@ -13,7 +13,7 @@ namespace WebApi.Controllers
 {
     [Route("api/brand")]
     [ApiController]
-
+    [Authorize]
     public class BrandController : ControllerBase
     {
        
