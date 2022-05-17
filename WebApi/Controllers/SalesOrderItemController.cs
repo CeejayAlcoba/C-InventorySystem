@@ -25,29 +25,6 @@ namespace WebApi.Controllers
 
             _unitOfWork = unitOfWork;
         }
-        [HttpPost]
-        [Route("/api/salesorderitemService/{id}")]
-        public IActionResult AddSalesOrderItem(int id, [FromBody] SalesOrderItem salesOrderItem)
-        {
-            try
-            {
-                var addSalesOrderItem = _salesOrderItemService.AddSalesOrderItem(salesOrderItem, id);
-                return Ok(addSalesOrderItem);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-
-            }
-        }
-        [HttpGet]
-
-        public IActionResult SalesOrderItemList()
-        {
-            var salesOrderItems = _unitOfWork.SalesOrderItems.GetAll();
-            return Ok(salesOrderItems);
-        }
-
         [HttpPatch]
         [Route("/api/salesorderitem/id/{id}")]
         public IActionResult UpdateSalesOrderItem(int Id, [FromBody] SalesOrderItem salesOrderItem)
@@ -64,26 +41,13 @@ namespace WebApi.Controllers
             }
         }
         [HttpGet]
-        [Route("/api/salesorderitem/id/{id}")]
+        [Route("/api/salesorderitem/{id}")]
         public IActionResult GetSalesOrderItem(int Id)
         {
-            var salesOrderItem = _unitOfWork.SalesOrderItems.GetById(Id);
+            var salesOrderItem = _unitOfWork.SalesOrderItems.GetSsalesOrderItemById(Id);
             return Ok(salesOrderItem);
 
         }
-        [HttpDelete]
-        [Route("/api/salesorderitem/id/{id}")]
-        public IActionResult DeleteSalesOrderItem(int Id)
-        {
-            try
-            {
-                _salesOrderItemService.DeleteSalesOrderItem(Id);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-        }
+       
     }
 }

@@ -21,14 +21,7 @@ namespace Services
         public SalesOrder AddSalesOrder(SalesOrder salesOrder)
         {
             var lastId = _unitOfWork.SalesOrders.GetNextId();
-            var orderedProductIds = salesOrder.SalesOrderItem
-    .Select(x => x.ProductId);
-            var orderedProducts = _unitOfWork.Products
-                .Find(x => orderedProductIds.Contains(x.ProductId));
-
-            orderedProducts.ToList()
-               .ForEach(p => p.Quantity -=
-                   salesOrder.SalesOrderItem.First(poi => poi.ProductId == p.ProductId).Quantity);
+            
             var newSalesOrder = new SalesOrder()
             {
                 Name = "PO/" + lastId.ToString(),
@@ -45,6 +38,14 @@ namespace Services
                 Total = salesOrder.Total
             };
             _unitOfWork.SalesOrders.Add(newSalesOrder);
+            var soldProductIds = salesOrder.SalesOrderItem
+                .Select(x => x.ProductId);
+            var soldProducts = _unitOfWork.Products
+                .Find(x => soldProductIds.Contains(x.ProductId));
+
+            soldProducts.ToList()
+                .ForEach(p => p.Quantity -=
+                    salesOrder.SalesOrderItem.First(poi => poi.ProductId == p.ProductId).Quantity);
             _unitOfWork.Complete();
 
             return salesOrder;

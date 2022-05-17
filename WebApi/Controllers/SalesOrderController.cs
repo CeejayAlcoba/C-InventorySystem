@@ -35,7 +35,7 @@ namespace WebApi.Controllers
         }
         [HttpPost]
 
-        public IActionResult AddSalesOrder(int id, [FromBody] SalesOrder salesOrder)
+        public IActionResult AddSalesOrder([FromBody] SalesOrder salesOrder)
         {
             try
             {
@@ -173,14 +173,14 @@ namespace WebApi.Controllers
             return Ok(purchaseOrder);
         }
         [HttpGet]
-        [Route("/api/salesorder/complete")]
+        [Route("/api/salesorder/completed")]
         public IActionResult GetSalesOrderCompletedList()
         {
             var purchaseOrder = _unitOfWork.SalesOrders.GetAllSalesOrder(true, true, true, "Completed", false);
             return Ok(purchaseOrder);
         }
         [HttpGet]
-        [Route("/api/salesorder/return")]
+        [Route("/api/salesorder/returned")]
         public IActionResult GetSalesOrderReturnedList()
         {
             var purchaseOrder = _unitOfWork.SalesOrders.GetAllSalesOrder(true, true, true, "Returned", false);
@@ -193,5 +193,21 @@ namespace WebApi.Controllers
             var dailySales = _unitOfWork.SalesOrders.GetDailySales(true, true, false);
             return Ok(dailySales);
         }
+        [HttpGet]
+        [Route("/api/salesorder/completed/quantity")]
+        public IActionResult GetSalesOrderCompletedQuantity()
+        {
+            var dailySales = _unitOfWork.SalesOrders.GetSalesOrderItemsTotalQuantity("Completed");
+            return Ok(dailySales);
+        }
+        [HttpGet]
+        [Route("/api/salesorder/returned/quantity")]
+        public IActionResult GetSalesOrderReturnedQuantity()
+        {
+            var dailySales = _unitOfWork.SalesOrders.GetSalesOrderItemsTotalQuantity("Returned");
+            return Ok(dailySales);
+        }
+
+
     }
 }
