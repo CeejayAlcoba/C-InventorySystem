@@ -19,6 +19,8 @@ namespace Domain.Entities
         public string Password { get; set; }
         [NotMapped]
         public string ReTypePassword { get; set; }
+        [NotMapped]
+        public string CurrentPassword { get; set; }
         public bool IsDelete { get; set; }
 
     }

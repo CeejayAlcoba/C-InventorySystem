@@ -29,7 +29,7 @@ namespace Services
                 Quantity = purchaseOrderItem.Quantity,
                 TaxPercentage = purchaseOrderItem.TaxPercentage,
                 SubTotal = purchaseOrderItem.SubTotal,
-                BeforeTotal = purchaseOrderItem.BeforeTotal,
+                BeforeTax = purchaseOrderItem.BeforeTax,
                 TaxAmount = purchaseOrderItem.TaxAmount,
                 Total = purchaseOrderItem.Total
             };
@@ -55,7 +55,7 @@ namespace Services
             getPurchaseOrderItem.Quantity = purchaseOrderItem.Quantity;
             getPurchaseOrderItem.TaxPercentage = purchaseOrderItem.TaxPercentage;
             getPurchaseOrderItem.SubTotal = purchaseOrderItem.SubTotal;
-            getPurchaseOrderItem.BeforeTotal = purchaseOrderItem.BeforeTotal;
+            getPurchaseOrderItem.BeforeTax = purchaseOrderItem.BeforeTax;
             getPurchaseOrderItem.TaxAmount = purchaseOrderItem.TaxAmount;
             getPurchaseOrderItem.Total = purchaseOrderItem.Total;
             _unitOfWork.Complete();

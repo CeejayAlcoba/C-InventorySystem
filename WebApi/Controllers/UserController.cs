@@ -51,26 +51,41 @@ namespace WebApi.Controllers
         [Route("/api/user/id/{id}")]
         public IActionResult UpdateUsername(int Id, [FromBody] User user)
         {
+
             var userId = _unitOfWork.Users.GetById(Id);
             var getUser = _unitOfWork.Users.GetUserByUsername(user.Username);
-            if (userId.Username != user.Username)
+            if (user.Password == user.ReTypePassword)
             {
-                if (getUser == null)
+                if (userId.Username != user.Username)
                 {
-                    _userService.UpdateUsername(user, Id);
-                    return Ok();
+                    var validatePassword = _userService.UpdateUsername(user, Id);
+                    if (getUser == null)
+                    {
+                        if (validatePassword != null) return Ok(validatePassword);
+                        else return BadRequest("Invalid current password");
+                    }
+                    else
+                    {
+                        return BadRequest("Username is already exist");
+                    }
+
                 }
                 else
                 {
-                    return BadRequest("Username is already exist");
-                }
+                    var validatePassword = _userService.UpdateUsername(user, Id);
+                    if (validatePassword != null)
+                    {
+                        return Ok(validatePassword);
+                    }
+                    else
+                    {
+                        return BadRequest("Invalid current password");
+                    }
 
+                }
             }
-            else
-            {
-                _userService.UpdateUsername(user, Id);
-                return Ok();
-            }
+            else return BadRequest("New password and retype password doesn't match");
+            
 
         }
         [HttpGet]

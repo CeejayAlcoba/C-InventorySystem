@@ -20,8 +20,48 @@ namespace Services
         }
         public Product AddProduct(Product product)
         {
-            _unitOfWork.Products.Add(product);
-            _unitOfWork.Complete();
+            if(product.PurchaseTax ==0)
+            {
+                var newProduct = new Product()
+                {
+                    Name = product.Name,
+                    Description = product.Description,
+                    UomId = product.UomId,
+                    Quantity = product.Quantity,
+                    BrandId = product.BrandId,
+                    CategoryId = product.CategoryId,
+                    SizeId = product.SizeId,
+                    ColourId = product.ColourId,
+                    PurchasePrice = product.PurchasePrice,
+                    SalesPrice = product.SalesPrice,
+                    PurchaseTax = product.PurchaseTax,
+                    SalesTax = product.SalesTax,
+                    TotalPrice = (product.Quantity * product.PurchasePrice)
+                };
+                _unitOfWork.Products.Add(newProduct);
+                _unitOfWork.Complete();
+            }
+            else
+            {
+                var newProduct = new Product()
+                {
+                    Name = product.Name,
+                    Description = product.Description,
+                    UomId = product.UomId,
+                    Quantity = product.Quantity,
+                    BrandId = product.BrandId,
+                    CategoryId = product.CategoryId,
+                    SizeId = product.SizeId,
+                    ColourId = product.ColourId,
+                    PurchasePrice = product.PurchasePrice,
+                    SalesPrice = product.SalesPrice,
+                    PurchaseTax = product.PurchaseTax,
+                    SalesTax = product.SalesTax,
+                    TotalPrice = (product.Quantity * product.PurchasePrice) - (product.Quantity * product.PurchasePrice)*(0.01*product.PurchaseTax)
+                };
+                _unitOfWork.Products.Add(newProduct);
+                _unitOfWork.Complete();
+            }      
             return product;
 
         }

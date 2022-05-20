@@ -28,7 +28,7 @@ namespace Domain.Entities
         public double Quantity { get; set; }
         public double TaxPercentage { get; set; }
         public double SubTotal { get; set; }
-        public double BeforeTotal { get; set; }
+        public double BeforeTax { get; set; }
         public double TaxAmount { get; set; }
         public double Total { get; set; }
         public bool IsDelete { get; set; }

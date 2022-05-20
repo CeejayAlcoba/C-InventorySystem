@@ -11,7 +11,7 @@ namespace Services.Contracts
     public interface IUserService
     {
         void AddUser(User user);
-        void UpdateUsername(User user, int userId);
+        User UpdateUsername(User user, int userId);
         User DeleteUser(int userId);
         User RecoverUser(int userId);
         IEnumerable GetUser(bool isDelete = false);

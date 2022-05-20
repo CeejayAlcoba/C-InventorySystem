@@ -45,13 +45,27 @@ namespace Services
 
 
 
-        public void UpdateUsername(User user, int Id)
+        public User UpdateUsername(User user, int Id)
         {
             var userId = _unitOfWork.Users.GetById(Id);
-            userId.Username = user.Username;
-            userId.Firstname = user.Firstname;
-            userId.Lastname = user.Lastname;
-            _unitOfWork.Complete();
+
+            var validatePassword = _accountService.GenerateHashPassword(user.CurrentPassword, userId.Salt);
+            if (validatePassword != userId.HashPassword) return null;
+            else
+            {
+                var salt = _accountService.GenerateSalt(user.Password);
+                var hashedPassword = _accountService.GenerateHashPassword(user.Password, salt);
+
+                userId.Username = user.Username;
+                userId.Firstname = user.Firstname;
+                userId.Lastname = user.Lastname;
+                userId.HashPassword = hashedPassword;
+                userId.Salt = salt;
+
+                _unitOfWork.Complete();
+                return userId;
+            }
+            
         }
         public User DeleteUser(int userId)
         {
