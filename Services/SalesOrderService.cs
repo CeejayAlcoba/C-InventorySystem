@@ -24,8 +24,9 @@ namespace Services
             
             var newSalesOrder = new SalesOrder()
             {
-                Name = "PO/" + lastId.ToString(),
+                Name = "SO/" + lastId.ToString(),
                 CustomerId = salesOrder.CustomerId,
+                Date = salesOrder.Date,
                 DefaultDate = salesOrder.Date,
                 SalesChannelId=salesOrder.SalesChannelId,
                 SalesOrderItem = salesOrder.SalesOrderItem,
@@ -80,11 +81,13 @@ namespace Services
             else return null;
             
         }
-        public SalesOrder ReturnSalesOrder(int id, DateTime date)
+        
+        public SalesOrder ReturnSalesOrder(int id, DateTime date,string returnReason)
         {
             var salesOrder = _unitOfWork.SalesOrders.GetSalesOrderById(id, true, true, true);
             if (salesOrder.Status == "Completed")
             {
+                salesOrder.Reason = returnReason;
                 salesOrder.Status = "Returned";
                 salesOrder.Date = date;
 
@@ -141,6 +144,7 @@ namespace Services
                         .ForEach(p => p.Quantity -=
                             salesOrder.SalesOrderItem.First(poi => poi.ProductId == p.ProductId).Quantity);
                 }
+                salesOrder.Reason = null;
                 salesOrder.Status = "Open";
                 salesOrder.Date = salesOrder.DefaultDate;
                 _unitOfWork.Complete();

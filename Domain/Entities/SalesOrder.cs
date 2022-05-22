@@ -30,6 +30,7 @@ namespace Domain.Entities
         public double TaxAmount { get; set; }
         public double OtherCharge { get; set; }
         public double Total { get; set; }
+        public string Reason { get; set; }
         public string Status { get; set; }
         public bool IsDelete { get; set; }
     }

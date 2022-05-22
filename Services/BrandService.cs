@@ -23,7 +23,7 @@ namespace Services
         {
             var getbrand = _unitOfWork.Brands.GetById(Id);
             getbrand.Name = brand.Name;
-            getbrand.Description = brand.Name;
+            getbrand.Description = brand.Description;
             _unitOfWork.Complete();
 
         }

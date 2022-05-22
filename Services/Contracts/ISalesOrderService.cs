@@ -15,7 +15,7 @@ namespace Services.Contracts
         SalesOrder CancelSalesOrder(int id, DateTime date);
         SalesOrder ReOpenSalesOrder(int id);
         SalesOrder CompleteSalesOrder(int id, DateTime date);
-        SalesOrder ReturnSalesOrder(int id, DateTime date);
+        SalesOrder ReturnSalesOrder(int id, DateTime date,string Reason);
 
     }
 }

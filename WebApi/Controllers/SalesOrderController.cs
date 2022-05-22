@@ -106,12 +106,12 @@ namespace WebApi.Controllers
             }
         }
         [HttpPatch]
-        [Route("/api/salesorder/return/{id}/{date}")]
-        public IActionResult ReturnSalesOrder(int Id, DateTime Date)
+        [Route("/api/salesorder/return/{id}/{date}/{reason}")]
+        public IActionResult ReturnSalesOrder(int Id, DateTime Date,string reason)
         {
             try
             {
-                var order = _salesOrderService.ReturnSalesOrder(Id, Date);
+                var order = _salesOrderService.ReturnSalesOrder(Id, Date,reason);
                 if (order != null)
                 {
                     return Ok(order);

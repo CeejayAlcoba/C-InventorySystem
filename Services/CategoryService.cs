@@ -22,7 +22,7 @@ namespace Services
         {
             var getCategory = _unitOfWork.Categories.GetById(Id);
             getCategory.Name = category.Name;
-            getCategory.Description = category.Name;
+            getCategory.Description = category.Description;
             _unitOfWork.Complete();
 
         }

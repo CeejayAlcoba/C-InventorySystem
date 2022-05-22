@@ -105,8 +105,9 @@ namespace Services
             var lastId = _unitOfWork.PurchaseOrders.GetNextId();
             var newPurchaseOrder = new PurchaseOrder()
             {
-                Name = "PO/"+lastId.ToString(),
+                Name = "PO/" + lastId.ToString(),
                 SupplierId = purchaseOrder.SupplierId,
+                Date = purchaseOrder.Date,
                 DefaultDate = purchaseOrder.Date,
                 PurchaseOrderItems=purchaseOrder.PurchaseOrderItems,
                 BeforeTax=purchaseOrder.BeforeTax,
