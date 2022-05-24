@@ -30,9 +30,7 @@ namespace Services
         public Brand AddBrand(Brand brand)
         {
 
-            var getBrand = _unitOfWork.Brands.GetBrandByName(brand.Name);
-            if (getBrand == null)
-            {
+           
                 var NewBrand = new Brand()
                 {
                    Name = brand.Name,
@@ -41,8 +39,7 @@ namespace Services
                 _unitOfWork.Brands.Add(NewBrand);
                 _unitOfWork.Complete();
                 return NewBrand;
-            }
-            return null;
+           
         }
         public void DeleteBrand(int Id)
         {

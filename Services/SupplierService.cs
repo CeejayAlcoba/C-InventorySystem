@@ -20,9 +20,7 @@ namespace Services
         }
         public Supplier AddSupplier(Supplier supplier)
         {
-            var getSupplier = _unitOfWork.Suppliers.GetSupplierByName(supplier.Name);
-            if (getSupplier == null)
-            {
+           
                 var newSupplier = new Supplier()
                 {
                     Name = supplier.Name,
@@ -36,8 +34,6 @@ namespace Services
                 _unitOfWork.Suppliers.Add(newSupplier);
                 _unitOfWork.Complete();
                 return newSupplier;
-            }
-            return null;
 
         }
 

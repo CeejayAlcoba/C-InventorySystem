@@ -20,9 +20,7 @@ namespace Services
         }
         public Colour AddColour(Colour colour)
         {
-            var getColour = _unitOfWork.Colours.GetColourByName(colour.Name);
-            if (getColour == null)
-            {
+            
                 var newColour = new Colour()
                 {
                     Name = colour.Name,
@@ -31,8 +29,7 @@ namespace Services
                 _unitOfWork.Colours.Add(newColour);
                 _unitOfWork.Complete();
                 return newColour;
-            }
-            return null;
+            
 
         }
 

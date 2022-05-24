@@ -4,14 +4,16 @@ using DataAccessEFCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccessEFCore.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220524033232_AddFeignkeyInProductHistpry")]
+    partial class AddFeignkeyInProductHistpry
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -220,19 +222,10 @@ namespace DataAccessEFCore.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
 
                     b.Property<int?>("PurchaseOrderId")
                         .HasColumnType("int");
@@ -244,8 +237,6 @@ namespace DataAccessEFCore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProductHistoryId");
-
-                    b.HasIndex("ProductId");
 
                     b.HasIndex("PurchaseOrderId");
 
@@ -876,12 +867,6 @@ namespace DataAccessEFCore.Migrations
 
             modelBuilder.Entity("Domain.Entities.ProductHistory", b =>
                 {
-                    b.HasOne("Domain.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Domain.Entities.PurchaseOrder", "PurchaseOrder")
                         .WithMany()
                         .HasForeignKey("PurchaseOrderId");
@@ -889,8 +874,6 @@ namespace DataAccessEFCore.Migrations
                     b.HasOne("Domain.Entities.SalesOrder", "SalesOrder")
                         .WithMany()
                         .HasForeignKey("SalesOrderId");
-
-                    b.Navigation("Product");
 
                     b.Navigation("PurchaseOrder");
 

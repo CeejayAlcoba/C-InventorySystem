@@ -28,9 +28,7 @@ namespace Services
         }
         public Customer AddCustomer(Customer customer)
         {
-            var getCustomer = _unitOfWork.Customers.GetCustomerByName(customer.Name);
-            if (getCustomer == null)
-            {
+           
                 var newCustomer = new Customer()
                 {
                     Name = customer.Name,
@@ -44,8 +42,7 @@ namespace Services
                 _unitOfWork.Customers.Add(newCustomer);
                 _unitOfWork.Complete();
                 return newCustomer;
-            }
-            return null;
+            
 
 
         }

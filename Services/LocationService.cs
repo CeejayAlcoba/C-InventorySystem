@@ -20,9 +20,7 @@ namespace Services
         }
         public Location AddLocation(Location location)
         {
-            var getLocation = _unitOfWork.Locations.GetLocationByName(location.Name);
-            if (getLocation == null)
-            {
+            
                 var newLocation = new Location()
                 {
                     Name=location.Name,
@@ -31,9 +29,7 @@ namespace Services
                 _unitOfWork.Locations.Add(newLocation);
                 _unitOfWork.Complete();
                 return newLocation;
-            }
-            return null;
-
+            
 
         }
 

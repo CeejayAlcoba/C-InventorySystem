@@ -20,9 +20,7 @@ namespace Services
         }
         public Shipper AddShipper(Shipper shipper)
         {
-            var getShipper = _unitOfWork.Shippers.GetShipperByName(shipper.Name);
-            if (getShipper == null)
-            {
+            
                 var newShipper = new Shipper()
                 {
                     Name = shipper.Name,
@@ -37,8 +35,7 @@ namespace Services
                 _unitOfWork.Shippers.Add(newShipper);
                 _unitOfWork.Complete();
                 return newShipper;
-            }
-            return null;
+          
 
 
 

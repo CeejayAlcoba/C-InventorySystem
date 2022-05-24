@@ -70,11 +70,8 @@ namespace DataAccessEFCore
             .Property(b => b.IsDelete)
             .HasDefaultValue(false);
             modelBuilder.Entity<ProductHistory>()
-            .Property(b => b.IsDelete)
+            .Property(b => b.IsActive)
             .HasDefaultValue(false);
-            modelBuilder.Entity<ProductHistory>()
-                .Property(b => b.Status)
-                .HasDefaultValue("Open");
             modelBuilder.Entity<PurchaseOrderItem>()
             .Property(b => b.IsDelete)
             .HasDefaultValue(false);

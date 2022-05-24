@@ -20,9 +20,7 @@ namespace Services
         }
         public Size AddSize(Size size)
         {
-            var getSize = _unitOfWork.Sizes.GetSizeByName(size.Name);
-            if (getSize == null)
-            {
+           
                 var newSize = new Size()
                 {
                     Name = size.Name,
@@ -32,8 +30,7 @@ namespace Services
                 _unitOfWork.Sizes.Add(newSize);
                 _unitOfWork.Complete();
                 return newSize;
-            }
-            return null;
+      
 
 
 

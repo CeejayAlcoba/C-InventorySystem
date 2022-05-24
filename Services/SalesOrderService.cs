@@ -75,7 +75,22 @@ namespace Services
             {
                 getSalesOrder.Status = "Completed";
                 getSalesOrder.Date = date;
-                _unitOfWork.Complete();
+                var poi = getSalesOrder.SalesOrderItem;
+                foreach (var product in poi)
+                {
+                    var total = product.Total;
+                    var newProductHistory = new ProductHistory()
+                    {
+                        Name = getSalesOrder.Name,
+                        SalesOrderId = getSalesOrder.SalesOrderId,
+                        ProductId = product.ProductId,
+                        IsActive = true,
+                        Transac = "-" + total.ToString(),
+                        Date = getSalesOrder.Date,
+                    };
+                    _unitOfWork.ProductHistories.Add(newProductHistory);
+                }
+                    _unitOfWork.Complete();
                 return getSalesOrder;
             }
             else return null;
@@ -85,6 +100,9 @@ namespace Services
         public SalesOrder ReturnSalesOrder(int id, DateTime date,string returnReason)
         {
             var salesOrder = _unitOfWork.SalesOrders.GetSalesOrderById(id, true, true, true);
+            var product = _unitOfWork.ProductHistories.GetAll();
+            var productHistory = product.Where(c => c.SalesOrderId == salesOrder.SalesOrderId);
+      
             if (salesOrder.Status == "Completed")
             {
                 salesOrder.Reason = returnReason;
@@ -99,6 +117,10 @@ namespace Services
                     .ForEach(p => p.Quantity +=
                         salesOrder.SalesOrderItem.First(poi => poi.ProductId == p.ProductId).Quantity);
 
+                foreach (var item in productHistory)
+                {
+                    item.IsActive = false;
+                }
                 _unitOfWork.Complete();
                 return salesOrder;
             }
@@ -129,8 +151,9 @@ namespace Services
         }
         public SalesOrder ReOpenSalesOrder(int id)
         {
-
+            var product = _unitOfWork.ProductHistories.GetAll();
             var salesOrder = _unitOfWork.SalesOrders.GetSalesOrderById(id, true, true, true);
+            var productHistory = product.Where(c => c.SalesOrderId == salesOrder.SalesOrderId);
             if (salesOrder.Status != "Open")
             {
                 if (salesOrder.Status == "Cancelled" || salesOrder.Status == "Returned")
@@ -143,6 +166,10 @@ namespace Services
                     purchasedProducts.ToList()
                         .ForEach(p => p.Quantity -=
                             salesOrder.SalesOrderItem.First(poi => poi.ProductId == p.ProductId).Quantity);
+                }
+                foreach (var item in productHistory)
+                {
+                    item.IsActive = false;
                 }
                 salesOrder.Reason = null;
                 salesOrder.Status = "Open";

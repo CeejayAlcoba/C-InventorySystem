@@ -24,6 +24,22 @@ namespace Services
             {
                 getPurchaseOrder.Status = "Completed";
                 getPurchaseOrder.Date = date;
+
+                var poi = getPurchaseOrder.PurchaseOrderItems;
+                foreach(var product in poi)
+                {
+                    var total = product.Total;
+                    var newProductHistory = new ProductHistory()
+                    {
+                        Name = getPurchaseOrder.Name,
+                        PurchaseOrderId = getPurchaseOrder.PurchaseOrderId,
+                        ProductId = product.ProductId,
+                        IsActive = true,
+                        Transac = "+" + total.ToString(),
+                        Date = getPurchaseOrder.Date,
+                    };
+                    _unitOfWork.ProductHistories.Add(newProductHistory);
+                }        
                 _unitOfWork.Complete();
                 return getPurchaseOrder;
             }
@@ -33,6 +49,8 @@ namespace Services
         public PurchaseOrder ReturnPurchaseOrder(int id, DateTime date)
         {
             var getPurchaseOrder = _unitOfWork.PurchaseOrders.GetPurchaseById(id, true, true);
+            var product = _unitOfWork.ProductHistories.GetAll();
+            var productHistory = product.Where(c => c.PurchaseOrderId == getPurchaseOrder.PurchaseOrderId);
             if (getPurchaseOrder.Status == "Completed")
             {
                 getPurchaseOrder.Status = "Returned";
@@ -47,6 +65,10 @@ namespace Services
                     .ForEach(p => p.Quantity -=
                         getPurchaseOrder.PurchaseOrderItems.First(poi => poi.ProductId == p.ProductId).Quantity);
 
+                foreach (var item in productHistory)
+                {
+                    item.IsActive = false;
+                }
                 _unitOfWork.Complete();
                 return getPurchaseOrder;
             }
@@ -77,20 +99,31 @@ namespace Services
         }
         public PurchaseOrder ReOpenPurchaseOrder(int id)
         {
+            var product = _unitOfWork.ProductHistories.GetAll();
             var getPurchaseOrder = _unitOfWork.PurchaseOrders.GetPurchaseById(id, true, true);
+            var productHistory = product.Where(c => c.PurchaseOrderId == getPurchaseOrder.PurchaseOrderId);
             if (getPurchaseOrder.Status!="Open")
             {
                 
                 if(getPurchaseOrder.Status== "Cancelled" || getPurchaseOrder.Status == "Returned")
                 {
+                    
                     var purchasedProductIds = getPurchaseOrder.PurchaseOrderItems
-                .Select(x => x.ProductId);
+                .Select(x => x.ProductId);  
                     var purchasedProducts = _unitOfWork.Products
                         .Find(x => purchasedProductIds.Contains(x.ProductId));
 
                     purchasedProducts.ToList()
                         .ForEach(p => p.Quantity +=
                             getPurchaseOrder.PurchaseOrderItems.First(poi => poi.ProductId == p.ProductId).Quantity);
+                   
+                  
+                   
+
+                }
+                foreach (var item in productHistory)
+                {
+                    item.IsActive = false;
                 }
                 getPurchaseOrder.Status = "Open";
                 getPurchaseOrder.Date = getPurchaseOrder.DefaultDate;

@@ -20,9 +20,7 @@ namespace Services
         }
         public Uom AddUom(Uom uom)
         {
-            var getUom = _unitOfWork.Uoms.GetUomByName(uom.Name);
-            if (getUom == null)
-            {
+
                 var newUom = new Uom()
                 {
                     Name=uom.Name,
@@ -31,8 +29,7 @@ namespace Services
                 _unitOfWork.Uoms.Add(newUom);
                 _unitOfWork.Complete();
                 return newUom;
-            }
-            return null;
+          
 
         }
 

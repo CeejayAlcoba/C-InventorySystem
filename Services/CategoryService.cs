@@ -28,9 +28,7 @@ namespace Services
         }
         public Category AddCategory(Category category)
         {
-            var getCategory = _unitOfWork.Categories.GetCategoryByName(category.Name);
-            if (getCategory == null)
-            {
+           
                 var newCategory = new Category()
                 {
                     Name = category.Name,
@@ -39,8 +37,7 @@ namespace Services
                 _unitOfWork.Categories.Add(newCategory);
                 _unitOfWork.Complete();
                 return newCategory;
-            }
-            return null;
+            
 
         }
         public void DeleteCategory(int Id)
