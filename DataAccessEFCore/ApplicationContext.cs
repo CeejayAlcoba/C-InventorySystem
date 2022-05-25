@@ -1,8 +1,11 @@
 ﻿using Domain.Entities;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.EntityFrameworkCore;
+using Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +13,7 @@ namespace DataAccessEFCore
 {
     public class ApplicationContext : DbContext
     {
+
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
         }
@@ -36,6 +40,20 @@ namespace DataAccessEFCore
         public DbSet<Supplier> Suppliers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            var salt = ModelBuilderExtensions.GenerateSalt("Admin");
+            var hashedPassword = ModelBuilderExtensions.GenerateHashPassword("Admin", salt);
+            modelBuilder.Entity<User>().HasData(
+             new User
+             {
+                 Id = 1,
+                 Firstname = "Admin",
+                 Lastname = "Admin",
+                 Username = "Admin",
+                 Salt = salt,
+                 HashPassword = hashedPassword,
+
+             }
+                );
             modelBuilder.Entity<PurchaseOrder>()
                 .Property(b => b.Status)
                 .HasDefaultValue("Open");
@@ -109,5 +127,30 @@ namespace DataAccessEFCore
            .Property(b => b.IsDelete)
            .HasDefaultValue(false);
         }
+        public static class ModelBuilderExtensions
+        {
+            public static byte[] GenerateSalt(string password)
+            {
+                var salt = new byte[128 / 8];
+
+                using (var rngCsp = new RNGCryptoServiceProvider())
+                {
+                    rngCsp.GetNonZeroBytes(salt);
+                }
+                return salt;
+            }
+            public static string GenerateHashPassword(string password, byte[] salt)
+            {
+                string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: password,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA256,
+                iterationCount: 100000,
+                numBytesRequested: 256 / 8));
+                return hashed;
+            }
+
+        }
+       
     }
 }

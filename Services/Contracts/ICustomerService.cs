@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace Services.Contracts
     {
         void UpdateCustomer(Customer customer, int Id);
         Customer AddCustomer(Customer customer);
-        void DeleteCustomer(int Id);
+        IEnumerable DeleteCustomer(int Id);
 
     }
 }

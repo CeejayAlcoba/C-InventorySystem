@@ -2,6 +2,7 @@
 using Domain.Interfaces;
 using Services.Contracts;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,11 +20,13 @@ namespace Services
 
         }
        
-        public void DeleteCustomer(int Id)
+        public IEnumerable DeleteCustomer(int Id)
         {
             var customer = _unitOfWork.Customers.GetById(Id);
             _unitOfWork.Customers.Remove(customer);
             _unitOfWork.Complete();
+            var customers = _unitOfWork.Customers.GetAll();
+            return customers;
 
         }
         public Customer AddCustomer(Customer customer)

@@ -80,8 +80,8 @@ namespace WebApi.Controllers
         {
             try
             {
-                _customerService.DeleteCustomer(Id);
-                return Ok();
+                var customer=_customerService.DeleteCustomer(Id);
+                return Ok(customer);
             }
             catch (Exception ex)
             {
