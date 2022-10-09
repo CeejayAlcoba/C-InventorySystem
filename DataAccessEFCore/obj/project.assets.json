@@ -5760,19 +5760,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "C:\\Users\\alcoba\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Desktop\\c#\\inventory\\DataAccessEFCore\\DataAccessEFCore.csproj",
+      "projectUniqueName": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\DataAccessEFCore\\DataAccessEFCore.csproj",
       "projectName": "DataAccessEFCore",
-      "projectPath": "C:\\Users\\User\\Desktop\\c#\\inventory\\DataAccessEFCore\\DataAccessEFCore.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Desktop\\c#\\inventory\\DataAccessEFCore\\obj\\",
+      "projectPath": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\DataAccessEFCore\\DataAccessEFCore.csproj",
+      "packagesPath": "C:\\Users\\alcoba\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\DataAccessEFCore\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\alcoba\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5786,11 +5786,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\User\\Desktop\\c#\\inventory\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\User\\Desktop\\c#\\inventory\\Domain\\Domain.csproj"
+            "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\Domain\\Domain.csproj"
             },
-            "C:\\Users\\User\\Desktop\\c#\\inventory\\Services\\Services.csproj": {
-              "projectPath": "C:\\Users\\User\\Desktop\\c#\\inventory\\Services\\Services.csproj"
+            "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\Services\\Services.csproj": {
+              "projectPath": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\Services\\Services.csproj"
             }
           }
         }
@@ -5829,7 +5829,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.412\\RuntimeIdentifierGraph.json"
       }
     }
   }

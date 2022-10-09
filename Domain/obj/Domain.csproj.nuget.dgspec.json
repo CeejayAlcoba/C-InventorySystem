@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\c#\\inventory\\Domain\\Domain.csproj": {}
+    "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\c#\\inventory\\Domain\\Domain.csproj": {
+    "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\c#\\inventory\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\User\\Desktop\\c#\\inventory\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\c#\\inventory\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\alcoba\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\alcoba\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.412\\RuntimeIdentifierGraph.json"
         }
       }
     }
