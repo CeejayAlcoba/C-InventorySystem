@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LQ3/EQ3ZjFx/Dkyk5SML1/6QdUsJkoLvowXQRZmEJulOkmTnui1lGB+QZWuZ4LWstBFHIT7pN9T6/9lATA0sKg==",
+  "dgSpecHash": "StjAO1g7q/p1RhN0ilQxn7MrUFaFav1gh47VGREBZgelaANcZWZ1oIdbo/bulI7/Bkm63KsStj6dezzcWpNjZw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\WebApi\\WebApi.csproj",
+  "projectFilePath": "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alcoba\\.nuget\\packages\\antlr4.runtime\\4.6.6\\antlr4.runtime.4.6.6.nupkg.sha512",
     "C:\\Users\\alcoba\\.nuget\\packages\\azure.core\\1.22.0\\azure.core.1.22.0.nupkg.sha512",

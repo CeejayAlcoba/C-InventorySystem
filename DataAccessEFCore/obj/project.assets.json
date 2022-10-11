@@ -5765,11 +5765,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\DataAccessEFCore\\DataAccessEFCore.csproj",
+      "projectUniqueName": "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\DataAccessEFCore\\DataAccessEFCore.csproj",
       "projectName": "DataAccessEFCore",
-      "projectPath": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\DataAccessEFCore\\DataAccessEFCore.csproj",
+      "projectPath": "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\DataAccessEFCore\\DataAccessEFCore.csproj",
       "packagesPath": "C:\\Users\\alcoba\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\DataAccessEFCore\\obj\\",
+      "outputPath": "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\DataAccessEFCore\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\alcoba\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5786,11 +5786,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\Domain\\Domain.csproj"
+            "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\Domain\\Domain.csproj"
             },
-            "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\Services\\Services.csproj": {
-              "projectPath": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\Services\\Services.csproj"
+            "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\Services\\Services.csproj": {
+              "projectPath": "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\Services\\Services.csproj"
             }
           }
         }

@@ -80,7 +80,18 @@ namespace WebApi.Controllers
         {
             try
             {
-                _locationService.DeleteLocation(Id);
+                var uom = _unitOfWork.Locations.GetById(Id);
+                if (uom.IsDelete == true)
+                {
+                    uom.IsDelete = false;
+                    _unitOfWork.Complete();
+                }
+                else
+                {
+                    uom.IsDelete = true;
+                    _unitOfWork.Complete();
+                }
+
                 return Ok();
             }
             catch (Exception ex)

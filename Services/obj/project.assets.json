@@ -1244,11 +1244,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\Services\\Services.csproj",
+      "projectUniqueName": "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\Services\\Services.csproj",
       "projectName": "Services",
-      "projectPath": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\Services\\Services.csproj",
+      "projectPath": "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\Services\\Services.csproj",
       "packagesPath": "C:\\Users\\alcoba\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\Services\\obj\\",
+      "outputPath": "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\Services\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\alcoba\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1265,8 +1265,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\Domain\\Domain.csproj"
+            "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\Domain\\Domain.csproj"
             }
           }
         }

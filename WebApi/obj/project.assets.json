@@ -7634,11 +7634,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\WebApi\\WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\WebApi\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\WebApi\\WebApi.csproj",
+      "projectPath": "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\WebApi\\WebApi.csproj",
       "packagesPath": "C:\\Users\\alcoba\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\WebApi\\obj\\",
+      "outputPath": "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\alcoba\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7655,11 +7655,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\DataAccessEFCore\\DataAccessEFCore.csproj": {
-              "projectPath": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\DataAccessEFCore\\DataAccessEFCore.csproj"
+            "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\DataAccessEFCore\\DataAccessEFCore.csproj": {
+              "projectPath": "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\DataAccessEFCore\\DataAccessEFCore.csproj"
             },
-            "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\Services\\Services.csproj": {
-              "projectPath": "C:\\Users\\alcoba\\Desktop\\inventory\\InventorySystem\\Services\\Services.csproj"
+            "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\Services\\Services.csproj": {
+              "projectPath": "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\Services\\Services.csproj"
             }
           }
         }

@@ -83,7 +83,18 @@ namespace WebApi.Controllers
         {
             try
             {
-                _brandService.DeleteBrand(Id);
+                var uom = _unitOfWork.Brands.GetById(Id);
+                if (uom.IsDelete == true)
+                {
+                    uom.IsDelete = false;
+                    _unitOfWork.Complete();
+                }
+                else
+                {
+                    uom.IsDelete = true;
+                    _unitOfWork.Complete();
+                }
+
                 return Ok();
             }
             catch (Exception ex)

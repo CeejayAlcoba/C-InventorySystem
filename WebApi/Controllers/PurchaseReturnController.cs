@@ -74,7 +74,18 @@ namespace WebApi.Controllers
         {
             try
             {
-                _purchaseReturnService.DeletePurchaseReturn(Id);
+                var uom = _unitOfWork.PurchaseReturns.GetById(Id);
+                if (uom.IsDelete == true)
+                {
+                    uom.IsDelete = false;
+                    _unitOfWork.Complete();
+                }
+                else
+                {
+                    uom.IsDelete = true;
+                    _unitOfWork.Complete();
+                }
+
                 return Ok();
             }
             catch (Exception ex)

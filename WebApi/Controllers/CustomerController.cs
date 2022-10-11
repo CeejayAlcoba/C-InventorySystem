@@ -80,8 +80,19 @@ namespace WebApi.Controllers
         {
             try
             {
-                var customer=_customerService.DeleteCustomer(Id);
-                return Ok(customer);
+                var uom = _unitOfWork.Customers.GetById(Id);
+                if (uom.IsDelete == true)
+                {
+                    uom.IsDelete = false;
+                    _unitOfWork.Complete();
+                }
+                else
+                {
+                    uom.IsDelete = true;
+                    _unitOfWork.Complete();
+                }
+
+                return Ok();
             }
             catch (Exception ex)
             {
