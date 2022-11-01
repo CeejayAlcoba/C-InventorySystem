@@ -60,6 +60,8 @@ namespace WebApi
             services.AddScoped<ISalesOrderService, SalesOrderService>();
             services.AddScoped<ISalesOrderRepository, SalesOrderRepository>();
             services.AddScoped<ISalesReturnService, SalesReturnService>();
+            services.AddScoped<ISupplierRepository, SupplierRepository>();
+
 
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(

@@ -44,25 +44,19 @@ namespace WebApi.Controllers
         [Route("/api/supplier/id/{id}")]
         public IActionResult UpdateSupplier(int Id, [FromBody] Supplier supplier)
         {
-            var supplierId = _unitOfWork.Suppliers.GetById(Id);
-            var getSupplier = _unitOfWork.Suppliers.GetSupplierByName(supplier.Name);
-            if (supplierId.Name != supplier.Name)
+            try
             {
-                if (getSupplier == null)
+                var updateSupplier=_supplierService.UpdateSupplier(supplier, Id);
+                if (updateSupplier != null)
                 {
-                    _supplierService.UpdateSupplier(supplier, Id);
-                    return Ok();
+                    return Ok(updateSupplier);
                 }
-                else
-                {
-                    return BadRequest("Name is already exist");
-                }
-
+                else return BadRequest("Supplier Name is already exist.");
+               
             }
-            else
+            catch (Exception ex)
             {
-                _supplierService.UpdateSupplier(supplier, Id);
-                return Ok();
+                return BadRequest(ex);
             }
 
         }
@@ -80,17 +74,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var uom = _unitOfWork.Suppliers.GetById(Id);
-                if (uom.IsDelete == true)
-                {
-                    uom.IsDelete = false;
-                    _unitOfWork.Complete();
-                }
-                else
-                {
-                    uom.IsDelete = true;
-                    _unitOfWork.Complete();
-                }
+                _supplierService.DeleteSupplier(Id);
 
                 return Ok();
             }

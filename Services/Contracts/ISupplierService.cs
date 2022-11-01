@@ -9,7 +9,7 @@ namespace Services.Contracts
 {
     public interface ISupplierService
     {
-        void UpdateSupplier(Supplier supplier, int Id);
+        Supplier UpdateSupplier(Supplier supplier, int Id);
         Supplier AddSupplier(Supplier supplier);
         void DeleteSupplier(int Id);
 
