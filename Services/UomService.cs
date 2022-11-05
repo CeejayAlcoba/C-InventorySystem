@@ -12,25 +12,28 @@ namespace Services
     public class UomService : IUomService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IUomRepository _uomRepository;
 
-        public UomService(IUnitOfWork unitOfWork)
+        public UomService(IUnitOfWork unitOfWork, IUomRepository uomRepository)
         {
             _unitOfWork = unitOfWork;
-
+            _uomRepository = uomRepository;
         }
         public Uom AddUom(Uom uom)
         {
-
+            var getItemByName = _uomRepository.GetUomByName(uom.Name);
+            if (getItemByName == null || getItemByName.IsDelete == true)
+            {
                 var newUom = new Uom()
                 {
-                    Name=uom.Name,
-                    Description=uom.Description
+                    Name = uom.Name,
+                    Description = uom.Description
                 };
                 _unitOfWork.Uoms.Add(newUom);
                 _unitOfWork.Complete();
                 return newUom;
-          
-
+            }
+            else return null;
         }
 
         public void DeleteUom(int Id)

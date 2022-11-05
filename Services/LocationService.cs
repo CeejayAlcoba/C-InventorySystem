@@ -12,23 +12,31 @@ namespace Services
     public class LocationService : ILocationService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly ILocationRepository _locationRepository;
 
-        public LocationService(IUnitOfWork unitOfWork)
+        public LocationService(IUnitOfWork unitOfWork, ILocationRepository locationRepository)
         {
             _unitOfWork = unitOfWork;
+            _locationRepository = locationRepository;
 
         }
         public Location AddLocation(Location location)
         {
-            
-                var newLocation = new Location()
+            var getItemByName = _locationRepository.GetLocationByName(location.Name);
+            if (getItemByName == null || getItemByName.IsDelete == true)
+            {
+                var newLocation = new Location()    
                 {
-                    Name=location.Name,
-                    Description=location.Description
+                    Name = location.Name,
+                    Description = location.Description
                 };
                 _unitOfWork.Locations.Add(newLocation);
                 _unitOfWork.Complete();
                 return newLocation;
+
+            }
+            else return null;
+          
             
 
         }

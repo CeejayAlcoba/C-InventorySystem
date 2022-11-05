@@ -12,15 +12,19 @@ namespace Services
     public class ShipperService : IShipperService
     {
         private readonly IUnitOfWork _unitOfWork;
-
-        public ShipperService(IUnitOfWork unitOfWork)
+        private readonly IShipperRepository _shipperRepository;
+        public ShipperService(IUnitOfWork unitOfWork, IShipperRepository shipperRepository)
         {
             _unitOfWork = unitOfWork;
+            _shipperRepository = shipperRepository;
 
         }
         public Shipper AddShipper(Shipper shipper)
         {
-            
+            var getItemByName = _shipperRepository.GetShipperByName(shipper.Name);
+            if (getItemByName == null || getItemByName.IsDelete == true)
+            {
+
                 var newShipper = new Shipper()
                 {
                     Name = shipper.Name,
@@ -35,10 +39,9 @@ namespace Services
                 _unitOfWork.Shippers.Add(newShipper);
                 _unitOfWork.Complete();
                 return newShipper;
-          
 
-
-
+            }
+            else return null;
         }
 
         public void DeleteShipper(int Id)

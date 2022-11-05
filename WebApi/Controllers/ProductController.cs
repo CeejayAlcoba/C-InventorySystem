@@ -35,17 +35,13 @@ namespace WebApi.Controllers
         [HttpPost]
         public IActionResult AddProduct([FromBody] Product product)
         {
-            try
+            var getProduct = _productService.AddProduct(product);
+            if (getProduct != null)
             {
-                var addProduct = _productService.AddProduct(product);
-                return Ok(addProduct);
+                return Ok(getProduct);
             }
-            catch(Exception ex)
-            {
-                return BadRequest(ex);
+            return BadRequest("Name is already exist");
 
-            }
-          
 
         }
         [HttpPatch]

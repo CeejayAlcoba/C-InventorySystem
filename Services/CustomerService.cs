@@ -13,10 +13,11 @@ namespace Services
     public class CustomerService : ICustomerService
     {
         private readonly IUnitOfWork _unitOfWork;
-
-        public CustomerService(IUnitOfWork unitOfWork)
+        private readonly ICustomerRepository _customerRepository;
+        public CustomerService(IUnitOfWork unitOfWork,ICustomerRepository customerRepository)
         {
             _unitOfWork = unitOfWork;
+            _customerRepository = customerRepository;
 
         }
        
@@ -31,7 +32,9 @@ namespace Services
         }
         public Customer AddCustomer(Customer customer)
         {
-           
+            var getItemByName = _customerRepository.GetCustomerByName(customer.Name);
+            if (getItemByName == null || getItemByName.IsDelete == true)
+            {
                 var newCustomer = new Customer()
                 {
                     Name = customer.Name,
@@ -45,9 +48,9 @@ namespace Services
                 _unitOfWork.Customers.Add(newCustomer);
                 _unitOfWork.Complete();
                 return newCustomer;
-            
 
-
+            }
+            else return null;
         }
 
         public void UpdateCustomer(Customer customer, int Id)

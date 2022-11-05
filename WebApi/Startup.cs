@@ -39,14 +39,23 @@ namespace WebApi
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IBrandService, BrandService>();
+            services.AddScoped<IBrandRepository, BrandRepository>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IColourService, ColourService>();
+            services.AddScoped<IColourRepository, ColourRepository>();
             services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<ILocationService, LocationService>();
+            services.AddScoped<ILocationRepository, LocationRepository>();
             services.AddScoped<IShipperService, ShipperService>();
+            services.AddScoped<IShipperRepository, ShipperRepository>();
             services.AddScoped<ISizeService, SizeService>();
+            services.AddScoped<ISizeRepository, SizeRepository>();
             services.AddScoped<ISupplierService, SupplierService>();
+            services.AddScoped<ISupplierRepository, SupplierRepository>();
             services.AddScoped<IUomService, UomService>();
+            services.AddScoped<IUomRepository, UomRepository>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IPurchaseOrderItemService, PurchaseOrderItemService>();
@@ -60,7 +69,6 @@ namespace WebApi
             services.AddScoped<ISalesOrderService, SalesOrderService>();
             services.AddScoped<ISalesOrderRepository, SalesOrderRepository>();
             services.AddScoped<ISalesReturnService, SalesReturnService>();
-            services.AddScoped<ISupplierRepository, SupplierRepository>();
 
 
             services.AddDbContext<ApplicationContext>(options =>

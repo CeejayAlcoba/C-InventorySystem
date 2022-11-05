@@ -12,10 +12,12 @@ namespace Services
     public class BrandService : IBrandService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IBrandRepository _brandRepository;
 
-        public BrandService(IUnitOfWork unitOfWork)
+        public BrandService(IUnitOfWork unitOfWork, IBrandRepository brandRepository)
         {
             _unitOfWork = unitOfWork;
+            _brandRepository = brandRepository;
 
         }
 
@@ -29,17 +31,20 @@ namespace Services
         }
         public Brand AddBrand(Brand brand)
         {
-
-           
+            var getItemByName = _brandRepository.GetBrandByName(brand.Name);
+            if (getItemByName == null || getItemByName.IsDelete == true)
+            {
                 var NewBrand = new Brand()
                 {
-                   Name = brand.Name,
-                   Description=brand.Description
+                    Name = brand.Name,
+                    Description = brand.Description
                 };
                 _unitOfWork.Brands.Add(NewBrand);
                 _unitOfWork.Complete();
                 return NewBrand;
-           
+
+            }
+            else return null;
         }
         public void DeleteBrand(int Id)
         {

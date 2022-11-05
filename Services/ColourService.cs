@@ -12,23 +12,31 @@ namespace Services
     public class ColourService : IColourService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IColourRepository _colourRepository;
 
-        public ColourService(IUnitOfWork unitOfWork)
+        public ColourService(IUnitOfWork unitOfWork,IColourRepository colourRepository)
         {
             _unitOfWork = unitOfWork;
+            _colourRepository = colourRepository;
 
         }
         public Colour AddColour(Colour colour)
         {
-            
+            var getItemByName = _colourRepository.GetColourByName(colour.Name);
+            if (getItemByName == null || getItemByName.IsDelete == true)
+            {
                 var newColour = new Colour()
                 {
                     Name = colour.Name,
-                    Description=colour.Description
+                    Description = colour.Description
                 };
                 _unitOfWork.Colours.Add(newColour);
                 _unitOfWork.Complete();
                 return newColour;
+
+            }
+            else return null;
+          
             
 
         }

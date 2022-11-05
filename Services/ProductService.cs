@@ -12,57 +12,66 @@ namespace Services
     public class ProductService : IProductService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductRepository _productRepository;
 
-        public ProductService(IUnitOfWork unitOfWork)
+        public ProductService(IUnitOfWork unitOfWork, IProductRepository productRepository)
         {
             _unitOfWork = unitOfWork;
+            _productRepository = productRepository;
 
         }
         public Product AddProduct(Product product)
         {
-            if(product.PurchaseTax ==0)
+            var getItemByName = _productRepository.GetProductByName(product.Name);
+            if (getItemByName == null || getItemByName.IsDelete == true)
             {
-                var newProduct = new Product()
+                if (product.PurchaseTax == 0)
                 {
-                    Name = product.Name,
-                    Description = product.Description,
-                    UomId = product.UomId,
-                    Quantity = product.Quantity,
-                    BrandId = product.BrandId,
-                    CategoryId = product.CategoryId,
-                    SizeId = product.SizeId,
-                    ColourId = product.ColourId,
-                    PurchasePrice = product.PurchasePrice,
-                    SalesPrice = product.SalesPrice,
-                    PurchaseTax = product.PurchaseTax,
-                    SalesTax = product.SalesTax,
-                    TotalPrice = (product.Quantity * product.PurchasePrice)
-                };
-                _unitOfWork.Products.Add(newProduct);
-                _unitOfWork.Complete();
+                    var newProduct = new Product()
+                    {
+                        Name = product.Name,
+                        Description = product.Description,
+                        UomId = product.UomId,
+                        Quantity = product.Quantity,
+                        BrandId = product.BrandId,
+                        CategoryId = product.CategoryId,
+                        SizeId = product.SizeId,
+                        ColourId = product.ColourId,
+                        PurchasePrice = product.PurchasePrice,
+                        SalesPrice = product.SalesPrice,
+                        PurchaseTax = product.PurchaseTax,
+                        SalesTax = product.SalesTax,
+                        TotalPrice = (product.Quantity * product.PurchasePrice)
+                    };
+                    _unitOfWork.Products.Add(newProduct);
+                    _unitOfWork.Complete();
+                }
+                else
+                {
+                    var newProduct = new Product()
+                    {
+                        Name = product.Name,
+                        Description = product.Description,
+                        UomId = product.UomId,
+                        Quantity = product.Quantity,
+                        BrandId = product.BrandId,
+                        CategoryId = product.CategoryId,
+                        SizeId = product.SizeId,
+                        ColourId = product.ColourId,
+                        PurchasePrice = product.PurchasePrice,
+                        SalesPrice = product.SalesPrice,
+                        PurchaseTax = product.PurchaseTax,
+                        SalesTax = product.SalesTax,
+                        TotalPrice = (product.Quantity * product.PurchasePrice) - (product.Quantity * product.PurchasePrice) * (0.01 * product.PurchaseTax)
+                    };
+                    _unitOfWork.Products.Add(newProduct);
+                    _unitOfWork.Complete();
+                }
+                return product;
+
             }
-            else
-            {
-                var newProduct = new Product()
-                {
-                    Name = product.Name,
-                    Description = product.Description,
-                    UomId = product.UomId,
-                    Quantity = product.Quantity,
-                    BrandId = product.BrandId,
-                    CategoryId = product.CategoryId,
-                    SizeId = product.SizeId,
-                    ColourId = product.ColourId,
-                    PurchasePrice = product.PurchasePrice,
-                    SalesPrice = product.SalesPrice,
-                    PurchaseTax = product.PurchaseTax,
-                    SalesTax = product.SalesTax,
-                    TotalPrice = (product.Quantity * product.PurchasePrice) - (product.Quantity * product.PurchasePrice)*(0.01*product.PurchaseTax)
-                };
-                _unitOfWork.Products.Add(newProduct);
-                _unitOfWork.Complete();
-            }      
-            return product;
+            else return null;
+           
 
         }
 

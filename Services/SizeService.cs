@@ -12,15 +12,19 @@ namespace Services
     public class SizeService : ISizeService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly ISizeRepository _sizeRepository;
 
-        public SizeService(IUnitOfWork unitOfWork)
+        public SizeService(IUnitOfWork unitOfWork, ISizeRepository sizeRepository)
         {
             _unitOfWork = unitOfWork;
+            _sizeRepository = sizeRepository;
 
         }
         public Size AddSize(Size size)
         {
-           
+            var getItemByName = _sizeRepository.GetSizeByName(size.Name);
+            if (getItemByName == null || getItemByName.IsDelete == true)
+            {
                 var newSize = new Size()
                 {
                     Name = size.Name,
@@ -30,10 +34,8 @@ namespace Services
                 _unitOfWork.Sizes.Add(newSize);
                 _unitOfWork.Complete();
                 return newSize;
-      
-
-
-
+            }
+            else return null;
         }
 
         public void DeleteSize(int Id)

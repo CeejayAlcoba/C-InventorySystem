@@ -12,10 +12,12 @@ namespace Services
     public class CategoryService :ICategoryService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public CategoryService(IUnitOfWork unitOfWork)
+        public CategoryService(IUnitOfWork unitOfWork, ICategoryRepository categoryRepository)
         {
             _unitOfWork = unitOfWork;
+            _categoryRepository = categoryRepository;
 
         }
         public void UpdateCategory(Category category, int Id)
@@ -28,16 +30,20 @@ namespace Services
         }
         public Category AddCategory(Category category)
         {
-           
+            var getItemByName = _categoryRepository.GetCategoryByName(category.Name);
+            if (getItemByName == null || getItemByName.IsDelete == true)
+            {
                 var newCategory = new Category()
                 {
                     Name = category.Name,
-                    Description=category.Description
+                    Description = category.Description
                 };
                 _unitOfWork.Categories.Add(newCategory);
                 _unitOfWork.Complete();
                 return newCategory;
-            
+
+            }
+            else return null;
 
         }
         public void DeleteCategory(int Id)
