@@ -64,6 +64,7 @@ namespace WebApi
             services.AddScoped<IPurchaseReceiptService, PurchaseReceiptService>();
             services.AddScoped<IPurchaseReturnService, PurchaseReturnService>();
             services.AddScoped<ISalesChannelService, SalesChannelService>();
+            services.AddScoped<ISalesChannelRepository, SalesChannelRepository>();
             services.AddScoped<ISalesDeliveryService, SalesDeliveryService>();
             services.AddScoped<ISalesOrderItemService, SalesOrderItemService>();
             services.AddScoped<ISalesOrderService, SalesOrderService>();

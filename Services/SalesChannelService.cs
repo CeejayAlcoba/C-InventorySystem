@@ -12,16 +12,17 @@ namespace Services
     public class SalesChannelService : ISalesChannelService
     {
         private readonly IUnitOfWork _unitOfWork;
-
-        public SalesChannelService(IUnitOfWork unitOfWork)
+        private readonly ISalesChannelRepository _salesChannelRepository;
+        public SalesChannelService(IUnitOfWork unitOfWork,ISalesChannelRepository salesChannelRepository)
         {
             _unitOfWork = unitOfWork;
+            _salesChannelRepository = salesChannelRepository;
 
         }
         public SalesChannel AddSalesChannel(SalesChannel salesChannel)
         {
-            var getSalesChannel = _unitOfWork.SalesChannels.GetSalesChannelByName(salesChannel.Name);
-            if (getSalesChannel == null)
+            var getItemByName = _salesChannelRepository.GetSalesChannelByName(salesChannel.Name);
+            if (getItemByName == null || getItemByName.IsDelete == true)
             {
                 var newSalesChannel = new SalesChannel()
                 {
@@ -31,9 +32,10 @@ namespace Services
                 _unitOfWork.SalesChannels.Add(newSalesChannel);
                 _unitOfWork.Complete();
                 return newSalesChannel;
+
             }
-            else
-                return null;
+            else return null;
+           
             
         }
 
