@@ -2,6 +2,7 @@
 using Domain.Interfaces;
 using Services.Contracts;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -77,9 +78,30 @@ namespace Services
 
         public void DeleteProduct(int Id)
         {
-            var product = _unitOfWork.Products.GetById(Id);
-            _unitOfWork.Products.Remove(product);
+            var item = _unitOfWork.Products.GetById(Id);
+            if (item.IsDelete == true)
+            {
+                item.IsDelete = false;
+            }
+            else
+            {
+                item.IsDelete = true;
+            }
             _unitOfWork.Complete();
+        }
+        public void DeleteProduct(IEnumerable<Product>product)
+        {
+            if(product != null)
+            {
+                foreach (var item in product)
+                {
+                    if (item.IsDelete == false)
+                    {
+                        item.IsDelete = true;
+                    }
+                    _unitOfWork.Complete();
+                }
+            }
         }
 
         public void UpdateProduct(Product product, int Id)

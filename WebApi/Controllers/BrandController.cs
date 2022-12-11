@@ -79,22 +79,12 @@ namespace WebApi.Controllers
         }
         [HttpDelete]
         [Route("/api/brand/id/{id}")]
-        public IActionResult DeleteBrand(int Id)
+        public IActionResult DeleteBrand(int id)
         {
             try
             {
-                var uom = _unitOfWork.Brands.GetById(Id);
-                if (uom.IsDelete == true)
-                {
-                    uom.IsDelete = false;
-                    _unitOfWork.Complete();
-                }
-                else
-                {
-                    uom.IsDelete = true;
-                    _unitOfWork.Complete();
-                }
 
+                _brandService.DeleteBrand(id);
                 return Ok();
             }
             catch (Exception ex)

@@ -11,6 +11,7 @@ namespace Services.Contracts
     {
         void UpdateProduct(Product product, int Id);
         Product AddProduct(Product product);
+        void DeleteProduct(IEnumerable<Product> product);
         void DeleteProduct(int Id);
 
     }
