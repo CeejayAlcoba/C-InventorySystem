@@ -33,10 +33,11 @@ namespace WebApi.Controllers
         public IActionResult AddUser([FromBody] User user)
         {
             var result = _unitOfWork.Users.GetUserByUsername(user.Username);
+            var resultIsDelete = result.IsDelete = true;
 
             if (user.Password == user.ReTypePassword)
             {
-                if (result == null) 
+                if (result == null || result.IsDelete == true) 
                 {
                     _userService.AddUser(user);
                     return Ok();
@@ -114,10 +115,9 @@ namespace WebApi.Controllers
             return Ok(usersList);
         }
         [HttpGet]
-        [Route("/api/user/disabled")]
-        public IActionResult DisabledUsersList()
+        public IActionResult GetUsersList()
         {
-            var usersList = _userService.GetUser(true);
+            var usersList = _unitOfWork.Users.GetAll();
             return Ok(usersList);
         }
         [HttpPatch]
