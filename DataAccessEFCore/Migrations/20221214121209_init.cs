@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccessEFCore.Migrations
 {
-    public partial class InitDb : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,8 @@ namespace DataAccessEFCore.Migrations
                     BrandId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -28,7 +29,8 @@ namespace DataAccessEFCore.Migrations
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -42,7 +44,8 @@ namespace DataAccessEFCore.Migrations
                     ColourId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -61,7 +64,8 @@ namespace DataAccessEFCore.Migrations
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     State = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -75,7 +79,8 @@ namespace DataAccessEFCore.Migrations
                     LocationId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -89,7 +94,8 @@ namespace DataAccessEFCore.Migrations
                     SalesChannelId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -109,7 +115,8 @@ namespace DataAccessEFCore.Migrations
                     State = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ZipCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -123,7 +130,8 @@ namespace DataAccessEFCore.Migrations
                     SizeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<double>(type: "float", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -142,7 +150,8 @@ namespace DataAccessEFCore.Migrations
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     State = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -156,7 +165,9 @@ namespace DataAccessEFCore.Migrations
                     UomId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    MinimumStockAlert = table.Column<double>(type: "float", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -173,7 +184,8 @@ namespace DataAccessEFCore.Migrations
                     Lastname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Salt = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-                    HashPassword = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    HashPassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -186,10 +198,21 @@ namespace DataAccessEFCore.Migrations
                 {
                     SalesOrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DefaultDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
-                    SalesChannelId = table.Column<int>(type: "int", nullable: false)
+                    SalesChannelId = table.Column<int>(type: "int", nullable: false),
+                    SubTotal = table.Column<double>(type: "float", nullable: false),
+                    Discount = table.Column<double>(type: "float", nullable: false),
+                    BeforeTax = table.Column<double>(type: "float", nullable: false),
+                    TaxAmount = table.Column<double>(type: "float", nullable: false),
+                    OtherCharge = table.Column<double>(type: "float", nullable: false),
+                    Total = table.Column<double>(type: "float", nullable: false),
+                    Reason = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true, defaultValue: "Open"),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -214,15 +237,20 @@ namespace DataAccessEFCore.Migrations
                 {
                     PurchaseOrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DefaultDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     SupplierId = table.Column<int>(type: "int", nullable: false),
                     SubTotal = table.Column<double>(type: "float", nullable: false),
                     Discount = table.Column<double>(type: "float", nullable: false),
                     BeforeTax = table.Column<double>(type: "float", nullable: false),
                     TaxAmount = table.Column<double>(type: "float", nullable: false),
                     OtherCharge = table.Column<double>(type: "float", nullable: false),
-                    Total = table.Column<double>(type: "float", nullable: false)
+                    Total = table.Column<double>(type: "float", nullable: false),
+                    Reason = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true, defaultValue: "Open"),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -248,7 +276,13 @@ namespace DataAccessEFCore.Migrations
                     BrandId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     SizeId = table.Column<int>(type: "int", nullable: false),
-                    ColourId = table.Column<int>(type: "int", nullable: false)
+                    ColourId = table.Column<int>(type: "int", nullable: false),
+                    PurchasePrice = table.Column<double>(type: "float", nullable: false),
+                    SalesPrice = table.Column<double>(type: "float", nullable: false),
+                    PurchaseTax = table.Column<double>(type: "float", nullable: false),
+                    SalesTax = table.Column<double>(type: "float", nullable: false),
+                    TotalPrice = table.Column<double>(type: "float", nullable: false),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -295,12 +329,19 @@ namespace DataAccessEFCore.Migrations
                     DeliveryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     SalesOrderId = table.Column<int>(type: "int", nullable: false),
                     ShipperId = table.Column<int>(type: "int", nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Total = table.Column<double>(type: "float", nullable: false)
+                    LocationId = table.Column<int>(type: "int", nullable: false),
+                    Total = table.Column<double>(type: "float", nullable: false),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SalesDeliveries", x => x.SalesDeliveryId);
+                    table.ForeignKey(
+                        name: "FK_SalesDeliveries_Locations_LocationId",
+                        column: x => x.LocationId,
+                        principalTable: "Locations",
+                        principalColumn: "LocationId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_SalesDeliveries_SalesOrders_SalesOrderId",
                         column: x => x.SalesOrderId,
@@ -325,7 +366,8 @@ namespace DataAccessEFCore.Migrations
                     ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     SalesOrderId = table.Column<int>(type: "int", nullable: false),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Total = table.Column<double>(type: "float", nullable: false)
+                    Total = table.Column<double>(type: "float", nullable: false),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -348,7 +390,8 @@ namespace DataAccessEFCore.Migrations
                     ReceiptDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PurchaseOrderId = table.Column<int>(type: "int", nullable: false),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Total = table.Column<double>(type: "float", nullable: false)
+                    Total = table.Column<double>(type: "float", nullable: false),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -359,6 +402,43 @@ namespace DataAccessEFCore.Migrations
                         principalTable: "PurchaseOrders",
                         principalColumn: "PurchaseOrderId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductHistories",
+                columns: table => new
+                {
+                    ProductHistoryId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    PurchaseOrderId = table.Column<int>(type: "int", nullable: true),
+                    SalesOrderId = table.Column<int>(type: "int", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Transac = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductHistories", x => x.ProductHistoryId);
+                    table.ForeignKey(
+                        name: "FK_ProductHistories_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductHistories_PurchaseOrders_PurchaseOrderId",
+                        column: x => x.PurchaseOrderId,
+                        principalTable: "PurchaseOrders",
+                        principalColumn: "PurchaseOrderId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ProductHistories_SalesOrders_SalesOrderId",
+                        column: x => x.SalesOrderId,
+                        principalTable: "SalesOrders",
+                        principalColumn: "SalesOrderId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -374,9 +454,10 @@ namespace DataAccessEFCore.Migrations
                     Quantity = table.Column<double>(type: "float", nullable: false),
                     TaxPercentage = table.Column<double>(type: "float", nullable: false),
                     SubTotal = table.Column<double>(type: "float", nullable: false),
-                    BeforeTotal = table.Column<double>(type: "float", nullable: false),
+                    BeforeTax = table.Column<double>(type: "float", nullable: false),
                     TaxAmount = table.Column<double>(type: "float", nullable: false),
-                    Total = table.Column<double>(type: "float", nullable: false)
+                    Total = table.Column<double>(type: "float", nullable: false),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -410,7 +491,8 @@ namespace DataAccessEFCore.Migrations
                     SubTotal = table.Column<double>(type: "float", nullable: false),
                     BeforeTax = table.Column<double>(type: "float", nullable: false),
                     TaxAmount = table.Column<double>(type: "float", nullable: false),
-                    Total = table.Column<double>(type: "float", nullable: false)
+                    Total = table.Column<double>(type: "float", nullable: false),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -430,6 +512,34 @@ namespace DataAccessEFCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SalesDeliveryItem",
+                columns: table => new
+                {
+                    SalesDeliveryItemId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SalesDeliveryId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<double>(type: "float", nullable: false),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SalesDeliveryItem", x => x.SalesDeliveryItemId);
+                    table.ForeignKey(
+                        name: "FK_SalesDeliveryItem_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SalesDeliveryItem_SalesDeliveries_SalesDeliveryId",
+                        column: x => x.SalesDeliveryId,
+                        principalTable: "SalesDeliveries",
+                        principalColumn: "SalesDeliveryId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PurchaseReturns",
                 columns: table => new
                 {
@@ -438,7 +548,8 @@ namespace DataAccessEFCore.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PurchaseReceiptId = table.Column<int>(type: "int", nullable: false),
-                    Total = table.Column<double>(type: "float", nullable: false)
+                    Total = table.Column<double>(type: "float", nullable: false),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -450,6 +561,26 @@ namespace DataAccessEFCore.Migrations
                         principalColumn: "PurchaseReceiptId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Firstname", "HashPassword", "Lastname", "Salt", "Username" },
+                values: new object[] { 1, "Admin", "VckOP5CdQLxnkrVB43FFuepCi3yS3/tX8NEY9jM+/T0=", "Admin", new byte[] { 31, 231, 233, 177, 180, 109, 159, 15, 134, 24, 51, 16, 211, 161, 218, 73 }, "Admin" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductHistories_ProductId",
+                table: "ProductHistories",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductHistories_PurchaseOrderId",
+                table: "ProductHistories",
+                column: "PurchaseOrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductHistories_SalesOrderId",
+                table: "ProductHistories",
+                column: "SalesOrderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_BrandId",
@@ -502,6 +633,11 @@ namespace DataAccessEFCore.Migrations
                 column: "PurchaseReceiptId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SalesDeliveries_LocationId",
+                table: "SalesDeliveries",
+                column: "LocationId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SalesDeliveries_SalesOrderId",
                 table: "SalesDeliveries",
                 column: "SalesOrderId");
@@ -510,6 +646,16 @@ namespace DataAccessEFCore.Migrations
                 name: "IX_SalesDeliveries_ShipperId",
                 table: "SalesDeliveries",
                 column: "ShipperId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SalesDeliveryItem_ProductId",
+                table: "SalesDeliveryItem",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SalesDeliveryItem_SalesDeliveryId",
+                table: "SalesDeliveryItem",
+                column: "SalesDeliveryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SalesOrderItems_ProductId",
@@ -540,7 +686,7 @@ namespace DataAccessEFCore.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Locations");
+                name: "ProductHistories");
 
             migrationBuilder.DropTable(
                 name: "PurchaseOrderItems");
@@ -549,7 +695,7 @@ namespace DataAccessEFCore.Migrations
                 name: "PurchaseReturns");
 
             migrationBuilder.DropTable(
-                name: "SalesDeliveries");
+                name: "SalesDeliveryItem");
 
             migrationBuilder.DropTable(
                 name: "SalesOrderItems");
@@ -564,16 +710,22 @@ namespace DataAccessEFCore.Migrations
                 name: "PurchaseReceipts");
 
             migrationBuilder.DropTable(
-                name: "Shippers");
+                name: "SalesDeliveries");
 
             migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
+                name: "PurchaseOrders");
+
+            migrationBuilder.DropTable(
+                name: "Locations");
+
+            migrationBuilder.DropTable(
                 name: "SalesOrders");
 
             migrationBuilder.DropTable(
-                name: "PurchaseOrders");
+                name: "Shippers");
 
             migrationBuilder.DropTable(
                 name: "Brands");
@@ -591,13 +743,13 @@ namespace DataAccessEFCore.Migrations
                 name: "Uoms");
 
             migrationBuilder.DropTable(
+                name: "Suppliers");
+
+            migrationBuilder.DropTable(
                 name: "Customers");
 
             migrationBuilder.DropTable(
                 name: "SalesChannels");
-
-            migrationBuilder.DropTable(
-                name: "Suppliers");
         }
     }
 }

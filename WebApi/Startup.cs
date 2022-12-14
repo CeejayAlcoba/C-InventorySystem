@@ -94,7 +94,16 @@ namespace WebApi
                 options.Password.RequireLowercase = true;
                 options.Password.RequiredLength = 5;
             }).AddEntityFrameworkStores<ApplicationContext>().AddDefaultTokenProviders();
-
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:3000")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                    });
+            });
             #region Authentication
             services.AddAuthentication(option =>
             {
@@ -116,12 +125,6 @@ namespace WebApi
             });
             #endregion
             services.AddRazorPages();
-            services.AddCors(o => o.AddPolicy("MyCorsPolicy", builder =>
-            {
-                builder.AllowAnyOrigin()
-                       .AllowAnyMethod()
-                       .AllowAnyHeader();
-            }));
             services.AddControllers();
 
             #region Swagger Configuration
@@ -168,6 +171,7 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -185,7 +189,7 @@ namespace WebApi
             }
             app.UseHttpsRedirection();
             app.UseRouting();
-            app.UseCors("MyCorsPolicy");
+            app.UseCors();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>

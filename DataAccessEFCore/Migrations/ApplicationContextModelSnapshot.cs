@@ -791,6 +791,9 @@ namespace DataAccessEFCore.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
 
+                    b.Property<double>("MinimumStockAlert")
+                        .HasColumnType("float");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -835,10 +838,10 @@ namespace DataAccessEFCore.Migrations
                         {
                             Id = 1,
                             Firstname = "Admin",
-                            HashPassword = "atlDQaBh6kcy9o7vKTRXiGT+FlGPYY/TFVdxYNC/vZc=",
+                            HashPassword = "VckOP5CdQLxnkrVB43FFuepCi3yS3/tX8NEY9jM+/T0=",
                             IsDelete = false,
                             Lastname = "Admin",
-                            Salt = new byte[] { 249, 236, 58, 10, 82, 10, 86, 138, 107, 114, 106, 181, 36, 201, 72, 244 },
+                            Salt = new byte[] { 31, 231, 233, 177, 180, 109, 159, 15, 134, 24, 51, 16, 211, 161, 218, 73 },
                             Username = "Admin"
                         });
                 });

@@ -27,7 +27,8 @@ namespace Services
                 var newUom = new Uom()
                 {
                     Name = uom.Name,
-                    Description = uom.Description
+                    Description = uom.Description,
+                    MinimumStockAlert = uom.MinimumStockAlert
                 };
                 _unitOfWork.Uoms.Add(newUom);
                 _unitOfWork.Complete();
@@ -49,6 +50,7 @@ namespace Services
             var getUom = _unitOfWork.Uoms.GetById(Id);
             getUom.Name = uom.Name;
             getUom.Description = uom.Description;
+            getUom.MinimumStockAlert = uom.MinimumStockAlert;
             _unitOfWork.Complete();
 
         }

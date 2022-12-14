@@ -72,7 +72,7 @@ namespace DataAccessEFCore.Repositories
             if (includeColour)
                 query = query.Include(x => x.Colour);
 
-            var getQuantity = query.Where(c=>c.Quantity <=20);
+            var getQuantity = query.Where(c=>c.Quantity <= c.Uom.MinimumStockAlert);
             
             return getQuantity;
         }

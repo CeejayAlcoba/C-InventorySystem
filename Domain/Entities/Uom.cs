@@ -12,6 +12,7 @@ namespace Domain.Entities
         [Key]
         public int UomId { get; set; }
         public string Name { get; set; }
+        public double MinimumStockAlert { get; set; }
         public string Description { get; set; }
         public bool IsDelete { get; set; }
     }
