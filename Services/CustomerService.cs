@@ -18,7 +18,6 @@ namespace Services
         {
             _unitOfWork = unitOfWork;
             _customerRepository = customerRepository;
-            _productService = productService;
         }
        
         public void DeleteCustomer(int Id)
