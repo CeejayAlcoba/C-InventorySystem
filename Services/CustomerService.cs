@@ -33,7 +33,7 @@ namespace Services
             else
             {
                 customer.IsDelete = true;
-                _salesOrderService.CancelSalesOrder(salesOrderList)
+                _salesOrderService.CancelSalesOrder(salesOrderList);
             }
             _unitOfWork.Complete();
 
