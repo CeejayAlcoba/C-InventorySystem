@@ -13,10 +13,12 @@ namespace Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ISalesChannelRepository _salesChannelRepository;
-        public SalesChannelService(IUnitOfWork unitOfWork,ISalesChannelRepository salesChannelRepository)
+        private readonly ISalesOrderService _salesOrderService;
+        public SalesChannelService(IUnitOfWork unitOfWork,ISalesChannelRepository salesChannelRepository,ISalesOrderService salesOrderService)
         {
             _unitOfWork = unitOfWork;
             _salesChannelRepository = salesChannelRepository;
+            _salesOrderService = salesOrderService;
 
         }
         public SalesChannel AddSalesChannel(SalesChannel salesChannel)
@@ -42,7 +44,16 @@ namespace Services
         public void DeleteSalesChannel(int Id)
         {
             var salesChannel = _unitOfWork.SalesChannels.GetById(Id);
-            _unitOfWork.SalesChannels.Remove(salesChannel);
+            var salesOrderList = _unitOfWork.SalesOrders.GetAll().Where(c => c.SalesChannelId == Id);
+            if (salesChannel.IsDelete == true)
+            {
+                salesChannel.IsDelete = false;
+            }
+            else
+            {
+                salesChannel.IsDelete = true;
+                _salesOrderService.CancelSalesOrder(salesOrderList);
+            }
             _unitOfWork.Complete();
         }
 

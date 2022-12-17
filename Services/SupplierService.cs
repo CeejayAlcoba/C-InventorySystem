@@ -13,11 +13,13 @@ namespace Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ISupplierRepository _supplierRepository;
+        private readonly IPurchaseOrderService _purchaseOrderService;
 
-        public SupplierService(IUnitOfWork unitOfWork,ISupplierRepository supplierRepository)
+        public SupplierService(IUnitOfWork unitOfWork,ISupplierRepository supplierRepository,IPurchaseOrderService purchaseOrderService)
         {
             _unitOfWork = unitOfWork;
             _supplierRepository = supplierRepository;
+            _purchaseOrderService = purchaseOrderService;
 
         }
         public Supplier AddSupplier(Supplier supplier)
@@ -47,17 +49,17 @@ namespace Services
         public void DeleteSupplier(int Id)
         {
             var item = _unitOfWork.Suppliers.GetById(Id);
+            var purchaseOrderList = _unitOfWork.PurchaseOrders.GetAll().Where(c => c.SupplierId == Id);
             if (item.IsDelete == true)
             {
                 item.IsDelete = false;
-                _unitOfWork.Complete();
             }
             else
             {
                 item.IsDelete = true;
-                _unitOfWork.Complete();
+                _purchaseOrderService.CancelPurchaseOrder(purchaseOrderList);
             }
-
+            _unitOfWork.Complete();
         }
 
         public Supplier UpdateSupplier(Supplier supplier, int Id)

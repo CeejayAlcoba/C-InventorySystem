@@ -14,15 +14,18 @@ namespace Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICustomerRepository _customerRepository;
-        public CustomerService(IUnitOfWork unitOfWork,ICustomerRepository customerRepository)
+        private readonly ISalesOrderService _salesOrderService;
+        public CustomerService(IUnitOfWork unitOfWork,ICustomerRepository customerRepository,ISalesOrderService salesOrderService)
         {
             _unitOfWork = unitOfWork;
             _customerRepository = customerRepository;
+            _salesOrderService = salesOrderService;
         }
        
         public void DeleteCustomer(int Id)
         {
             var customer = _unitOfWork.Customers.GetById(Id);
+            var salesOrderList = _unitOfWork.SalesOrders.GetAll().Where(c => c.CustomerId == Id);
             if (customer.IsDelete == true)
             {
                 customer.IsDelete = false;
@@ -30,6 +33,7 @@ namespace Services
             else
             {
                 customer.IsDelete = true;
+                _salesOrderService.CancelSalesOrder(salesOrderList)
             }
             _unitOfWork.Complete();
 

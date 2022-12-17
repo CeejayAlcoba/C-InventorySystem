@@ -80,17 +80,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var uom = _unitOfWork.SalesChannels.GetById(Id);
-                if (uom.IsDelete == true)
-                {
-                    uom.IsDelete = false;
-                    _unitOfWork.Complete();
-                }
-                else
-                {
-                    uom.IsDelete = true;
-                    _unitOfWork.Complete();
-                }
+                
 
                 return Ok();
             }

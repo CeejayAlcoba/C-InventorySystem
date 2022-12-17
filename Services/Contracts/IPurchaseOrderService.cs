@@ -16,6 +16,7 @@ namespace Services.Contracts
         PurchaseOrder CancelPurchaseOrder(int id, DateTime date);
         PurchaseOrder ReOpenPurchaseOrder(int id);
         void DeletePurchaseOrder(int Id);
+        void CancelPurchaseOrder(IEnumerable<PurchaseOrder> purchaseOrder);
 
     }
 }

@@ -149,6 +149,15 @@ namespace Services
                 return null;
             
         }
+        public void CancelSalesOrder(IEnumerable<SalesOrder>salesOrders)
+        {
+            foreach (var item in salesOrders)
+            {
+                item.Status = "Cancelled";
+                _unitOfWork.Complete();
+            }
+
+        }
         public SalesOrder ReOpenSalesOrder(int id)
         {
             var product = _unitOfWork.ProductHistories.GetAll();

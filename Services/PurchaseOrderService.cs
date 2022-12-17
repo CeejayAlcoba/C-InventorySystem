@@ -95,7 +95,14 @@ namespace Services
                 return getPurchaseOrder;
             }
             return null;
-
+        }
+        public void CancelPurchaseOrder(IEnumerable<PurchaseOrder> purchaseOrder)
+        {
+            foreach(var item in purchaseOrder)
+            {
+                item.Status = "Cancelled";
+                _unitOfWork.Complete();
+            }
         }
         public PurchaseOrder ReOpenPurchaseOrder(int id)
         {

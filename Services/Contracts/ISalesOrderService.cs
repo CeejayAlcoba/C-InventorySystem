@@ -13,6 +13,7 @@ namespace Services.Contracts
         SalesOrder AddSalesOrder(SalesOrder salesOrder);
         void DeleteSalesOrder(int Id);
         SalesOrder CancelSalesOrder(int id, DateTime date);
+        void CancelSalesOrder(IEnumerable<SalesOrder>salesOrder);
         SalesOrder ReOpenSalesOrder(int id);
         SalesOrder CompleteSalesOrder(int id, DateTime date);
         SalesOrder ReturnSalesOrder(int id, DateTime date,string Reason);
