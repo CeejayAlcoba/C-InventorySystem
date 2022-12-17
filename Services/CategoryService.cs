@@ -13,11 +13,13 @@ namespace Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IProductService _productService;
 
-        public CategoryService(IUnitOfWork unitOfWork, ICategoryRepository categoryRepository)
+        public CategoryService(IUnitOfWork unitOfWork, ICategoryRepository categoryRepository,IProductService productService)
         {
             _unitOfWork = unitOfWork;
             _categoryRepository = categoryRepository;
+            _productService = productService;
 
         }
         public void UpdateCategory(Category category, int Id)
@@ -49,9 +51,18 @@ namespace Services
         public void DeleteCategory(int Id)
         {
             var category = _unitOfWork.Categories.GetById(Id);
-            _unitOfWork.Categories.Remove(category);
-            _unitOfWork.Complete();
+            var productList = _unitOfWork.Products.GetAll().Where(c => c.CategoryId == Id);
+            if (category.IsDelete == true)
+            {
+                category.IsDelete = false;
 
+            }
+            else
+            {
+                category.IsDelete = true;
+                _productService.DeleteProduct(productList);
+            }
+            _unitOfWork.Complete();
         }
 
     }

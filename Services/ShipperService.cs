@@ -47,8 +47,16 @@ namespace Services
         public void DeleteShipper(int Id)
         {
             var shipper = _unitOfWork.Shippers.GetById(Id);
-            _unitOfWork.Shippers.Remove(shipper);
-            _unitOfWork.Complete();
+            if (shipper.IsDelete == true)
+            {
+                shipper.IsDelete = false;
+                _unitOfWork.Complete();
+            }
+            else
+            {
+                shipper.IsDelete = true;
+                _unitOfWork.Complete();
+            }
         }
 
         public void UpdateShipper(Shipper shipper, int Id)

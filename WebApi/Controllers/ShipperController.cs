@@ -80,18 +80,8 @@ namespace WebApi.Controllers
         {
             try
             {
-                var uom = _unitOfWork.Shippers.GetById(Id);
-                if (uom.IsDelete == true)
-                {
-                    uom.IsDelete = false;
-                    _unitOfWork.Complete();
-                }
-                else
-                {
-                    uom.IsDelete = true;
-                    _unitOfWork.Complete();
-                }
 
+                _shipperService.DeleteShipper(Id);
                 return Ok();
             }
             catch (Exception ex)

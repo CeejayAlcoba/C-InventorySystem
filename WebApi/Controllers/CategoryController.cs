@@ -80,18 +80,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var category = _unitOfWork.Categories.GetById(Id);
-                if (category.IsDelete == true)
-                {
-                    category.IsDelete = false;
-                    _unitOfWork.Complete();
-                }
-                else
-                {
-                    category.IsDelete = true;
-                    _unitOfWork.Complete();
-                }
-
+                _categoryService.DeleteCategory(Id);
                 return Ok();
             }
             catch (Exception ex)

@@ -12,7 +12,7 @@ namespace Services.Contracts
     {
         void UpdateCustomer(Customer customer, int Id);
         Customer AddCustomer(Customer customer);
-        IEnumerable DeleteCustomer(int Id);
+        void DeleteCustomer(int Id);
 
     }
 }

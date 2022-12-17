@@ -18,16 +18,21 @@ namespace Services
         {
             _unitOfWork = unitOfWork;
             _customerRepository = customerRepository;
-
+            _productService = productService;
         }
        
-        public IEnumerable DeleteCustomer(int Id)
+        public void DeleteCustomer(int Id)
         {
             var customer = _unitOfWork.Customers.GetById(Id);
-            _unitOfWork.Customers.Remove(customer);
+            if (customer.IsDelete == true)
+            {
+                customer.IsDelete = false;
+            }
+            else
+            {
+                customer.IsDelete = true;
+            }
             _unitOfWork.Complete();
-            var customers = _unitOfWork.Customers.GetAll();
-            return customers;
 
         }
         public Customer AddCustomer(Customer customer)

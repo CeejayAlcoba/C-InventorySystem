@@ -13,11 +13,13 @@ namespace Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IColourRepository _colourRepository;
+        private readonly IProductService _productService;
 
-        public ColourService(IUnitOfWork unitOfWork,IColourRepository colourRepository)
+        public ColourService(IUnitOfWork unitOfWork,IColourRepository colourRepository,IProductService productService)
         {
             _unitOfWork = unitOfWork;
             _colourRepository = colourRepository;
+            _productService = productService;
 
         }
         public Colour AddColour(Colour colour)
@@ -44,7 +46,16 @@ namespace Services
         public void DeleteColour(int Id)
         {
             var colour = _unitOfWork.Colours.GetById(Id);
-            _unitOfWork.Colours.Remove(colour);
+            var productList = _unitOfWork.Products.GetAll().Where(c => c.ColourId == Id);
+            if (colour.IsDelete == true)
+            {
+                colour.IsDelete = false;     
+            }
+            else
+            {
+                colour.IsDelete = true;
+                _productService.DeleteProduct(productList);
+            }
             _unitOfWork.Complete();
 
         }

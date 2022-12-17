@@ -13,11 +13,12 @@ namespace Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ISizeRepository _sizeRepository;
-
-        public SizeService(IUnitOfWork unitOfWork, ISizeRepository sizeRepository)
+        private readonly IProductService _productService;
+        public SizeService(IUnitOfWork unitOfWork, ISizeRepository sizeRepository,IProductService productService)
         {
             _unitOfWork = unitOfWork;
             _sizeRepository = sizeRepository;
+            _productService = productService;
 
         }
         public Size AddSize(Size size)
@@ -41,7 +42,16 @@ namespace Services
         public void DeleteSize(int Id)
         {
             var size = _unitOfWork.Sizes.GetById(Id);
-            _unitOfWork.Sizes.Remove(size);
+            var productList = _unitOfWork.Products.GetAll().Where(c => c.SizeId == Id);
+            if (size.IsDelete == true)
+            {
+                size.IsDelete = false;
+            }
+            else
+            {
+                size.IsDelete = true;
+                _productService.DeleteProduct(productList);
+            }
             _unitOfWork.Complete();
 
         }
