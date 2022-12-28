@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\Domain\\Domain.csproj": {}
+    "C:\\Users\\alcoba\\Desktop\\c#\\C-InventorySystem\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\Domain\\Domain.csproj": {
+    "C:\\Users\\alcoba\\Desktop\\c#\\C-InventorySystem\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\alcoba\\Desktop\\c#\\C-InventorySystem\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\alcoba\\Desktop\\c#\\C-InventorySystem\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\alcoba\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\alcoba\\Desktop\\c#\\C-InventorySystem\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\alcoba\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\alcoba\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\alcoba\\.nuget\\packages"
+    ]
+  }
+}

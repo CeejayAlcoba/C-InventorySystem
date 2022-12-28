@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "F1sFXzYwmnAcQADks4v00OMUr1uXy9y3Zc5XA8EKNf5ILb8iVRD8vxpd2Va+2UvxIcSO0c/+Qwd2qHUxXsMrfw==",
+  "dgSpecHash": "yDq/7h+nSSK5HtBw7AxjoJfixNsoGvAJLywQ5bjQTOCHHrvK2SrDmByEH1yg1SsrcBTyMjANBo2sher7vGwtpg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\Domain\\Domain.csproj",
+  "projectFilePath": "C:\\Users\\alcoba\\Desktop\\c#\\C-InventorySystem\\Domain\\Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alcoba\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.14\\microsoft.entityframeworkcore.5.0.14.nupkg.sha512",
     "C:\\Users\\alcoba\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.14\\microsoft.entityframeworkcore.abstractions.5.0.14.nupkg.sha512",

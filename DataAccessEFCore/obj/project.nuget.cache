@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gkldycMve1/Wu3ul2Rjdf2ogjHvBEJUBiqJ7lDQMW+7UxBRdo2EurH1J3rKi3xp728UqQjht3nAYPwPnKKfKSg==",
+  "dgSpecHash": "wlx3TqGmGL0Q7YYXLPEM7hrtwwhRVGO3mvsOgj6z+khYMgb/DYdKhrDabzoZaUM3Bgd96AA11GJFMhU5U797jg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\alcoba\\Desktop\\inventoryC#\\InventorySystem\\DataAccessEFCore\\DataAccessEFCore.csproj",
+  "projectFilePath": "C:\\Users\\alcoba\\Desktop\\c#\\C-InventorySystem\\DataAccessEFCore\\DataAccessEFCore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alcoba\\.nuget\\packages\\google.apis\\1.56.0\\google.apis.1.56.0.nupkg.sha512",
     "C:\\Users\\alcoba\\.nuget\\packages\\google.apis.admin.directory.directory_v1\\1.56.0.2609\\google.apis.admin.directory.directory_v1.1.56.0.2609.nupkg.sha512",
