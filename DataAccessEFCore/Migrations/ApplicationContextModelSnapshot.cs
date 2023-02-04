@@ -430,6 +430,33 @@ namespace DataAccessEFCore.Migrations
                     b.ToTable("PurchaseReturns");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Role", b =>
+                {
+                    b.Property<int>("RoleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("RoleType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RoleId");
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            RoleId = 1,
+                            RoleType = "Admin"
+                        },
+                        new
+                        {
+                            RoleId = 2,
+                            RoleType = "Staff"
+                        });
+                });
+
             modelBuilder.Entity("Domain.Entities.SalesChannel", b =>
                 {
                     b.Property<int>("SalesChannelId")
@@ -823,6 +850,9 @@ namespace DataAccessEFCore.Migrations
                     b.Property<string>("Lastname")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
                     b.Property<byte[]>("Salt")
                         .HasColumnType("varbinary(max)");
 
@@ -831,6 +861,8 @@ namespace DataAccessEFCore.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RoleId");
+
                     b.ToTable("Users");
 
                     b.HasData(
@@ -838,10 +870,11 @@ namespace DataAccessEFCore.Migrations
                         {
                             Id = 1,
                             Firstname = "Admin",
-                            HashPassword = "VckOP5CdQLxnkrVB43FFuepCi3yS3/tX8NEY9jM+/T0=",
+                            HashPassword = "sT6+B5n4VnzYwcbl808M0w0T2O2/887A4ISmgnLYfBk=",
                             IsDelete = false,
                             Lastname = "Admin",
-                            Salt = new byte[] { 31, 231, 233, 177, 180, 109, 159, 15, 134, 24, 51, 16, 211, 161, 218, 73 },
+                            RoleId = 1,
+                            Salt = new byte[] { 193, 65, 152, 197, 54, 212, 33, 58, 121, 32, 42, 218, 40, 214, 102, 98 },
                             Username = "Admin"
                         });
                 });
@@ -1057,6 +1090,17 @@ namespace DataAccessEFCore.Migrations
                         .IsRequired();
 
                     b.Navigation("SalesOrder");
+                });
+
+            modelBuilder.Entity("Domain.Entities.User", b =>
+                {
+                    b.HasOne("Domain.Entities.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("Domain.Entities.PurchaseOrder", b =>

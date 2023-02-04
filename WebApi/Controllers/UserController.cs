@@ -33,7 +33,6 @@ namespace WebApi.Controllers
         public IActionResult AddUser([FromBody] User user)
         {
             var result = _unitOfWork.Users.GetUserByUsername(user.Username);
-            var resultIsDelete = result.IsDelete = true;
 
             if (user.Password == user.ReTypePassword)
             {
@@ -42,7 +41,7 @@ namespace WebApi.Controllers
                     _userService.AddUser(user);
                     return Ok();
                 }
-                return BadRequest("Username is already exist");
+                return BadRequest("Username already exists");
             }
 
             return BadRequest("Password doesn't  match");
@@ -67,7 +66,7 @@ namespace WebApi.Controllers
                     }
                     else
                     {
-                        return BadRequest("Username is already exist");
+                        return BadRequest("Username already exists");
                     }
 
                 }

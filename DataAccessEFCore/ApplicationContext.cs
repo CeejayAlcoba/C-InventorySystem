@@ -1,7 +1,6 @@
 ﻿using Domain.Entities;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.EntityFrameworkCore;
-using Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +17,7 @@ namespace DataAccessEFCore
         {
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Colour> Colours { get; set; }
@@ -42,6 +42,19 @@ namespace DataAccessEFCore
         {
             var salt = ModelBuilderExtensions.GenerateSalt("Admin");
             var hashedPassword = ModelBuilderExtensions.GenerateHashPassword("Admin", salt);
+            modelBuilder.Entity<Role>().HasData(
+             new Role
+             {
+                 RoleId = 1,
+                 RoleType = "Admin",
+             },
+             new Role
+             {
+                 RoleId = 2,
+                 RoleType = "Staff",
+
+             }
+                );
             modelBuilder.Entity<User>().HasData(
              new User
              {
@@ -51,9 +64,11 @@ namespace DataAccessEFCore
                  Username = "Admin",
                  Salt = salt,
                  HashPassword = hashedPassword,
+                 RoleId=1
 
              }
                 );
+            
             modelBuilder.Entity<PurchaseOrder>()
                 .Property(b => b.Status)
                 .HasDefaultValue("Open");

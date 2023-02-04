@@ -88,6 +88,19 @@ namespace DataAccessEFCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Roles",
+                columns: table => new
+                {
+                    RoleId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleType = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Roles", x => x.RoleId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SalesChannels",
                 columns: table => new
                 {
@@ -185,11 +198,18 @@ namespace DataAccessEFCore.Migrations
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Salt = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     HashPassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
                     IsDelete = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Users_Roles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "Roles",
+                        principalColumn: "RoleId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -563,9 +583,19 @@ namespace DataAccessEFCore.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Roles",
+                columns: new[] { "RoleId", "RoleType" },
+                values: new object[] { 1, "Admin" });
+
+            migrationBuilder.InsertData(
+                table: "Roles",
+                columns: new[] { "RoleId", "RoleType" },
+                values: new object[] { 2, "Staff" });
+
+            migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "Firstname", "HashPassword", "Lastname", "Salt", "Username" },
-                values: new object[] { 1, "Admin", "VckOP5CdQLxnkrVB43FFuepCi3yS3/tX8NEY9jM+/T0=", "Admin", new byte[] { 31, 231, 233, 177, 180, 109, 159, 15, 134, 24, 51, 16, 211, 161, 218, 73 }, "Admin" });
+                columns: new[] { "Id", "Firstname", "HashPassword", "Lastname", "RoleId", "Salt", "Username" },
+                values: new object[] { 1, "Admin", "sT6+B5n4VnzYwcbl808M0w0T2O2/887A4ISmgnLYfBk=", "Admin", 1, new byte[] { 193, 65, 152, 197, 54, 212, 33, 58, 121, 32, 42, 218, 40, 214, 102, 98 }, "Admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductHistories_ProductId",
@@ -681,6 +711,11 @@ namespace DataAccessEFCore.Migrations
                 name: "IX_SalesReturns_SalesOrderId",
                 table: "SalesReturns",
                 column: "SalesOrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_RoleId",
+                table: "Users",
+                column: "RoleId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -714,6 +749,9 @@ namespace DataAccessEFCore.Migrations
 
             migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
 
             migrationBuilder.DropTable(
                 name: "PurchaseOrders");

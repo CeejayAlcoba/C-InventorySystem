@@ -59,6 +59,20 @@ namespace Services
             _unitOfWork.Complete();
 
         }
+        public void DeleteColour(IEnumerable<Colour> colours)
+        {
+            foreach(var colour in colours)
+            {
+
+                var getColourById =
+                    _unitOfWork.Colours.GetById(colour.ColourId);
+                var productList = 
+                    _unitOfWork.Products.GetAll().Where(c => c.ColourId == colour.ColourId);
+                getColourById.IsDelete = true;
+                _productService.DeleteProduct(productList);
+                _unitOfWork.Complete();
+            }
+        }
 
         public void UpdateColour(Colour colour, int Id)
         {

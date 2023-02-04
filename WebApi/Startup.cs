@@ -13,11 +13,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Newtonsoft.Json.Serialization;
 using Services;
 using Services.Contracts;
 using System.Text;
-using System.Text.Json.Serialization;
 using WebApi.Auth;
 
 namespace WebApi
@@ -128,39 +126,9 @@ namespace WebApi
             services.AddControllers();
 
             #region Swagger Configuration
-            services.AddSwaggerGen(swagger =>
+            services.AddSwaggerGen(c =>
             {
-                //This is to generate the Default UI of Swagger Documentation
-                swagger.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Version = "v1",
-                    Title = "JWT Token Authentication API",
-                    Description = "ASP.NET Core 5.0 Web API"
-                });
-                // To Enable authorization using Swagger (JWT)
-                swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
-                {
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer",
-                    BearerFormat = "JWT",
-                    In = ParameterLocation.Header,
-                    Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\"",
-                });
-                swagger.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                          new OpenApiSecurityScheme
-                            {
-                                Reference = new OpenApiReference
-                                {
-                                    Type = ReferenceType.SecurityScheme,
-                                    Id = "Bearer"
-                                }
-                            },
-                            new string[] {}
-                    }
-                });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "InventoryManagementSystem", Version = "v1" });
             });
             #endregion
 
@@ -180,6 +148,7 @@ namespace WebApi
             {
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "InventoryManagementSystem v1"));
             }
             app.UseMiddleware<JWTMiddleware>();
 

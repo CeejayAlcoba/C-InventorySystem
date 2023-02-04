@@ -40,7 +40,7 @@ namespace WebApi.Controllers
             {
                 return Ok(getBrand);
             }
-            return BadRequest("Name is already exist");
+            return BadRequest("Name already exists");
 
         }
         [HttpPatch]
@@ -58,7 +58,7 @@ namespace WebApi.Controllers
                 }
                 else
                 {
-                    return BadRequest("Name is already exist");
+                    return BadRequest("Name already exists");
                 }
 
             }

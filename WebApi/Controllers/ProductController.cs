@@ -40,7 +40,7 @@ namespace WebApi.Controllers
             {
                 return Ok(getProduct);
             }
-            return BadRequest("Name is already exist");
+            return BadRequest("Name already exists");
 
 
         }

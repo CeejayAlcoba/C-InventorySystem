@@ -12,6 +12,7 @@ namespace Services.Contracts
         void UpdateColour(Colour colour, int Id);
         Colour AddColour(Colour colour);
         void DeleteColour(int Id);
+        void DeleteColour(IEnumerable<Colour> colours);
 
     }
 }

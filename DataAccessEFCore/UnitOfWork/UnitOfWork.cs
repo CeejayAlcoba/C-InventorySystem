@@ -15,6 +15,7 @@ namespace DataAccessEFCore.UnitOfWork
         {
             _context = context;
             Users = new UserRepository(_context);
+            Roles = new RoleRepositoy(_context);
             Brands = new BrandRepository(_context);
             Categories = new CategoryRepository(_context);
             Colours = new ColourRepository(_context);
@@ -39,6 +40,7 @@ namespace DataAccessEFCore.UnitOfWork
         }
         public IProductHistoryRepository ProductHistories { get; private set; }
         public IUserRepository Users { get; private set; }
+        public IRoleRepository Roles { get; private set; }
         public IBrandRepository Brands { get; private set; }
         public ICategoryRepository Categories { get; private set; }
         public IColourRepository Colours { get; private set; }

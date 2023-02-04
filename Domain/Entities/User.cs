@@ -24,6 +24,9 @@ namespace Domain.Entities
         public string ReTypePassword { get; set; }
         [NotMapped]
         public string CurrentPassword { get; set; }
+        [ForeignKey("Role")]
+        public int RoleId { get; set; }
+        public Role Role { get; set; }
         public bool IsDelete { get; set; }
 
     }

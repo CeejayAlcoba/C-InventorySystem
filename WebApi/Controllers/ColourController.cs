@@ -37,7 +37,7 @@ namespace WebApi.Controllers
             {
                 return Ok(getColour);
             }
-            return BadRequest("Name is already exist");
+            return BadRequest("Name already exists");
 
         }
         [HttpPatch]
@@ -55,7 +55,7 @@ namespace WebApi.Controllers
                 }
                 else
                 {
-                    return BadRequest("Name is already exist");
+                    return BadRequest("Name already exists");
                 }
 
             }
@@ -89,5 +89,21 @@ namespace WebApi.Controllers
                 return BadRequest(ex);
             }
         }
+        [HttpDelete]
+        [Route("/api/colour")]
+        public IActionResult DeleteSelectedColour([FromBody]IEnumerable<Colour>colours)
+        {
+            try
+            {
+
+                _colourService.DeleteColour(colours);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
     }
 }

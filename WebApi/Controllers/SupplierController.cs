@@ -37,7 +37,7 @@ namespace WebApi.Controllers
             {
                 return Ok(getSupplier);
             }
-            return BadRequest("Name is already exist");
+            return BadRequest("Name already exists");
 
         }
         [HttpPatch]
@@ -51,7 +51,7 @@ namespace WebApi.Controllers
                 {
                     return Ok(updateSupplier);
                 }
-                else return BadRequest("Supplier Name is already exist.");
+                else return BadRequest("Supplier Name already exists.");
                
             }
             catch (Exception ex)
